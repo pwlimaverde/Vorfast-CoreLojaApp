@@ -19,3 +19,5 @@ v: 0.4.1
 Ajuste de versão
 v: 0.4.2
 Reinicio versionamento git
+v: 0.4.3
+inicio versionamento gitflow
