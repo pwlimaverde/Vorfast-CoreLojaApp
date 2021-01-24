@@ -22,4 +22,4 @@ Reinicio versionamento git
 v: 0.4.3
 inicio versionamento gitflow
 v: 0.4.4
-reinicio versionamento gitflow inicio do refattor null safe e packages internos
+reinicio versionamento gitflow inicio do refattor null safe e packages internos retorno sucesso ou erro e abstração do usecase
