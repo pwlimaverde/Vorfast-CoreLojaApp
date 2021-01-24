@@ -1,7 +1,7 @@
 import 'package:corelojaapp/app/settings/institucional/institucional_features/carregar_empresa/domain/entities/resultado_empresa.dart';
 import 'package:corelojaapp/app/settings/institucional/institucional_features/carregar_empresa/domain/repositories/carregar_empresa_repository.dart';
 import 'package:corelojaapp/app/settings/institucional/institucional_presenter/institucional_presenter.dart';
-import 'package:corelojaapp/app/shared/utilitario/erros.dart';
+import 'package:corelojaapp/app/settings/erros/erros.dart';
 import 'package:corelojaapp/app/shared/utilitario/resultado_sucesso_ou_error.dart';
 import 'package:corelojaapp/app/shared/utilitario/usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -20,7 +20,7 @@ main() {
     testeFire.add(ResultadoEmpresa(nome: "vorfast", licenca: true));
     when(repository.carregarEmpresa()).thenAnswer((_) {
       return Future.value(
-        SucessoResultado(
+        SucessoRetorno(
           result: testeFire,
         ),
       );
@@ -28,7 +28,7 @@ main() {
 
     final result = await carregarEmpresa(NoParams());
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(result, isA<RetornoSucessoOuErro>());
     testeFire.close();
@@ -41,7 +41,7 @@ main() {
     testeFire.add(ResultadoEmpresa(nome: "vorfast", licenca: true));
     when(repository.carregarEmpresa()).thenAnswer((_) {
       return Future.value(
-        SucessoResultado<Stream<ResultadoEmpresa>>(
+        SucessoRetorno<Stream<ResultadoEmpresa>>(
           result: testeFire,
         ),
       );
@@ -49,12 +49,12 @@ main() {
 
     final result = await carregarEmpresa(NoParams());
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         isA<Stream<ResultadoEmpresa>>());
     testeFire.close();
@@ -66,8 +66,8 @@ main() {
     testeFire.add(ResultadoEmpresa(nome: "vorfast", licenca: true));
     when(repository.carregarEmpresa()).thenAnswer((_) {
       return Future.value(
-        ErrorResultado(
-          error: ErroInesperado(
+        ErrorRetorno(
+          erro: ErroInesperado(
             mensagem: "Erro ao carregar os dados da Empresa Cod.01-1",
           ),
         ),
@@ -76,12 +76,12 @@ main() {
 
     final result = await carregarEmpresa(NoParams());
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         isA<ErroInesperado>());
     testeFire.close();
@@ -95,12 +95,12 @@ main() {
 
     final result = await carregarEmpresa(NoParams());
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         isA<ErroInesperado>());
     testeFire.close();

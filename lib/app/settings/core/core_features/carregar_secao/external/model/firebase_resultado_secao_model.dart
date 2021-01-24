@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import 'firebase_resultado_anuncio_model.dart';
 import '../../domain/entities/resultado_secao.dart';
+import 'firebase_resultado_anuncio_model.dart';
 
 class RxFirebaseResultadoSecaoModel {
   final nome = "".obs;

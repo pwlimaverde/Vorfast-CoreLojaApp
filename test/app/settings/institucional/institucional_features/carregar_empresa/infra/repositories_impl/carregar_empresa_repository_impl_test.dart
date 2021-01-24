@@ -1,7 +1,7 @@
 import 'package:corelojaapp/app/settings/institucional/institucional_features/carregar_empresa/domain/entities/resultado_empresa.dart';
 import 'package:corelojaapp/app/settings/institucional/institucional_features/carregar_empresa/infra/datasources/carregar_empresa_datasource.dart';
 import 'package:corelojaapp/app/settings/institucional/institucional_features/carregar_empresa/infra/repositories_impl/carregar_empresa_repository_impl.dart';
-import 'package:corelojaapp/app/shared/utilitario/erros.dart';
+import 'package:corelojaapp/app/settings/erros/erros.dart';
 import 'package:corelojaapp/app/shared/utilitario/resultado_sucesso_ou_error.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -18,14 +18,14 @@ main() {
     final testeEmpresa = BehaviorSubject<ResultadoEmpresa>();
     testeEmpresa.add(ResultadoEmpresa(nome: "vorfast", licenca: true));
     RetornoSucessoOuErro<Stream<ResultadoEmpresa>> testeFire =
-        SucessoResultado(result: testeEmpresa);
+        SucessoRetorno(result: testeEmpresa);
 
     when(datasource.carregarEmpresa())
         .thenAnswer((_) => Future(() => testeFire));
 
     final result = await repository.carregarEmpresa();
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(result, isA<RetornoSucessoOuErro>());
     testeEmpresa.close();
@@ -37,19 +37,19 @@ main() {
     final testeEmpresa = BehaviorSubject<ResultadoEmpresa>();
     testeEmpresa.add(ResultadoEmpresa(nome: "vorfast", licenca: true));
     RetornoSucessoOuErro<Stream<ResultadoEmpresa>> testeFire =
-        SucessoResultado(result: testeEmpresa);
+        SucessoRetorno(result: testeEmpresa);
 
     when(datasource.carregarEmpresa())
         .thenAnswer((_) => Future(() => testeFire));
 
     final result = await repository.carregarEmpresa();
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         isA<Stream<ResultadoEmpresa>>());
     testeEmpresa.close();
@@ -60,8 +60,8 @@ main() {
       () async {
     final testeEmpresa = BehaviorSubject<ResultadoEmpresa>();
     testeEmpresa.add(ResultadoEmpresa(nome: "vorfast", licenca: true));
-    RetornoSucessoOuErro<Stream<ResultadoEmpresa>> testeFire = ErrorResultado(
-      error: ErroInesperado(
+    RetornoSucessoOuErro<Stream<ResultadoEmpresa>> testeFire = ErrorRetorno(
+      erro: ErroInesperado(
         mensagem: " Erro ao carregar os dados da Empresa - Cod.02-1",
       ),
     );
@@ -71,12 +71,12 @@ main() {
 
     final result = await repository.carregarEmpresa();
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
       result.fold(
-        sucesso: (value) => value.result,
-        error: (value) => value.error,
+        sucesso: (value) => value.resultado,
+        erro: (value) => value.error,
       ),
       isA<ErroInesperado>(),
     );
@@ -90,12 +90,12 @@ main() {
 
     final result = await repository.carregarEmpresa();
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
       result.fold(
-        sucesso: (value) => value.result,
-        error: (value) => value.error,
+        sucesso: (value) => value.resultado,
+        erro: (value) => value.error,
       ),
       isA<ErroInesperado>(),
     );

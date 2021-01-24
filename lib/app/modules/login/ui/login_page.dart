@@ -1,11 +1,12 @@
-import 'package:corelojaapp/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+
+import '../../../routes/app_pages.dart';
+import '../../../shared/utilitario/app_status.dart';
+import '../../../shared/widgets/widgets_core.dart' as widgetCore;
 //Importes internos
 import '../login_controller.dart';
-import '../../../shared/widgets/widgets_core.dart' as widgetCore;
-import '../../../shared/utilitario/app_status.dart';
 
 class LoginPage extends GetView<LoginController> {
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../widgets_core.dart' as widgetCore;
 
 class BodyCoreWidget extends StatelessWidget {
@@ -7,8 +8,8 @@ class BodyCoreWidget extends StatelessWidget {
 
   const BodyCoreWidget({
     Key key,
-    @required this.slv,
-    @required this.drawer,
+    required this.slv,
+    required this.drawer,
   }) : super(key: key);
 
   @override

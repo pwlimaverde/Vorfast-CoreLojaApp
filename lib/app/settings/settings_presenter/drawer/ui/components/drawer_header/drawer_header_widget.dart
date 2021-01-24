@@ -1,4 +1,4 @@
-import 'package:corelojaapp/app/settings/institucional/institucional_presenter/institucional_presenter.dart';
+import '../../../../../institucional/institucional_presenter/institucional_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -15,12 +15,12 @@ class DrawerHeaderWidget extends StatelessWidget {
   final bool isShowNome;
 
   DrawerHeaderWidget({
-    @required this.page,
-    @required this.empresa,
-    @required this.user,
-    @required this.singOut,
-    @required this.isLogin,
-    @required this.isShowNome,
+    required this.page,
+    required this.empresa,
+    required this.user,
+    required this.singOut,
+    required this.isLogin,
+    required this.isShowNome,
   });
 
   @override

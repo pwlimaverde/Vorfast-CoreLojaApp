@@ -13,9 +13,9 @@ class FarebaseSignInGoogleDatasource implements SignInDatasource {
   final FirebaseFirestore firestore;
 
   FarebaseSignInGoogleDatasource({
-    @required this.authInstance,
-    @required this.googleSignIn,
-    @required this.firestore,
+    required this.authInstance,
+    required this.googleSignIn,
+    required this.firestore,
   });
 
   @override

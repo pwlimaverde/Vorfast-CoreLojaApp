@@ -1,6 +1,7 @@
-import 'package:corelojaapp/app/settings/core/core_presenter/core_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../../settings/core/core_presenter/core_presenter.dart';
 import '../../../../../shared/widgets/widgets_core.dart' as widgetCore;
 
 class AnunciosBuildWidget extends StatelessWidget {

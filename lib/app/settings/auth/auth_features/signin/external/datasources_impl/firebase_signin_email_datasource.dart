@@ -1,6 +1,8 @@
 import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:meta/meta.dart';
+
 import '../../../../../auth/auth_features/carregar_usuario/domain/entities/resultado_usuario.dart';
 import '../../infra/datasources/signin_datasource.dart';
 
@@ -8,7 +10,7 @@ class FarebaseSignInEmailDatasource implements SignInDatasource {
   final auth.FirebaseAuth authInstance;
 
   FarebaseSignInEmailDatasource({
-    @required this.authInstance,
+    required this.authInstance,
   });
 
   @override

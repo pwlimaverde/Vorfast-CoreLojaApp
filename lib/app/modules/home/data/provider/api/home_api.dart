@@ -1,21 +1,23 @@
 import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:corelojaapp/app/settings/configuracao_geral/configuracao_geral_features/carregar_theme/external/model/firebase_resultado_theme_model.dart';
-import 'package:corelojaapp/app/settings/core/core_presenter/core_presenter.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
+
+import '../../../../../settings/configuracao_geral/configuracao_geral_features/carregar_theme/external/model/firebase_resultado_theme_model.dart';
+import '../../../../../settings/core/core_presenter/core_presenter.dart';
+import '../../model/anuncio_model.dart';
 //Importes Internos
 import '../../model/secao_model.dart';
-import '../../model/anuncio_model.dart';
 
 class HomeApiClient {
   final FirebaseFirestore firestore;
   final StorageReference storageReference;
   HomeApiClient({
-    @required this.firestore,
-    @required this.storageReference,
+    required this.firestore,
+    required this.storageReference,
   });
 
   Stream<List<SecaoModel>> getAllSecao() {
@@ -39,9 +41,9 @@ class HomeApiClient {
   }
 
   Future<void> saveCor({
-    @required Map<String, int> cor,
-    @required String key,
-    @required auth.User user,
+    required Map<String, int> cor,
+    required String key,
+    required auth.User user,
   }) async {
     try {
       await firestore.collection("settingstheme").doc("theme").update({
@@ -52,11 +54,11 @@ class HomeApiClient {
   }
 
   Future<void> saveHeader({
-    @required String doc,
-    @required String nome,
-    @required int prioridade,
-    @required Map corHeader,
-    @required auth.User user,
+    required String doc,
+    required String nome,
+    required int prioridade,
+    required Map corHeader,
+    required auth.User user,
   }) async {
     try {
       await firestore.collection("secao").doc(doc).update({
@@ -79,7 +81,7 @@ class HomeApiClient {
   }
 
   Future<void> saveImgGalery({
-    @required FirebaseResultadoSecaoModel secao,
+    required FirebaseResultadoSecaoModel secao,
   }) async {
     final _picker = ImagePicker();
     final pickedFile = await _picker.getImage(source: ImageSource.gallery);
@@ -93,8 +95,8 @@ class HomeApiClient {
   }
 
   Future<void> saveImgLink({
-    @required FirebaseResultadoSecaoModel secao,
-    @required String link,
+    required FirebaseResultadoSecaoModel secao,
+    required String link,
   }) async {
     await secao.reference.update({"img": "$link"});
   }

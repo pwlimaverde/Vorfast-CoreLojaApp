@@ -1,6 +1,7 @@
-import 'package:corelojaapp/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../routes/app_pages.dart';
 //Importes internos
 import '../../configuracao_geral_controller.dart';
 import 'components/drawer_back/drawer_back_widget.dart';
@@ -13,7 +14,7 @@ class DrawerCoreWidget extends GetView<ConfiguracaoGeralController> {
   final int page;
 
   DrawerCoreWidget({
-    @required this.page,
+    required this.page,
   });
 
   @override

@@ -1,14 +1,14 @@
 import 'package:meta/meta.dart';
+
 import '../../domain/entities/resultado_secao.dart';
 import '../../domain/repositories/carregar_secao_repository.dart';
 import '../../domain/status/carregar_secao_usecase_status.dart';
 import '../datasources/carregar_secao_datasource.dart';
-import '../../../../../../shared/utilitario/erros.dart';
 
 class CarregarSecaoRepositoryImpl implements CarregarSecaoRepository {
   final CarregarSecaoDatasource datasource;
 
-  CarregarSecaoRepositoryImpl({@required this.datasource});
+  CarregarSecaoRepositoryImpl({required this.datasource});
 
   @override
   Future<CarregarSecaoStatus> carregarSecao() async {

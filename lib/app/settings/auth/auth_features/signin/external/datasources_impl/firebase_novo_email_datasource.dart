@@ -10,15 +10,15 @@ class FarebaseNovoEmailDatasource implements SignInDatasource {
   final FirebaseFirestore firestore;
 
   FarebaseNovoEmailDatasource({
-    @required this.authInstance,
-    @required this.firestore,
+    required this.authInstance,
+    required this.firestore,
   });
 
   @override
   Future<bool> call({
     String email,
-    @required String pass,
-    @required ResultadoUsuario user,
+    required String pass,
+    required ResultadoUsuario user,
   }) async {
     try {
       if (user.email == null) {

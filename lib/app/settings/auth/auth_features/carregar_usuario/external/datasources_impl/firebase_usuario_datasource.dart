@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:corelojaapp/app/shared/utilitario/erros.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:meta/meta.dart';
 
 import '../../../../../../shared/utilitario/resultado_sucesso_ou_error.dart';
+import '../../../../../erros/erros.dart';
 import '../../infra/datasources/carregar_usuario_datasource.dart';
 import '../model/firebase_resultado_usuario_model.dart';
 
@@ -12,8 +12,8 @@ class FirebaseUsuarioDatasourse implements CarregarUsuarioDatasource {
   final auth.FirebaseAuth authInstance;
 
   FirebaseUsuarioDatasourse({
-    @required this.firestore,
-    @required this.authInstance,
+    required this.firestore,
+    required this.authInstance,
   });
 
   @override
@@ -32,24 +32,24 @@ class FirebaseUsuarioDatasourse implements CarregarUsuarioDatasource {
               user: _user,
             );
           });
-          return SucessoResultado(result: usuarioData);
+          return SucessoRetorno(result: usuarioData);
         } else {
-          return ErrorResultado(
-            error: ErroInesperado(
+          return ErrorRetorno(
+            erro: ErroInesperado(
               mensagem: "Erro ao carregar os dados Cod.03-1",
             ),
           );
         }
       } else {
-        return ErrorResultado(
-          error: ErroInesperado(
+        return ErrorRetorno(
+          erro: ErroInesperado(
             mensagem: "Erro ao carregar os dados Cod.03-2",
           ),
         );
       }
     } catch (e) {
-      return ErrorResultado(
-        error: ErroInesperado(
+      return ErrorRetorno(
+        erro: ErroInesperado(
           mensagem: "${e.toString()} Erro ao carregar os dados Cod.03-3",
         ),
       );

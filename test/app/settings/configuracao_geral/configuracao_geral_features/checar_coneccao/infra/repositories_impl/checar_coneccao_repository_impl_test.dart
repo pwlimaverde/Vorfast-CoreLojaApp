@@ -1,6 +1,6 @@
 import 'package:corelojaapp/app/settings/configuracao_geral/configuracao_geral_features/checar_coneccao/infra/datasources/checar_coneccao_datasource.dart';
 import 'package:corelojaapp/app/settings/configuracao_geral/configuracao_geral_features/checar_coneccao/infra/repositories_impl/checar_coneccao_repository_impl.dart';
-import 'package:corelojaapp/app/shared/utilitario/erros.dart';
+import 'package:corelojaapp/app/settings/erros/erros.dart';
 import 'package:corelojaapp/app/shared/utilitario/resultado_sucesso_ou_error.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -17,7 +17,7 @@ main() {
 
     final result = await repository.checarConeccao();
     print(
-        "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}");
+        "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}");
     expect(result, isA<RetornoSucessoOuErro>());
   });
 
@@ -27,11 +27,11 @@ main() {
 
     final result = await repository.checarConeccao();
     print(
-        "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}");
+        "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}");
     expect(
       result.fold(
-        sucesso: (value) => value.result,
-        error: (value) => value.error,
+        sucesso: (value) => value.resultado,
+        erro: (value) => value.error,
       ),
       true,
     );
@@ -43,11 +43,11 @@ main() {
 
     final result = await repository.checarConeccao();
     print(
-        "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}");
+        "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}");
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         false);
   });
@@ -58,11 +58,11 @@ main() {
 
     final result = await repository.checarConeccao();
     print(
-        "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}");
+        "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}");
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         isA<ErrorConeccao>());
   });

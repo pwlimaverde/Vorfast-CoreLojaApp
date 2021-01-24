@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../shared/widgets/widgets_core.dart' as widgetCore;
 
 class ContainerEditCorWidget extends StatelessWidget {
@@ -17,18 +18,18 @@ class ContainerEditCorWidget extends StatelessWidget {
 
   const ContainerEditCorWidget({
     Key key,
-    @required this.keyForm,
-    @required this.title,
-    @required this.validador,
-    @required this.onChangedR,
-    @required this.onChangedG,
-    @required this.onChangedB,
-    @required this.onChangedA,
-    @required this.controllerR,
-    @required this.controllerG,
-    @required this.controllerB,
-    @required this.controllerA,
-    @required this.previewCor,
+    required this.keyForm,
+    required this.title,
+    required this.validador,
+    required this.onChangedR,
+    required this.onChangedG,
+    required this.onChangedB,
+    required this.onChangedA,
+    required this.controllerR,
+    required this.controllerG,
+    required this.controllerB,
+    required this.controllerA,
+    required this.previewCor,
   }) : super(key: key);
 
   @override

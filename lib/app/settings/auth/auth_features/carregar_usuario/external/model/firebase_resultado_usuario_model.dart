@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:meta/meta.dart';
 import 'package:get/get.dart';
+import 'package:meta/meta.dart';
+
 import '../../domain/entities/resultado_usuario.dart';
 
 class RxFirebaseResultadoUsuarioModel {
@@ -48,7 +49,7 @@ class FirebaseResultadoUsuarioModel extends ResultadoUsuario {
   set administrador(value) => rx.administrador.value = value;
 
   FirebaseResultadoUsuarioModel.fromDocument(
-      {@required DocumentSnapshot doc, @required auth.User user}) {
+      {required DocumentSnapshot doc, required auth.User user}) {
     this.reference = doc.reference;
     this.currentUser = user;
     this.id = doc.data()['id'];

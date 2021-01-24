@@ -1,7 +1,7 @@
 import 'package:corelojaapp/app/settings/auth/auth_features/carregar_usuario/domain/entities/resultado_usuario.dart';
 import 'package:corelojaapp/app/settings/auth/auth_features/carregar_usuario/infra/datasources/carregar_usuario_datasource.dart';
 import 'package:corelojaapp/app/settings/auth/auth_features/carregar_usuario/infra/repositories_impl/carregar_usuario_repository_impl.dart';
-import 'package:corelojaapp/app/shared/utilitario/erros.dart';
+import 'package:corelojaapp/app/settings/erros/erros.dart';
 import 'package:corelojaapp/app/shared/utilitario/resultado_sucesso_ou_error.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -18,14 +18,14 @@ main() {
     final testeUsuario = BehaviorSubject<ResultadoUsuario>();
     testeUsuario.add(ResultadoUsuario(id: "teste", nome: "paulo"));
     RetornoSucessoOuErro<Stream<ResultadoUsuario>> testeFire =
-        SucessoResultado(result: testeUsuario);
+        SucessoRetorno(result: testeUsuario);
 
     when(datasource.carregarUsuario())
         .thenAnswer((_) => Future(() => testeFire));
 
     final result = await repository.carregarUsuario();
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(result, isA<RetornoSucessoOuErro>());
     testeUsuario.close();
@@ -37,7 +37,7 @@ main() {
     final testeUsuario = BehaviorSubject<ResultadoUsuario>();
     testeUsuario.add(ResultadoUsuario(id: "teste", nome: "paulo"));
     RetornoSucessoOuErro<Stream<ResultadoUsuario>> testeFire =
-        SucessoResultado(result: testeUsuario);
+        SucessoRetorno(result: testeUsuario);
 
     when(datasource.carregarUsuario())
         .thenAnswer((_) => Future(() => testeFire));
@@ -47,12 +47,12 @@ main() {
       "teste result tipo => $result",
     );
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         isA<Stream<ResultadoUsuario>>());
     testeUsuario.close();
@@ -63,8 +63,8 @@ main() {
       () async {
     final testeUsuario = BehaviorSubject<ResultadoUsuario>();
     testeUsuario.add(ResultadoUsuario(id: "teste", nome: "paulo"));
-    RetornoSucessoOuErro<Stream<ResultadoUsuario>> testeFire = ErrorResultado(
-      error: ErroInesperado(
+    RetornoSucessoOuErro<Stream<ResultadoUsuario>> testeFire = ErrorRetorno(
+      erro: ErroInesperado(
         mensagem: " Erro ao carregar os dados do Useario - Cod.02-1",
       ),
     );
@@ -77,12 +77,12 @@ main() {
       "teste result tipo => $result",
     );
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         isA<ErroInesperado>());
     testeUsuario.close();
@@ -98,12 +98,12 @@ main() {
       "teste result tipo => $result",
     );
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         isA<ErroInesperado>());
   });

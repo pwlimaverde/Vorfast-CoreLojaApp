@@ -1,18 +1,19 @@
-import 'package:corelojaapp/app/settings/auth/auth_presenter/auth_presenter.dart';
-import 'package:corelojaapp/app/settings/settings_presenter/configuracao_geral_controller.dart';
-import 'package:corelojaapp/app/shared/utilitario/resultado_sucesso_ou_error.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
+
+import '../../settings/auth/auth_presenter/auth_presenter.dart';
+import '../../settings/settings_presenter/configuracao_geral_controller.dart';
 //Importes Internos
 import '../../shared/utilitario/app_status.dart';
+import '../../shared/utilitario/resultado_sucesso_ou_error.dart';
 
 class LoginController extends GetxController {
   // final AuthController authController;
   final ConfiguracaoGeralController configuracaoGeralController;
 
   LoginController({
-    @required this.configuracaoGeralController,
+    required this.configuracaoGeralController,
   }) : assert(configuracaoGeralController != null);
 
   //Variaveis internas
@@ -31,14 +32,14 @@ class LoginController extends GetxController {
 
   //Controles Internos
   Future<void> signInGoogleLogin({
-    @required VoidCallback onSuccess,
-    @required VoidCallback onFail,
+    required VoidCallback onSuccess,
+    required VoidCallback onFail,
   }) async {
     print("teste login inicio");
     this.statusGeralAtual = AppStatus.loading..valorSet = "google";
     await configuracaoGeralController.signInGoogleLogin().then((value) {
       print("teste login $value");
-      if (value is SucessoResultado<bool>) {
+      if (value is SucessoRetorno<bool>) {
         print("teste login ok $value");
         this.statusGeralAtual = AppStatus.success;
         onSuccess();
@@ -49,8 +50,8 @@ class LoginController extends GetxController {
   }
 
   Future<void> signInEmailLogin({
-    @required VoidCallback onSuccess,
-    @required VoidCallback onFail,
+    required VoidCallback onSuccess,
+    required VoidCallback onFail,
   }) async {
     this.statusGeralAtual = AppStatus.loading..valorSet = "email";
     await configuracaoGeralController
@@ -60,7 +61,7 @@ class LoginController extends GetxController {
     )
         .then((value) {
       this.statusGeralAtual = AppStatus.success;
-      if (value is SucessoResultado<bool>) {
+      if (value is SucessoRetorno<bool>) {
         onSuccess();
       } else {
         onFail();
@@ -69,8 +70,8 @@ class LoginController extends GetxController {
   }
 
   Future<void> recoverPass({
-    @required VoidCallback onSuccess,
-    @required VoidCallback onFail,
+    required VoidCallback onSuccess,
+    required VoidCallback onFail,
   }) async {
     RetornoSucessoOuErro result = await configuracaoGeralController
         .recuperarSenha(email: emailController.text);
@@ -79,7 +80,7 @@ class LoginController extends GetxController {
         this.statusGeralAtual = AppStatus.success;
         onSuccess();
       },
-      error: (value) {
+      erro: (value) {
         this.statusGeralAtual = AppStatus.error;
         onFail();
       },

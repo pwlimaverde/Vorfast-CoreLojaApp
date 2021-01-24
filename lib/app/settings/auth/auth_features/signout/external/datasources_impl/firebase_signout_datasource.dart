@@ -6,7 +6,7 @@ import '../../infra/datasources/signout_datasource.dart';
 class FarebaseSignOutDatasource implements SignOutDatasource {
   final FirebaseAuth auth;
 
-  FarebaseSignOutDatasource({@required this.auth});
+  FarebaseSignOutDatasource({required this.auth});
 
   @override
   Future<bool> signOutFirebase() async {
