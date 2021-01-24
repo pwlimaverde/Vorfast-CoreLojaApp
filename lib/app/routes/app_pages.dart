@@ -1,14 +1,15 @@
 import 'package:get/get.dart';
-//Importes Internos
-import '../settings/settings_presenter/configuracao_geral_controller.dart';
-import '../modules/home/ui/home_page.dart';
+
 import '../modules/home/home_bindings.dart';
-import '../modules/splash/splash_bindings.dart';
-import '../modules/splash/ui/splash_page.dart';
+import '../modules/home/ui/home_page.dart';
 import '../modules/login/login_binding.dart';
-import '../modules/login/ui/login_page.dart';
 import '../modules/login/module/novo_user/novo_user_binding.dart';
 import '../modules/login/module/novo_user/ui/novo_user_page.dart';
+import '../modules/login/ui/login_page.dart';
+import '../modules/splash/splash_bindings.dart';
+import '../modules/splash/ui/splash_page.dart';
+//Importes Internos
+import '../settings/settings_presenter/configuracao_geral_controller.dart';
 
 part './app_routes.dart';
 

@@ -1,15 +1,16 @@
-import 'package:corelojaapp/app/shared/utilitario/usecase.dart';
+import 'package:connectivity/connectivity.dart';
+import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:connectivity/connectivity.dart';
+
 //Importes Internos
 import '../../shared/utilitario/resultado_sucesso_ou_error.dart';
-import '../institucional/institucional_presenter/institucional_presenter.dart';
+import '../../shared/utilitario/usecase.dart';
 import '../auth/auth_presenter/auth_presenter.dart';
 import '../configuracao_geral/configuracao_geral_presenter/configuracao_geral_presenter.dart';
 import '../core/core_presenter/core_presenter.dart';
+import '../institucional/institucional_presenter/institucional_presenter.dart';
 import 'drawer/ui/drawer_core_widget.dart';
 
 class ConfiguracaoGeralController extends GetxController {
@@ -25,17 +26,17 @@ class ConfiguracaoGeralController extends GetxController {
   final SignInUsecase novoEmailUsecase;
   final RecuperarSenhaEmailUsecase recuperarSenhaEmailLoginUsecase;
   ConfiguracaoGeralController({
-    @required this.carregarTheme,
-    @required this.checarConeccao,
-    @required this.onconnect,
-    @required this.carregarSecao,
-    @required this.carregarEmpresa,
-    @required this.carregarUsuario,
-    @required this.signOutUsecase,
-    @required this.signInGoogleUsecase,
-    @required this.signInEmailUsecase,
-    @required this.novoEmailUsecase,
-    @required this.recuperarSenhaEmailLoginUsecase,
+    required this.carregarTheme,
+    required this.checarConeccao,
+    required this.onconnect,
+    required this.carregarSecao,
+    required this.carregarEmpresa,
+    required this.carregarUsuario,
+    required this.signOutUsecase,
+    required this.signInGoogleUsecase,
+    required this.signInEmailUsecase,
+    required this.novoEmailUsecase,
+    required this.recuperarSenhaEmailLoginUsecase,
   }) : assert(carregarTheme != null &&
             checarConeccao != null &&
             onconnect != null &&
@@ -67,14 +68,14 @@ class ConfiguracaoGeralController extends GetxController {
 
   Future<RetornoSucessoOuErro> singOut() async {
     return await signOutUsecase().then((value) {
-      if (value is SucessoResultado<bool>) {
+      if (value is SucessoRetorno<bool>) {
         this.usuarioFirebaseValue.cleanUser();
       }
       return value;
     });
   }
 
-  Future<RetornoSucessoOuErro> recuperarSenha({@required String email}) async {
+  Future<RetornoSucessoOuErro> recuperarSenha({required String email}) async {
     return await recuperarSenhaEmailLoginUsecase(email: email);
   }
 
@@ -89,8 +90,8 @@ class ConfiguracaoGeralController extends GetxController {
   }
 
   Future<RetornoSucessoOuErro> signInEmailLogin({
-    @required String email,
-    @required String pass,
+    required String email,
+    required String pass,
   }) async {
     singOut();
     return await signInEmailUsecase(
@@ -103,8 +104,8 @@ class ConfiguracaoGeralController extends GetxController {
   }
 
   Future<RetornoSucessoOuErro> novoEmailLogin({
-    @required FirebaseResultadoUsuarioModel user,
-    @required String pass,
+    required FirebaseResultadoUsuarioModel user,
+    required String pass,
   }) async {
     singOut();
     return novoEmailUsecase(
@@ -119,8 +120,8 @@ class ConfiguracaoGeralController extends GetxController {
   //Auth Funções Internas
   _carregarUsuario() async {
     RetornoSucessoOuErro usuarioLogado = await carregarUsuario(NoParams());
-    if (usuarioLogado is SucessoResultado) {
-      this.usuarioFirebase = usuarioLogado.result;
+    if (usuarioLogado is SucessoRetorno) {
+      this.usuarioFirebase = usuarioLogado.resultado;
     }
   }
 
@@ -138,8 +139,8 @@ class ConfiguracaoGeralController extends GetxController {
   //Institucional Funções Internas
   void _carregarEmpresa() async {
     RetornoSucessoOuErro result = await carregarEmpresa(NoParams());
-    if (result is SucessoResultado) {
-      this.empresaFirebase = result.result;
+    if (result is SucessoRetorno) {
+      this.empresaFirebase = result.resultado;
     }
   }
 
@@ -157,8 +158,8 @@ class ConfiguracaoGeralController extends GetxController {
 
   void _getCon() async {
     RetornoSucessoOuErro<bool> testeConexao = await checarConeccao(NoParams());
-    if (testeConexao is SucessoResultado<bool>) {
-      this.estaConectado = testeConexao.result;
+    if (testeConexao is SucessoRetorno<bool>) {
+      this.estaConectado = testeConexao.resultado;
     } else {
       this.estaConectado = false;
     }
@@ -207,8 +208,8 @@ class ConfiguracaoGeralController extends GetxController {
   //Carregar Theme
   void _carregarSettingsTheme() async {
     RetornoSucessoOuErro result = await carregarTheme(NoParams());
-    if (result is SucessoResultado) {
-      this.fireTheme = result.result;
+    if (result is SucessoRetorno) {
+      this.fireTheme = result.resultado;
     }
   }
 

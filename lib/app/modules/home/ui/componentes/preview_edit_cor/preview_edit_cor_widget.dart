@@ -6,8 +6,8 @@ class PreviewEditCorWidget extends StatelessWidget {
 
   const PreviewEditCorWidget({
     Key key,
-    @required this.cor,
-    @required this.title,
+    required this.cor,
+    required this.title,
   }) : super(key: key);
 
   @override

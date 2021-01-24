@@ -1,13 +1,14 @@
-import 'package:corelojaapp/app/settings/auth/auth_presenter/auth_presenter.dart';
-import 'package:corelojaapp/app/settings/core/core_presenter/core_presenter.dart';
-import 'package:corelojaapp/app/settings/settings_presenter/configuracao_geral_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
-//Importes Internos
-import 'data/repository/home_repository.dart';
+
+import '../../settings/auth/auth_presenter/auth_presenter.dart';
+import '../../settings/core/core_presenter/core_presenter.dart';
+import '../../settings/settings_presenter/configuracao_geral_controller.dart';
 import '../../shared/utilitario/app_status.dart';
 import '../../shared/widgets/widgets_core.dart' as widgetCore;
+//Importes Internos
+import 'data/repository/home_repository.dart';
 import 'ui/componentes/anuncios_build/anuncios_build_widget.dart';
 import 'ui/componentes/card_edit_cor/card_edit_cor_widget.dart';
 import 'ui/componentes/container_edit_cor/container_edit_cor_widget.dart';
@@ -19,8 +20,8 @@ class HomeController extends GetxController {
   final ConfiguracaoGeralController configuracaoGeralController;
 
   HomeController({
-    @required this.repo,
-    @required this.configuracaoGeralController,
+    required this.repo,
+    required this.configuracaoGeralController,
   }) : assert(
           repo != null && configuracaoGeralController != null,
         );
@@ -466,7 +467,7 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<void> saveHeader({@required String doc}) async {
+  Future<void> saveHeader({required String doc}) async {
     if (isHeader) {
       Get.back();
       await repo.saveHeader(

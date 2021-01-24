@@ -1,7 +1,7 @@
 import 'package:corelojaapp/app/settings/configuracao_geral/configuracao_geral_features/carregar_theme/domain/entities/resultado_theme.dart';
 import 'package:corelojaapp/app/settings/configuracao_geral/configuracao_geral_features/carregar_theme/infra/datasources/carregar_theme_datasource.dart';
 import 'package:corelojaapp/app/settings/configuracao_geral/configuracao_geral_features/carregar_theme/infra/repositories_impl/carregar_theme_repository_impl.dart';
-import 'package:corelojaapp/app/shared/utilitario/erros.dart';
+import 'package:corelojaapp/app/settings/erros/erros.dart';
 import 'package:corelojaapp/app/shared/utilitario/resultado_sucesso_ou_error.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -18,13 +18,13 @@ main() {
     final testeTheme = BehaviorSubject<ResultadoTheme>();
     testeTheme.add(ResultadoTheme(accent: {"r": 58}, user: "paulo"));
     RetornoSucessoOuErro<Stream<ResultadoTheme>> testeFire =
-        SucessoResultado(result: testeTheme);
+        SucessoRetorno(result: testeTheme);
 
     when(datasource.getTheme()).thenAnswer((_) => Future(() => testeFire));
 
     final result = await repository.carregarTheme();
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(result, isA<RetornoSucessoOuErro>());
     testeTheme.close();
@@ -36,18 +36,18 @@ main() {
     final testeTheme = BehaviorSubject<ResultadoTheme>();
     testeTheme.add(ResultadoTheme(accent: {"r": 58}, user: "paulo"));
     RetornoSucessoOuErro<Stream<ResultadoTheme>> testeFire =
-        SucessoResultado(result: testeTheme);
+        SucessoRetorno(result: testeTheme);
 
     when(datasource.getTheme()).thenAnswer((_) => Future(() => testeFire));
 
     final result = await repository.carregarTheme();
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         isA<Stream<ResultadoTheme>>());
     testeTheme.close();
@@ -58,8 +58,8 @@ main() {
       () async {
     final testeTheme = BehaviorSubject<ResultadoTheme>();
     testeTheme.add(ResultadoTheme(accent: {"r": 58}, user: "paulo"));
-    RetornoSucessoOuErro<Stream<ResultadoTheme>> testeFire = ErrorResultado(
-      error: ErroInesperado(
+    RetornoSucessoOuErro<Stream<ResultadoTheme>> testeFire = ErrorRetorno(
+      erro: ErroInesperado(
         mensagem: " Erro ao carregar os dados Cod.02-2",
       ),
     );
@@ -68,12 +68,12 @@ main() {
 
     final result = await repository.carregarTheme();
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         isA<ErroInesperado>());
     testeTheme.close();
@@ -86,12 +86,12 @@ main() {
 
     final result = await repository.carregarTheme();
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         isA<ErroInesperado>());
   });

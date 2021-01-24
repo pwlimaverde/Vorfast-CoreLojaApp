@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../shared/widgets/widgets_core.dart' as widgetCore;
 //Importes Internos
 import '../home_controller.dart';
-import '../../../shared/widgets/widgets_core.dart' as widgetCore;
 
 class HomePage extends GetView<HomeController> {
   @override

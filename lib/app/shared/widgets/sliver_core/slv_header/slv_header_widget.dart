@@ -1,8 +1,9 @@
-import 'package:corelojaapp/app/settings/core/core_presenter/core_presenter.dart';
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
+
+import '../../../../settings/core/core_presenter/core_presenter.dart';
 
 class SlvHeaderWidget extends StatelessWidget {
   final FirebaseResultadoSecaoModel secao;
@@ -52,9 +53,9 @@ class SlvHeaderWidget extends StatelessWidget {
 
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   _SliverAppBarDelegate({
-    @required this.minHeight,
-    @required this.maxHeight,
-    @required this.child,
+    required this.minHeight,
+    required this.maxHeight,
+    required this.child,
   });
   final double minHeight;
   final double maxHeight;

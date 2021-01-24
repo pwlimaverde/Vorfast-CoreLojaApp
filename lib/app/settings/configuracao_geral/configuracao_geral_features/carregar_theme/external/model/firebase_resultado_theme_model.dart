@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../domain/entities/resultado_theme.dart';
 
 class FirebaseResultadoThemeModel extends ResultadoTheme {

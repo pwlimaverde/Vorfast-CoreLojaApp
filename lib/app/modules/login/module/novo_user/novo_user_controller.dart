@@ -1,16 +1,17 @@
-import 'package:corelojaapp/app/settings/auth/auth_presenter/auth_presenter.dart';
-import 'package:corelojaapp/app/settings/settings_presenter/configuracao_geral_controller.dart';
-import 'package:corelojaapp/app/shared/utilitario/resultado_sucesso_ou_error.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../settings/auth/auth_presenter/auth_presenter.dart';
+import '../../../../settings/settings_presenter/configuracao_geral_controller.dart';
 //Importes Internos
 import '../../../../shared/utilitario/app_status.dart';
+import '../../../../shared/utilitario/resultado_sucesso_ou_error.dart';
 
 class NovoUserController extends GetxController {
   final ConfiguracaoGeralController configuracaoGeralController;
 
   NovoUserController({
-    @required this.configuracaoGeralController,
+    required this.configuracaoGeralController,
   }) : assert(configuracaoGeralController != null);
 
   //Controles Gerais
@@ -31,7 +32,7 @@ class NovoUserController extends GetxController {
 
   //Controles Internos
   Future<void> setUserEmail(
-      {@required VoidCallback onSuccess, @required VoidCallback onFail}) async {
+      {required VoidCallback onSuccess, required VoidCallback onFail}) async {
     this.statusGeralAtual = AppStatus.loading;
     FirebaseResultadoUsuarioModel user = FirebaseResultadoUsuarioModel();
     user.nome = nomeController.text;
@@ -40,7 +41,7 @@ class NovoUserController extends GetxController {
         .novoEmailLogin(user: user, pass: senhaController.text)
         .then((value) {
       this.statusGeralAtual = AppStatus.success;
-      if (value is SucessoResultado<bool>) {
+      if (value is SucessoRetorno<bool>) {
         onSuccess();
       } else {
         onFail();

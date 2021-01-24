@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:corelojaapp/app/modules/home/data/model/anuncio_model.dart';
 import 'package:get/get.dart';
+
+import 'anuncio_model.dart';
 
 class RxSecaoModel {
   final nome = "".obs;

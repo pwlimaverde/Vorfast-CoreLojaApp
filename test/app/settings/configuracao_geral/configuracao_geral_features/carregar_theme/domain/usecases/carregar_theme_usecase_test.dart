@@ -1,7 +1,7 @@
 import 'package:corelojaapp/app/settings/configuracao_geral/configuracao_geral_features/carregar_theme/domain/entities/resultado_theme.dart';
 import 'package:corelojaapp/app/settings/configuracao_geral/configuracao_geral_features/carregar_theme/domain/repositories/carregar_theme_repository.dart';
 import 'package:corelojaapp/app/settings/configuracao_geral/configuracao_geral_presenter/configuracao_geral_presenter.dart';
-import 'package:corelojaapp/app/shared/utilitario/erros.dart';
+import 'package:corelojaapp/app/settings/erros/erros.dart';
 import 'package:corelojaapp/app/shared/utilitario/resultado_sucesso_ou_error.dart';
 import 'package:corelojaapp/app/shared/utilitario/usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -21,7 +21,7 @@ main() {
         ResultadoTheme(accent: {"r": 58}, primary: {"r": 150}, user: "paulo"));
     when(repository.carregarTheme()).thenAnswer((_) {
       return Future.value(
-        SucessoResultado(
+        SucessoRetorno(
           result: testeFire,
         ),
       );
@@ -29,7 +29,7 @@ main() {
 
     final result = await carregarThema(NoParams());
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(result, isA<RetornoSucessoOuErro<Stream<ResultadoTheme>>>());
     testeFire.close();
@@ -43,7 +43,7 @@ main() {
         ResultadoTheme(accent: {"r": 58}, primary: {"r": 150}, user: "paulo"));
     when(repository.carregarTheme()).thenAnswer((_) {
       return Future.value(
-        SucessoResultado(
+        SucessoRetorno(
           result: testeFire,
         ),
       );
@@ -51,12 +51,12 @@ main() {
 
     final result = await carregarThema(NoParams());
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         isA<Stream<ResultadoTheme>>());
     testeFire.close();
@@ -68,8 +68,8 @@ main() {
     testeFire.add(ResultadoTheme());
     when(repository.carregarTheme()).thenAnswer((_) {
       return Future.value(
-        ErrorResultado(
-          error: ErroInesperado(
+        ErrorRetorno(
+          erro: ErroInesperado(
             mensagem: "Erro ao carregar os dados do thema",
           ),
         ),
@@ -78,12 +78,12 @@ main() {
 
     final result = await carregarThema(NoParams());
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         isA<ErroInesperado>());
     testeFire.close();
@@ -95,12 +95,12 @@ main() {
 
     final result = await carregarThema(NoParams());
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         isA<ErroInesperado>());
   });

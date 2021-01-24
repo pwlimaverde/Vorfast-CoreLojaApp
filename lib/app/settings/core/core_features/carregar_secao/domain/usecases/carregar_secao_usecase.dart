@@ -1,8 +1,8 @@
 import 'package:meta/meta.dart';
+
 import '../entities/resultado_secao.dart';
 import '../repositories/carregar_secao_repository.dart';
 import '../status/carregar_secao_usecase_status.dart';
-import '../../../../../../shared/utilitario/erros.dart';
 
 abstract class CarregarSecaoUsecase {
   Future<CarregarSecaoStatus> call();
@@ -11,7 +11,7 @@ abstract class CarregarSecaoUsecase {
 class CarregarSecaoUsecaseImpl implements CarregarSecaoUsecase {
   final CarregarSecaoRepository repository;
 
-  CarregarSecaoUsecaseImpl({@required this.repository});
+  CarregarSecaoUsecaseImpl({required this.repository});
 
   @override
   Future<CarregarSecaoStatus> call() async {

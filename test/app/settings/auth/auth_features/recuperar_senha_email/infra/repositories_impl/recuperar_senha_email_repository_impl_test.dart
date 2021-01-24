@@ -1,6 +1,6 @@
 import 'package:corelojaapp/app/settings/auth/auth_features/recuperar_senha_email/infra/datasources/recuperar_senha_email_datasource.dart';
 import 'package:corelojaapp/app/settings/auth/auth_features/recuperar_senha_email/infra/repositories_impl/recuperar_senha_email_repository_impl.dart';
-import 'package:corelojaapp/app/shared/utilitario/erros.dart';
+import 'package:corelojaapp/app/settings/erros/erros.dart';
 import 'package:corelojaapp/app/shared/utilitario/resultado_sucesso_ou_error.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -21,7 +21,7 @@ main() {
       "teste result tipo => $result",
     );
     print(
-        "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}");
+        "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}");
     expect(result, isA<RetornoSucessoOuErro>());
   });
 
@@ -35,11 +35,11 @@ main() {
       "teste result tipo => $result",
     );
     print(
-        "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}");
+        "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}");
     expect(
       result.fold(
-        sucesso: (value) => value.result,
-        error: (value) => value.error,
+        sucesso: (value) => value.resultado,
+        erro: (value) => value.error,
       ),
       true,
     );
@@ -55,11 +55,11 @@ main() {
       "teste result tipo => $result",
     );
     print(
-        "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}");
+        "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}");
     expect(
       result.fold(
-        sucesso: (value) => value.result,
-        error: (value) => value.error,
+        sucesso: (value) => value.resultado,
+        erro: (value) => value.error,
       ),
       false,
     );
@@ -74,11 +74,11 @@ main() {
       "teste result tipo => $result",
     );
     print(
-        "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}");
+        "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}");
     expect(
       result.fold(
-        sucesso: (value) => value.result,
-        error: (value) => value.error,
+        sucesso: (value) => value.resultado,
+        erro: (value) => value.error,
       ),
       isA<ErroInesperado>(),
     );

@@ -1,7 +1,7 @@
 import 'package:corelojaapp/app/settings/auth/auth_features/carregar_usuario/domain/entities/resultado_usuario.dart';
 import 'package:corelojaapp/app/settings/auth/auth_features/carregar_usuario/domain/repositories/carregar_usuario_repository.dart';
 import 'package:corelojaapp/app/settings/auth/auth_presenter/auth_presenter.dart';
-import 'package:corelojaapp/app/shared/utilitario/erros.dart';
+import 'package:corelojaapp/app/settings/erros/erros.dart';
 import 'package:corelojaapp/app/shared/utilitario/resultado_sucesso_ou_error.dart';
 import 'package:corelojaapp/app/shared/utilitario/usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -20,7 +20,7 @@ main() {
     testeFire.add(ResultadoUsuario(nome: "paulo", administrador: true));
     when(repository.carregarUsuario()).thenAnswer((_) {
       return Future.value(
-        SucessoResultado<Stream<ResultadoUsuario>>(
+        SucessoRetorno<Stream<ResultadoUsuario>>(
           result: testeFire,
         ),
       );
@@ -31,7 +31,7 @@ main() {
       "teste result tipo => $result",
     );
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(result, isA<RetornoSucessoOuErro>());
     testeFire.close();
@@ -44,7 +44,7 @@ main() {
     testeFire.add(ResultadoUsuario(nome: "paulo", administrador: true));
     when(repository.carregarUsuario()).thenAnswer((_) {
       return Future.value(
-        SucessoResultado<Stream<ResultadoUsuario>>(
+        SucessoRetorno<Stream<ResultadoUsuario>>(
           result: testeFire,
         ),
       );
@@ -55,12 +55,12 @@ main() {
       "teste result tipo => $result",
     );
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         isA<Stream<ResultadoUsuario>>());
     testeFire.close();
@@ -72,8 +72,8 @@ main() {
     testeFire.add(ResultadoUsuario());
     when(repository.carregarUsuario()).thenAnswer((_) {
       return Future.value(
-        ErrorResultado(
-          error: ErroInesperado(
+        ErrorRetorno(
+          erro: ErroInesperado(
             mensagem: "Erro ao carregar os dados do usuario",
           ),
         ),
@@ -85,12 +85,12 @@ main() {
       "teste result tipo => $result",
     );
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         isA<ErroInesperado>());
     testeFire.close();
@@ -105,12 +105,12 @@ main() {
       "teste result tipo => $result",
     );
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.result, error: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
     );
     expect(
         result.fold(
-          sucesso: (value) => value.result,
-          error: (value) => value.error,
+          sucesso: (value) => value.resultado,
+          erro: (value) => value.error,
         ),
         isA<ErroInesperado>());
   });

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+
+import '../../../../../routes/app_pages.dart';
+import '../../../../../shared/utilitario/app_status.dart';
+import '../../../../../shared/widgets/widgets_core.dart' as widgetCore;
 //Importes Internos
 import '../novo_user_controller.dart';
-import '../../../../../shared/widgets/widgets_core.dart' as widgetCore;
-import '../../../../../shared/utilitario/app_status.dart';
-import '../../../../../routes/app_pages.dart';
 
 class NovoUserPage extends GetView<NovoUserController> {
   @override

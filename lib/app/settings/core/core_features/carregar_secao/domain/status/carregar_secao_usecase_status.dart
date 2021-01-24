@@ -1,4 +1,4 @@
-import '../../../../../../shared/utilitario/erros.dart';
+import '../../../../../erros/erros.dart';
 import '../entities/resultado_secao.dart';
 
 enum CarregarSecaoStatus {
