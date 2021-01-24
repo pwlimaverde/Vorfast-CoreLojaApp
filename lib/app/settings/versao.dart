@@ -1,1 +1,1 @@
-const versao = "0.4.4";
+const versao = "0.4.5";
