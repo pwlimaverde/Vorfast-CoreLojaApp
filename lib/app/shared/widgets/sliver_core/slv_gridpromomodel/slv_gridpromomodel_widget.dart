@@ -7,7 +7,8 @@ import 'package:transparent_image/transparent_image.dart';
 class SlvGridPromoModelWidget extends StatelessWidget {
   final List listModel;
 
-  const SlvGridPromoModelWidget({Key key, this.listModel}) : super(key: key);
+  const SlvGridPromoModelWidget({required Key key, required this.listModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -15,7 +15,7 @@ main() {
 
   test('Deve Retornar um RetornoSucessoOuErro', () async {
     when(repository.checarConeccao())
-        .thenAnswer((_) => Future.value(SucessoRetorno<bool>(result: true)));
+        .thenAnswer((_) => Future.value(SucessoRetorno<bool>(resultado: true)));
 
     final result = await checarConeccao(NoParams());
     print(
@@ -26,7 +26,7 @@ main() {
   test('Deve Retornar um RetornoSucessoOuErro Sucesso com valor true',
       () async {
     when(repository.checarConeccao())
-        .thenAnswer((_) => Future.value(SucessoRetorno<bool>(result: true)));
+        .thenAnswer((_) => Future.value(SucessoRetorno<bool>(resultado: true)));
 
     final result = await checarConeccao(NoParams());
     print(
@@ -38,8 +38,8 @@ main() {
   });
 
   test('Deve Retornar um ErrorConeccao - Você está offline', () async {
-    when(repository.checarConeccao())
-        .thenAnswer((_) => Future.value(SucessoRetorno<bool>(result: false)));
+    when(repository.checarConeccao()).thenAnswer(
+        (_) => Future.value(SucessoRetorno<bool>(resultado: false)));
 
     final result = await checarConeccao(NoParams());
     print(
@@ -54,7 +54,7 @@ main() {
       'Deve Retornar um ErrorConeccao - Erro ao recuperar informação de conexão Cod.01-2',
       () async {
     when(repository.checarConeccao()).thenAnswer((_) => Future.value(
-        ErrorRetorno(
+        ErroRetorno(
             erro: ErrorConeccao(
                 mensagem: "Erro ao recuperar informação de conexão"))));
 

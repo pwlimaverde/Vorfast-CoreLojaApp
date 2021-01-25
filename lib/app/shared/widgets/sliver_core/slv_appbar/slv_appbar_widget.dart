@@ -7,11 +7,11 @@ class SlvAppbarWidget extends StatelessWidget {
   final Color backgroundColor;
 
   const SlvAppbarWidget(
-      {Key key,
-      this.title,
-      this.isAdmin,
-      this.editButton,
-      this.backgroundColor})
+      {required Key key,
+      required this.title,
+      required this.isAdmin,
+      required this.editButton,
+      required this.backgroundColor})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

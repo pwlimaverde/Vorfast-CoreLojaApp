@@ -7,7 +7,7 @@ class BodyCoreWidget extends StatelessWidget {
   final Widget drawer;
 
   const BodyCoreWidget({
-    Key key,
+    required Key key,
     required this.slv,
     required this.drawer,
   }) : super(key: key);

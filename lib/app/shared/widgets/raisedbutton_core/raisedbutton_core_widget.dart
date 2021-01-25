@@ -10,14 +10,14 @@ class RaisedbuttonCoreWidget extends StatelessWidget {
   final bool loading;
 
   const RaisedbuttonCoreWidget({
-    Key key,
-    this.height,
-    this.icon,
-    this.colorText,
-    this.colorButton,
-    this.label,
-    this.onPressed,
-    this.loading = false,
+    required Key key,
+    required this.height,
+    required this.icon,
+    required this.colorText,
+    required this.colorButton,
+    required this.label,
+    required this.onPressed,
+    required this.loading,
   }) : super(key: key);
 
   @override
@@ -26,7 +26,7 @@ class RaisedbuttonCoreWidget extends StatelessWidget {
       height: height ?? 44.0,
       child: loading
           ? RaisedButton(
-              onPressed: onPressed,
+              onPressed: onPressed(),
               color: colorButton ?? Colors.blue,
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(colorButton),
@@ -38,7 +38,7 @@ class RaisedbuttonCoreWidget extends StatelessWidget {
               icon: icon,
               color: colorButton ?? Colors.blue,
               label: Text(label),
-              onPressed: onPressed,
+              onPressed: onPressed(),
             ),
     );
   }

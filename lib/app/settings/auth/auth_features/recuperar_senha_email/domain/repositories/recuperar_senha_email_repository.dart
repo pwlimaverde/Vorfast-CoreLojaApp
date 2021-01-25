@@ -1,6 +1,4 @@
-import 'package:meta/meta.dart';
-
-import '../../../../../../shared/utilitario/resultado_sucesso_ou_error.dart';
+import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
 abstract class RecuperarSenhaEmailRepository {
   Future<RetornoSucessoOuErro<bool>> recuperarSenhaEmail(

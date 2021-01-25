@@ -1,8 +1,4 @@
-import 'package:meta/meta.dart';
-
-import '../../../../../../shared/utilitario/resultado_sucesso_ou_error.dart';
-import '../../../../../../shared/utilitario/usecase.dart';
-import '../../../../../erros/erros.dart';
+import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 import '../repositories/recuperar_senha_email_repository.dart';
 
 class RecuperarSenhaEmailUsecaseImpl
@@ -21,17 +17,17 @@ class RecuperarSenhaEmailUsecaseImpl
         if (check.resultado) {
           return check;
         } else {
-          return ErrorRetorno(
+          return ErroRetorno(
               erro: ErroInesperado(
                   mensagem: "Erro ao RecuperarSenhaEmail Cod.01-1"));
         }
       } else {
-        return ErrorRetorno(
+        return ErroRetorno(
             erro: ErroInesperado(
                 mensagem: "Erro ao RecuperarSenhaEmail Cod.01-2"));
       }
     } catch (e) {
-      return ErrorRetorno(
+      return ErroRetorno(
           erro: ErroInesperado(
               mensagem:
                   "${e.toString()} - Erro ao RecuperarSenhaEmail Cod.01-3"));

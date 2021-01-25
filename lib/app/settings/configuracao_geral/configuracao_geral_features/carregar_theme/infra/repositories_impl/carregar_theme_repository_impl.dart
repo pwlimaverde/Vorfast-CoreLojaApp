@@ -1,7 +1,5 @@
-import 'package:meta/meta.dart';
+import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
-import '../../../../../../shared/utilitario/resultado_sucesso_ou_error.dart';
-import '../../../../../erros/erros.dart';
 import '../../domain/entities/resultado_theme.dart';
 import '../../domain/repositories/carregar_theme_repository.dart';
 import '../datasources/carregar_theme_datasource.dart';
@@ -19,14 +17,14 @@ class CarregarThemeRepositoryImpl implements CarregarThemeRepository {
       if (themeData is SucessoRetorno<Stream<ResultadoTheme>>) {
         return themeData;
       } else {
-        return ErrorRetorno(
+        return ErroRetorno(
           erro: ErroInesperado(
             mensagem: "Erro ao carregar os dados Cod.02-1",
           ),
         );
       }
     } catch (e) {
-      return ErrorRetorno(
+      return ErroRetorno(
         erro: ErroInesperado(
           mensagem: "${e.toString()} Erro ao carregar os dados Cod.02-2",
         ),

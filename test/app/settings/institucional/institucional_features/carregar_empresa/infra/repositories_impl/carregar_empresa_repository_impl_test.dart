@@ -18,7 +18,7 @@ main() {
     final testeEmpresa = BehaviorSubject<ResultadoEmpresa>();
     testeEmpresa.add(ResultadoEmpresa(nome: "vorfast", licenca: true));
     RetornoSucessoOuErro<Stream<ResultadoEmpresa>> testeFire =
-        SucessoRetorno(result: testeEmpresa);
+        SucessoRetorno(resultado: testeEmpresa);
 
     when(datasource.carregarEmpresa())
         .thenAnswer((_) => Future(() => testeFire));
@@ -37,7 +37,7 @@ main() {
     final testeEmpresa = BehaviorSubject<ResultadoEmpresa>();
     testeEmpresa.add(ResultadoEmpresa(nome: "vorfast", licenca: true));
     RetornoSucessoOuErro<Stream<ResultadoEmpresa>> testeFire =
-        SucessoRetorno(result: testeEmpresa);
+        SucessoRetorno(resultado: testeEmpresa);
 
     when(datasource.carregarEmpresa())
         .thenAnswer((_) => Future(() => testeFire));
@@ -60,7 +60,7 @@ main() {
       () async {
     final testeEmpresa = BehaviorSubject<ResultadoEmpresa>();
     testeEmpresa.add(ResultadoEmpresa(nome: "vorfast", licenca: true));
-    RetornoSucessoOuErro<Stream<ResultadoEmpresa>> testeFire = ErrorRetorno(
+    RetornoSucessoOuErro<Stream<ResultadoEmpresa>> testeFire = ErroRetorno(
       erro: ErroInesperado(
         mensagem: " Erro ao carregar os dados da Empresa - Cod.02-1",
       ),

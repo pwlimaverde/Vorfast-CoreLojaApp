@@ -6,11 +6,11 @@ class ResultadoUsuario {
   final bool administrador;
 
   ResultadoUsuario({
-    this.id,
-    this.nome,
-    this.email,
-    this.endereco,
-    this.administrador,
+    required this.id,
+    required this.nome,
+    required this.email,
+    required this.endereco,
+    required this.administrador,
   });
 
   @override

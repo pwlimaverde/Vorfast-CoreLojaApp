@@ -8,7 +8,12 @@ class DrawerTileWidget extends StatelessWidget {
   final int page;
   final String nav;
 
-  DrawerTileWidget({this.icon, this.tile, this.indice, this.page, this.nav});
+  DrawerTileWidget(
+      {required this.icon,
+      required this.tile,
+      required this.indice,
+      required this.page,
+      required this.nav});
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +67,10 @@ class DrawerTileWidget extends StatelessWidget {
   }
 
   _nav() {
-    return page == indice ? null : nav != null ? Get.offAllNamed(nav) : null;
+    return page == indice
+        ? null
+        : nav != null
+            ? Get.offAllNamed(nav)
+            : null;
   }
 }

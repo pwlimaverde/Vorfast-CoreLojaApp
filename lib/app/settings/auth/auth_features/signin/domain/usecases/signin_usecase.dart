@@ -1,8 +1,7 @@
-import 'package:meta/me..as;dtilitsceso_o_err
-import '../repositoriesauthiauth_featureg/cirn_gar_usuario/romaineenoto.esart';ai
+import 'package:corelojaapp/app/settings/auth/auth_features/signin/domain/repositories/signin_repository.dart';
+import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+
 import '../../../../../auth/auth_features/carregar_usuario/domain/entities/resultado_usuario.dart';
-import '../../../../../../shared/utilitario/resultado_sucesso_ou_error.dart';
-import '../../../../../erros/erros.dart';
 
 abstract class SignInUsecase {
   Future<RetornoSucessoOuErro> call({
@@ -19,9 +18,9 @@ class SignInUsecaseImpl implements SignInUsecase {
 
   @override
   Future<RetornoSucessoOuErro> call({
-    String email,
-    String pass,
-    ResultadoUsuario user,
+    required String email,
+    required String pass,
+    required ResultadoUsuario user,
   }) async {
     try {
       RetornoSucessoOuErro check = await repository.signIn(

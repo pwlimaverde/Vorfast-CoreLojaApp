@@ -6,11 +6,11 @@ class ResultadoSecao {
   final Map cor;
 
   ResultadoSecao({
-    this.nome,
-    this.img,
-    this.prioridade,
-    this.scrow,
-    this.cor,
+    required this.nome,
+    required this.img,
+    required this.prioridade,
+    required this.scrow,
+    required this.cor,
   });
 
   @override

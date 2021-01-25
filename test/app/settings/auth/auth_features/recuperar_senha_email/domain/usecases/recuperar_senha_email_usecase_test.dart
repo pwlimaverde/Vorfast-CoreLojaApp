@@ -15,7 +15,7 @@ main() {
   test('Deve Retornar um RetornoSucessoOuErro Sucesso com valor true',
       () async {
     when(repository.recuperarSenhaEmail(email: "any"))
-        .thenAnswer((_) => Future.value(SucessoRetorno<bool>(result: true)));
+        .thenAnswer((_) => Future.value(SucessoRetorno<bool>(resultado: true)));
 
     final result =
         await recuperarSenha(ParametrosRecuperarSenhaEmail(email: "any"));
@@ -33,8 +33,8 @@ main() {
   test(
       'Deve Retornar um ErroInesperado Erro ao RecuperarSenhaEmail Cod.01-1 false',
       () async {
-    when(repository.recuperarSenhaEmail(email: "any"))
-        .thenAnswer((_) => Future.value(SucessoRetorno<bool>(result: false)));
+    when(repository.recuperarSenhaEmail(email: "any")).thenAnswer(
+        (_) => Future.value(SucessoRetorno<bool>(resultado: false)));
 
     final result =
         await recuperarSenha(ParametrosRecuperarSenhaEmail(email: "any"));
@@ -52,7 +52,7 @@ main() {
   test('Deve Retornar um ErroInesperado Erro ao RecuperarSenhaEmail Cod.01-2',
       () async {
     when(repository.recuperarSenhaEmail(email: "any")).thenAnswer((_) =>
-        Future.value(ErrorRetorno(
+        Future.value(ErroRetorno(
             erro: ErrorConeccao(mensagem: "Erro ao RecuperarSenhaEmail"))));
 
     final result =

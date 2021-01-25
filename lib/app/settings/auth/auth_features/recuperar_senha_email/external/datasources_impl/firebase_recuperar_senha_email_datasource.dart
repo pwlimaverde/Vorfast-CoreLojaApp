@@ -1,8 +1,4 @@
 import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:meta/meta.dart';
-
 import '../../infra/datasources/recuperar_senha_email_datasource.dart';
 
 class FarebaseRecuperarSenhaEmailDatasource

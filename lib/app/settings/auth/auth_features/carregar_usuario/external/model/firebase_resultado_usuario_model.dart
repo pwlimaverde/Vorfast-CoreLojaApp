@@ -18,8 +18,8 @@ class FirebaseResultadoUsuarioModel extends ResultadoUsuario {
   DocumentReference reference;
   auth.User currentUser;
   FirebaseResultadoUsuarioModel({
-    this.reference,
-    this.currentUser,
+    required this.reference,
+    required this.currentUser,
     id,
     nome,
     nick,
@@ -50,21 +50,21 @@ class FirebaseResultadoUsuarioModel extends ResultadoUsuario {
 
   FirebaseResultadoUsuarioModel.fromDocument(
       {required DocumentSnapshot doc, required auth.User user}) {
-    this.reference = doc.reference;
-    this.currentUser = user;
-    this.id = doc.data()['id'];
-    this.nome = doc.data()['nome'];
-    this.nick = doc.data()['nome'].toString().split(" ")[0] +
+    required this.reference = doc.reference;
+    required this.currentUser = user;
+    required this.id = doc.data()['id'];
+    required this.nome = doc.data()['nome'];
+    required this.nick = doc.data()['nome'].toString().split(" ")[0] +
         " " +
         "${doc.data()['nome'].toString().split(" ").length >= 2 ? doc.data()['nome'].toString().split(" ")[1] : ""}";
-    this.email = doc.data()['email'];
-    this.endereco = doc.data()['endereco'];
-    this.administrador = doc.data()['administrador'];
+    required this.email = doc.data()['email'];
+    required this.endereco = doc.data()['endereco'];
+    required this.administrador = doc.data()['administrador'];
   }
 
   void cleanUser() {
-    this.reference = null;
-    this.currentUser = null;
+    required this.reference = null;
+    required this.currentUser = null;
     id = "";
     nome = "";
     nick = "";

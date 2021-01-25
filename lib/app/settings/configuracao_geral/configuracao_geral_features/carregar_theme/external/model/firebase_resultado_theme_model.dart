@@ -9,15 +9,13 @@ class FirebaseResultadoThemeModel extends ResultadoTheme {
   final Map accent;
 
   FirebaseResultadoThemeModel({
-    this.reference,
-    this.user,
-    this.primary,
-    this.accent,
-  });
+    required this.reference,
+    required this.user,
+    required this.primary,
+    required this.accent,
+  }) : super(accent: accent, primary: primary, user: user);
 
   factory FirebaseResultadoThemeModel.fromDocument(DocumentSnapshot doc) {
-    if (doc == null) return null;
-
     return FirebaseResultadoThemeModel(
       reference: doc.reference,
       user: doc.data()['user'],

@@ -17,11 +17,11 @@ class SignInRepositoryImpl implements SignInRepository {
     try {
       bool estaSignIn = await datasource(email: email, pass: pass, user: user);
       if (estaSignIn) {
-        return SucessoRetorno<bool>(result: true);
+        return SucessoRetorno<bool>(resultado: true);
       }
-      return SucessoRetorno<bool>(result: false);
+      return SucessoRetorno<bool>(resultado: false);
     } catch (e) {
-      return ErrorRetorno(
+      return ErroRetorno(
         erro: ErroInesperado(
           mensagem: "${e.toString()} - Erro ao fazer o SignIn Cod.02-1",
         ),

@@ -4,9 +4,9 @@ class ResultadoTheme {
   final Map accent;
 
   ResultadoTheme({
-    this.user,
-    this.primary,
-    this.accent,
+    required this.user,
+    required this.primary,
+    required this.accent,
   });
 
   @override

@@ -1,9 +1,10 @@
-import 'package:meta/meta.dart';
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart' as auth;
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../infra/datasources/signin_datasource.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
+
 import '../../../../../auth/auth_features/carregar_usuario/domain/entities/resultado_usuario.dart';
+import '../../infra/datasources/signin_datasource.dart';
 
 class FarebaseNovoEmailDatasource implements SignInDatasource {
   final auth.FirebaseAuth authInstance;

@@ -90,7 +90,7 @@ class DrawerHeaderWidget extends StatelessWidget {
                             ),
                           ],
                         ),
-                        onTap: singOut,
+                        onTap: singOut(),
                       )
                     ],
                   ),

@@ -21,7 +21,7 @@ main() {
     when(repository.carregarUsuario()).thenAnswer((_) {
       return Future.value(
         SucessoRetorno<Stream<ResultadoUsuario>>(
-          result: testeFire,
+          resultado: testeFire,
         ),
       );
     });
@@ -45,7 +45,7 @@ main() {
     when(repository.carregarUsuario()).thenAnswer((_) {
       return Future.value(
         SucessoRetorno<Stream<ResultadoUsuario>>(
-          result: testeFire,
+          resultado: testeFire,
         ),
       );
     });
@@ -66,13 +66,13 @@ main() {
     testeFire.close();
   });
 
-  test('Deve retornar um RetornoSucessoOuErro error com um AppError Cod.01-1',
+  test('Deve retornar um RetornoSucessoOuErro error com um AppErro Cod.01-1',
       () async {
     final testeFire = BehaviorSubject<ResultadoUsuario>();
     testeFire.add(ResultadoUsuario());
     when(repository.carregarUsuario()).thenAnswer((_) {
       return Future.value(
-        ErrorRetorno(
+        ErroRetorno(
           erro: ErroInesperado(
             mensagem: "Erro ao carregar os dados do usuario",
           ),
@@ -96,7 +96,7 @@ main() {
     testeFire.close();
   });
 
-  test('Deve retornar um RetornoSucessoOuErro error com um AppError Cod.01-2',
+  test('Deve retornar um RetornoSucessoOuErro error com um AppErro Cod.01-2',
       () async {
     when(repository.carregarUsuario()).thenThrow(Exception());
 

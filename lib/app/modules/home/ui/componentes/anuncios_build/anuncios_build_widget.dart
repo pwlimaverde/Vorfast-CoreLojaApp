@@ -7,7 +7,7 @@ import '../../../../../shared/widgets/widgets_core.dart' as widgetCore;
 class AnunciosBuildWidget extends StatelessWidget {
   final FirebaseResultadoSecaoModel secao;
 
-  const AnunciosBuildWidget({Key key, this.secao}) : super(key: key);
+  const AnunciosBuildWidget({Key key, required this.secao}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Obx(() {

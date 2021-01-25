@@ -6,11 +6,11 @@ class ResultadoAnuncio {
   final int y;
 
   ResultadoAnuncio({
-    this.image,
-    this.prioridade,
-    this.produto,
-    this.x,
-    this.y,
+    required this.image,
+    required this.prioridade,
+    required this.produto,
+    required this.x,
+    required this.y,
   });
 
   @override

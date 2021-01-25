@@ -18,7 +18,7 @@ main() {
     final testeUsuario = BehaviorSubject<ResultadoUsuario>();
     testeUsuario.add(ResultadoUsuario(id: "teste", nome: "paulo"));
     RetornoSucessoOuErro<Stream<ResultadoUsuario>> testeFire =
-        SucessoRetorno(result: testeUsuario);
+        SucessoRetorno(resultado: testeUsuario);
 
     when(datasource.carregarUsuario())
         .thenAnswer((_) => Future(() => testeFire));
@@ -37,7 +37,7 @@ main() {
     final testeUsuario = BehaviorSubject<ResultadoUsuario>();
     testeUsuario.add(ResultadoUsuario(id: "teste", nome: "paulo"));
     RetornoSucessoOuErro<Stream<ResultadoUsuario>> testeFire =
-        SucessoRetorno(result: testeUsuario);
+        SucessoRetorno(resultado: testeUsuario);
 
     when(datasource.carregarUsuario())
         .thenAnswer((_) => Future(() => testeFire));
@@ -63,7 +63,7 @@ main() {
       () async {
     final testeUsuario = BehaviorSubject<ResultadoUsuario>();
     testeUsuario.add(ResultadoUsuario(id: "teste", nome: "paulo"));
-    RetornoSucessoOuErro<Stream<ResultadoUsuario>> testeFire = ErrorRetorno(
+    RetornoSucessoOuErro<Stream<ResultadoUsuario>> testeFire = ErroRetorno(
       erro: ErroInesperado(
         mensagem: " Erro ao carregar os dados do Useario - Cod.02-1",
       ),

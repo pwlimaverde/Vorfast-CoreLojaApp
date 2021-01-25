@@ -22,8 +22,8 @@ class LoginController extends GetxController {
   final emailController = TextEditingController();
 
   final _statusGeralAtual = AppStatus.none.obs;
-  AppStatus get statusGeralAtual => this._statusGeralAtual.value;
-  set statusGeralAtual(value) => this._statusGeralAtual.value = value;
+  AppStatus get statusGeralAtual => required this._statusGeralAtual.value;
+  set statusGeralAtual(value) => required this._statusGeralAtual.value = value;
 
   //Controles Gerais
   // UserModel get user => authController.usuarioFirebaseValue;
@@ -36,12 +36,12 @@ class LoginController extends GetxController {
     required VoidCallback onFail,
   }) async {
     print("teste login inicio");
-    this.statusGeralAtual = AppStatus.loading..valorSet = "google";
+    required this.statusGeralAtual = AppStatus.loading..valorSet = "google";
     await configuracaoGeralController.signInGoogleLogin().then((value) {
       print("teste login $value");
       if (value is SucessoRetorno<bool>) {
         print("teste login ok $value");
-        this.statusGeralAtual = AppStatus.success;
+        required this.statusGeralAtual = AppStatus.success;
         onSuccess();
       } else {
         onFail();
@@ -53,14 +53,14 @@ class LoginController extends GetxController {
     required VoidCallback onSuccess,
     required VoidCallback onFail,
   }) async {
-    this.statusGeralAtual = AppStatus.loading..valorSet = "email";
+    required this.statusGeralAtual = AppStatus.loading..valorSet = "email";
     await configuracaoGeralController
         .signInEmailLogin(
       email: emailController.text,
       pass: senhaController.text,
     )
         .then((value) {
-      this.statusGeralAtual = AppStatus.success;
+      required this.statusGeralAtual = AppStatus.success;
       if (value is SucessoRetorno<bool>) {
         onSuccess();
       } else {
@@ -77,11 +77,11 @@ class LoginController extends GetxController {
         .recuperarSenha(email: emailController.text);
     result.fold(
       sucesso: (value) {
-        this.statusGeralAtual = AppStatus.success;
+        required this.statusGeralAtual = AppStatus.success;
         onSuccess();
       },
       erro: (value) {
-        this.statusGeralAtual = AppStatus.error;
+        required this.statusGeralAtual = AppStatus.error;
         onFail();
       },
     );

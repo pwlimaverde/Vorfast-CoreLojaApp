@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:meta/meta.dart';
 
 import '../../settings/auth/auth_presenter/auth_presenter.dart';
 import '../../settings/core/core_presenter/core_presenter.dart';
@@ -59,16 +58,16 @@ class HomeController extends GetxController {
   //Controles Internos
   //Troca de cores Primary
   final _primaryREditValido = 256.obs;
-  int get primaryREditValido => this._primaryREditValido.value;
-  set primaryREditValido(value) => this._primaryREditValido.value = value;
+  int get primaryREditValido => required this._primaryREditValido.value;
+  set primaryREditValido(value) => required this._primaryREditValido.value = value;
 
   final _primaryGEditValido = 256.obs;
-  int get primaryGEditValido => this._primaryGEditValido.value;
-  set primaryGEditValido(value) => this._primaryGEditValido.value = value;
+  int get primaryGEditValido => required this._primaryGEditValido.value;
+  set primaryGEditValido(value) => required this._primaryGEditValido.value = value;
 
   final _primaryBEditValido = 256.obs;
-  int get primaryBEditValido => this._primaryBEditValido.value;
-  set primaryBEditValido(value) => this._primaryBEditValido.value = value;
+  int get primaryBEditValido => required this._primaryBEditValido.value;
+  set primaryBEditValido(value) => required this._primaryBEditValido.value = value;
 
   bool get isPrimary {
     return primaryREditValido != 256 &&
@@ -87,16 +86,16 @@ class HomeController extends GetxController {
 
   //Troca de cores Accent
   final _accentREditValido = 256.obs;
-  int get accentREditValido => this._accentREditValido.value;
-  set accentREditValido(value) => this._accentREditValido.value = value;
+  int get accentREditValido => required this._accentREditValido.value;
+  set accentREditValido(value) => required this._accentREditValido.value = value;
 
   final _accentGEditValido = 256.obs;
-  int get accentGEditValido => this._accentGEditValido.value;
-  set accentGEditValido(value) => this._accentGEditValido.value = value;
+  int get accentGEditValido => required this._accentGEditValido.value;
+  set accentGEditValido(value) => required this._accentGEditValido.value = value;
 
   final _accentBEditValido = 256.obs;
-  int get accentBEditValido => this._accentBEditValido.value;
-  set accentBEditValido(value) => this._accentBEditValido.value = value;
+  int get accentBEditValido => required this._accentBEditValido.value;
+  set accentBEditValido(value) => required this._accentBEditValido.value = value;
 
   bool get isAccent {
     return accentREditValido != 256 &&
@@ -115,29 +114,29 @@ class HomeController extends GetxController {
 
   //Troca dados Header
   final _headerREditValido = 256.obs;
-  int get headerREditValido => this._headerREditValido.value;
-  set headerREditValido(value) => this._headerREditValido.value = value;
+  int get headerREditValido => required this._headerREditValido.value;
+  set headerREditValido(value) => required this._headerREditValido.value = value;
 
   final _headerGEditValido = 256.obs;
-  int get headerGEditValido => this._headerGEditValido.value;
-  set headerGEditValido(value) => this._headerGEditValido.value = value;
+  int get headerGEditValido => required this._headerGEditValido.value;
+  set headerGEditValido(value) => required this._headerGEditValido.value = value;
 
   final _headerBEditValido = 256.obs;
-  int get headerBEditValido => this._headerBEditValido.value;
-  set headerBEditValido(value) => this._headerBEditValido.value = value;
+  int get headerBEditValido => required this._headerBEditValido.value;
+  set headerBEditValido(value) => required this._headerBEditValido.value = value;
 
   final _headerAEditValido = 256.obs;
-  int get headerAEditValido => this._headerAEditValido.value;
-  set headerAEditValido(value) => this._headerAEditValido.value = value;
+  int get headerAEditValido => required this._headerAEditValido.value;
+  set headerAEditValido(value) => required this._headerAEditValido.value = value;
 
   final _headerNomeEditValido = "".obs;
-  String get headerNomeEditValido => this._headerNomeEditValido.value;
-  set headerNomeEditValido(value) => this._headerNomeEditValido.value = value;
+  String get headerNomeEditValido => required this._headerNomeEditValido.value;
+  set headerNomeEditValido(value) => required this._headerNomeEditValido.value = value;
 
   final _headerPrioridadeEditValido = 0.obs;
-  int get headerPrioridadeEditValido => this._headerPrioridadeEditValido.value;
+  int get headerPrioridadeEditValido => required this._headerPrioridadeEditValido.value;
   set headerPrioridadeEditValido(value) =>
-      this._headerPrioridadeEditValido.value = value;
+      required this._headerPrioridadeEditValido.value = value;
 
   bool get isHeader {
     return headerREditValido != 256 &&
@@ -160,15 +159,15 @@ class HomeController extends GetxController {
 
   //Controlles Page
   final _statusGeralAtual = AppStatus.none.obs;
-  AppStatus get statusGeralAtual => this._statusGeralAtual.value;
-  set statusGeralAtual(value) => this._statusGeralAtual.value = value;
+  AppStatus get statusGeralAtual => required this._statusGeralAtual.value;
+  set statusGeralAtual(value) => required this._statusGeralAtual.value = value;
 
   List<FirebaseResultadoSecaoModel> get todasSecoes =>
       configuracaoGeralController.todasSecoes;
 
   final _isEditeMode = false.obs;
-  bool get isEditeMode => this._isEditeMode.value;
-  set isEditeMode(value) => this._isEditeMode.value = value;
+  bool get isEditeMode => required this._isEditeMode.value;
+  set isEditeMode(value) => required this._isEditeMode.value = value;
 
   List<Widget> get listSlv {
     List<Widget> slv = List<Widget>();

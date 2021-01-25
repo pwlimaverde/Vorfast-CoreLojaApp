@@ -7,10 +7,10 @@ enum CarregarSecaoStatus {
 }
 
 extension CarregarSecaoStatusExt on CarregarSecaoStatus {
-  static AppError _error;
+  static AppErro _error;
   static Stream<List<ResultadoSecao>> _success;
 
-  AppError get errorGet => _error;
+  AppErro get errorGet => _error;
   set errorSet(valor) {
     _error = valor;
     _success = null;
