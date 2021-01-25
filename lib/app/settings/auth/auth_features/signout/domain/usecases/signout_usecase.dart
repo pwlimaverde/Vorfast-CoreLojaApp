@@ -1,7 +1,5 @@
-import 'package:meta/meta.dart';
+import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
-import '../../../../../../shared/utilitario/resultado_sucesso_ou_error.dart';
-import '../../../../../erros/erros.dart';
 import '../repositories/signout_repository.dart';
 
 abstract class SignOutUsecase {
@@ -21,13 +19,13 @@ class SignOutUsecaseImpl implements SignOutUsecase {
         if (check.resultado) {
           return check;
         }
-        return ErrorRetorno(
+        return ErroRetorno(
             erro: ErroInesperado(mensagem: "Erro ao fazer o SignOut Cod.01-1"));
       }
-      return ErrorRetorno(
+      return ErroRetorno(
           erro: ErroInesperado(mensagem: "Erro ao fazer o SignOut Cod.01-2"));
     } catch (e) {
-      return ErrorRetorno(
+      return ErroRetorno(
           erro: ErroInesperado(
               mensagem: "${e.toString()} - Erro ao fazer o SignOut Cod.01-3"));
     }

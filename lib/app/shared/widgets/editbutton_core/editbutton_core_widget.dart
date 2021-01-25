@@ -7,21 +7,21 @@ class EditbuttonCoreWidget extends StatelessWidget {
   final Function onPressedEdit;
 
   const EditbuttonCoreWidget({
-    Key key,
-    this.isEditeMode = false,
-    this.onPressedEdit,
-    this.onPressedcheck,
+    required Key key,
+    required this.isEditeMode,
+    required this.onPressedEdit,
+    required this.onPressedcheck,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return isEditeMode
         ? IconButton(
             icon: Icon(FontAwesomeIcons.check),
-            onPressed: onPressedcheck,
+            onPressed: onPressedcheck(),
           )
         : IconButton(
             icon: Icon(FontAwesomeIcons.pencilAlt),
-            onPressed: onPressedEdit,
+            onPressed: onPressedEdit(),
           );
   }
 }

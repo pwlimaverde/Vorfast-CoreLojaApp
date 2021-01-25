@@ -12,16 +12,16 @@ class FieldCoreWidget extends StatelessWidget {
   final String prefix;
 
   const FieldCoreWidget({
-    Key key,
-    this.validator,
-    this.onChanged,
-    this.maxLength,
-    this.label,
-    this.hint,
-    this.keyBoard,
-    this.obscureText,
-    this.controller,
-    this.prefix,
+    required Key key,
+    required this.validator,
+    required this.onChanged,
+    required this.maxLength,
+    required this.label,
+    required this.hint,
+    required this.keyBoard,
+    required this.obscureText,
+    required this.controller,
+    required this.prefix,
   }) : super(key: key);
 
   @override
@@ -34,10 +34,10 @@ class FieldCoreWidget extends StatelessWidget {
       ),
       controller: controller,
       keyboardType: keyBoard,
-      validator: validator,
+      validator: validator(),
       obscureText: obscureText ?? false,
       maxLength: maxLength ?? null,
-      onChanged: onChanged,
+      onChanged: onChanged(),
     );
   }
 }

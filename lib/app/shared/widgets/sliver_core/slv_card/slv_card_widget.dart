@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SlvCardWidget extends StatelessWidget {
   final Widget body;
 
-  const SlvCardWidget({Key key, this.body}) : super(key: key);
+  const SlvCardWidget({required Key key, required this.body}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -18,7 +18,7 @@ class AnuncioModel {
     produto,
     x,
     y,
-    this.reference,
+    required this.reference,
   });
 
   final rx = RxAnuncioModel();
@@ -39,30 +39,30 @@ class AnuncioModel {
   set y(value) => rx.y.value = value;
 
   AnuncioModel.fromJson(Map<String, dynamic> json) {
-    this.image = json['image'];
-    this.prioridade = json['prioridade'];
-    this.produto = json['produto'];
-    this.x = json['x'];
-    this.y = json['y'];
+    required this.image = json['image'];
+    required this.prioridade = json['prioridade'];
+    required this.produto = json['produto'];
+    required this.x = json['x'];
+    required this.y = json['y'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['image'] = this.image;
-    data['prioridade'] = this.prioridade;
-    data['produto'] = this.produto;
-    data['x'] = this.x;
-    data['y'] = this.y;
+    data['image'] = required this.image;
+    data['prioridade'] = required this.prioridade;
+    data['produto'] = required this.produto;
+    data['x'] = required this.x;
+    data['y'] = required this.y;
     return data;
   }
 
   AnuncioModel.fromDocument(DocumentSnapshot doc) {
-    this.reference = doc.reference;
-    this.image = doc.data()['image'];
-    this.prioridade = doc.data()['prioridade'];
-    this.produto = doc.data()['produto'];
-    this.x = doc.data()['x'];
-    this.y = doc.data()['y'];
+    required this.reference = doc.reference;
+    required this.image = doc.data()['image'];
+    required this.prioridade = doc.data()['prioridade'];
+    required this.produto = doc.data()['produto'];
+    required this.x = doc.data()['x'];
+    required this.y = doc.data()['y'];
   }
 
   @override

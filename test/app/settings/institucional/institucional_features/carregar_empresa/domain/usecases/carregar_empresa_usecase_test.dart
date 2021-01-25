@@ -21,7 +21,7 @@ main() {
     when(repository.carregarEmpresa()).thenAnswer((_) {
       return Future.value(
         SucessoRetorno(
-          result: testeFire,
+          resultado: testeFire,
         ),
       );
     });
@@ -42,7 +42,7 @@ main() {
     when(repository.carregarEmpresa()).thenAnswer((_) {
       return Future.value(
         SucessoRetorno<Stream<ResultadoEmpresa>>(
-          result: testeFire,
+          resultado: testeFire,
         ),
       );
     });
@@ -60,13 +60,13 @@ main() {
     testeFire.close();
   });
 
-  test('Deve retornar um RetornoSucessoOuErro error com um AppError Cod.01-1',
+  test('Deve retornar um RetornoSucessoOuErro error com um AppErro Cod.01-1',
       () async {
     final testeFire = BehaviorSubject<ResultadoEmpresa>();
     testeFire.add(ResultadoEmpresa(nome: "vorfast", licenca: true));
     when(repository.carregarEmpresa()).thenAnswer((_) {
       return Future.value(
-        ErrorRetorno(
+        ErroRetorno(
           erro: ErroInesperado(
             mensagem: "Erro ao carregar os dados da Empresa Cod.01-1",
           ),
@@ -87,7 +87,7 @@ main() {
     testeFire.close();
   });
 
-  test('Deve retornar um RetornoSucessoOuErro error com um AppError Cod.01-2',
+  test('Deve retornar um RetornoSucessoOuErro error com um AppErro Cod.01-2',
       () async {
     final testeFire = BehaviorSubject<ResultadoEmpresa>();
     testeFire.add(ResultadoEmpresa(nome: "vorfast", licenca: true));

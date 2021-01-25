@@ -1,12 +1,12 @@
 import 'package:connectivity/connectivity.dart';
+import 'package:corelojaapp/app/settings/auth/auth_features/signout/presenter/signout_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:meta/meta.dart';
+import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
 //Importes Internos
-import '../../shared/utilitario/resultado_sucesso_ou_error.dart';
-import '../../shared/utilitario/usecase.dart';
+
 import '../auth/auth_presenter/auth_presenter.dart';
 import '../configuracao_geral/configuracao_geral_presenter/configuracao_geral_presenter.dart';
 import '../core/core_presenter/core_presenter.dart';
@@ -54,22 +54,22 @@ class ConfiguracaoGeralController extends GetxController {
       _getCon();
     });
 
-    this.fireTheme.listen((event) {
+    required this.fireTheme.listen((event) {
       _apiThemeApp(model: event);
     });
   }
 
   //Controller Auth
   final _usuarioFirebase = FirebaseResultadoUsuarioModel().obs;
-  get usuarioFirebase => this._usuarioFirebase;
+  get usuarioFirebase => required this._usuarioFirebase;
   FirebaseResultadoUsuarioModel get usuarioFirebaseValue =>
-      this._usuarioFirebase.value;
-  set usuarioFirebase(value) => this._usuarioFirebase.bindStream(value);
+      required this._usuarioFirebase.value;
+  set usuarioFirebase(value) => required this._usuarioFirebase.bindStream(value);
 
   Future<RetornoSucessoOuErro> singOut() async {
     return await signOutUsecase().then((value) {
       if (value is SucessoRetorno<bool>) {
-        this.usuarioFirebaseValue.cleanUser();
+        required this.usuarioFirebaseValue.cleanUser();
       }
       return value;
     });
@@ -121,31 +121,31 @@ class ConfiguracaoGeralController extends GetxController {
   _carregarUsuario() async {
     RetornoSucessoOuErro usuarioLogado = await carregarUsuario(NoParams());
     if (usuarioLogado is SucessoRetorno) {
-      this.usuarioFirebase = usuarioLogado.resultado;
+      required this.usuarioFirebase = usuarioLogado.resultado;
     }
   }
 
   //Controller institucional
   final _empresaFirebase = FirebaseResultadoEmpresaModel().obs;
-  get empresaFirebase => this._empresaFirebase;
+  get empresaFirebase => required this._empresaFirebase;
   FirebaseResultadoEmpresaModel get empresaFirebaseValue =>
-      this._empresaFirebase.value;
-  set empresaFirebase(value) => this._empresaFirebase.bindStream(value);
+      required this._empresaFirebase.value;
+  set empresaFirebase(value) => required this._empresaFirebase.bindStream(value);
 
   final _mostrarNomeEmpresa = false.obs;
-  bool get mostrarNomeEmpresa => this._mostrarNomeEmpresa.value;
-  set mostrarNomeEmpresa(value) => this._mostrarNomeEmpresa.value = value;
+  bool get mostrarNomeEmpresa => required this._mostrarNomeEmpresa.value;
+  set mostrarNomeEmpresa(value) => required this._mostrarNomeEmpresa.value = value;
 
   //Institucional Funções Internas
   void _carregarEmpresa() async {
     RetornoSucessoOuErro result = await carregarEmpresa(NoParams());
     if (result is SucessoRetorno) {
-      this.empresaFirebase = result.resultado;
+      required this.empresaFirebase = result.resultado;
     }
   }
 
   //Institucional Widget
-  Widget getDrawerCoreWidget({int page}) {
+  Widget getDrawerCoreWidget({required int page}) {
     return DrawerCoreWidget(
       page: page,
     );
@@ -153,15 +153,15 @@ class ConfiguracaoGeralController extends GetxController {
 
   //Controller de Conexão
   final _estaConectado = false.obs;
-  bool get estaConectado => this._estaConectado.value;
-  set estaConectado(value) => this._estaConectado.value = value;
+  bool get estaConectado => required this._estaConectado.value;
+  set estaConectado(value) => required this._estaConectado.value = value;
 
   void _getCon() async {
     RetornoSucessoOuErro<bool> testeConexao = await checarConeccao(NoParams());
     if (testeConexao is SucessoRetorno<bool>) {
-      this.estaConectado = testeConexao.resultado;
+      required this.estaConectado = testeConexao.resultado;
     } else {
-      this.estaConectado = false;
+      required this.estaConectado = false;
     }
 
     _mostrarConeccao();
@@ -182,39 +182,39 @@ class ConfiguracaoGeralController extends GetxController {
 
   //Controller das Seções
   final _todasSecoes = List<FirebaseResultadoSecaoModel>().obs;
-  List<FirebaseResultadoSecaoModel> get todasSecoes => this._todasSecoes;
-  set todasSecoes(value) => this._todasSecoes.bindStream(value);
+  List<FirebaseResultadoSecaoModel> get todasSecoes => required this._todasSecoes;
+  set todasSecoes(value) => required this._todasSecoes.bindStream(value);
 
   //Seção Funções Internas
   //Carregamento de Seção
   Future<void> _getAllSecao() async {
     CarregarSecaoStatus result = await carregarSecao();
     if (result == CarregarSecaoStatus.success) {
-      this.todasSecoes = result.successGet;
+      required this.todasSecoes = result.successGet;
     }
   }
 
   //Controller Theme
   final _loadCompletoDoTema = false.obs;
-  bool get loadCompletoDoTema => this._loadCompletoDoTema.value;
-  set loadCompletoDoTema(value) => this._loadCompletoDoTema.value = value;
+  bool get loadCompletoDoTema => required this._loadCompletoDoTema.value;
+  set loadCompletoDoTema(value) => required this._loadCompletoDoTema.value = value;
 
   final _fireTheme = FirebaseResultadoThemeModel().obs;
-  get fireTheme => this._fireTheme;
-  FirebaseResultadoThemeModel get fireThemeValue => this._fireTheme.value;
-  set fireTheme(value) => this._fireTheme.bindStream(value);
+  get fireTheme => required this._fireTheme;
+  FirebaseResultadoThemeModel get fireThemeValue => required this._fireTheme.value;
+  set fireTheme(value) => required this._fireTheme.bindStream(value);
 
   //Theme Funções Internas
   //Carregar Theme
   void _carregarSettingsTheme() async {
     RetornoSucessoOuErro result = await carregarTheme(NoParams());
     if (result is SucessoRetorno) {
-      this.fireTheme = result.resultado;
+      required this.fireTheme = result.resultado;
     }
   }
 
   //Aplicação do tema carregado
-  void _apiThemeApp({FirebaseResultadoThemeModel model}) {
+  void _apiThemeApp({required FirebaseResultadoThemeModel model}) {
     Get.changeTheme(
       ThemeData(
         primaryColor: Color.fromRGBO(

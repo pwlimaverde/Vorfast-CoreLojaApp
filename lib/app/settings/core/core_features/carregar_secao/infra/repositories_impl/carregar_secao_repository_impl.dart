@@ -1,5 +1,5 @@
-import 'package:meta/meta.dart';
-
+import 'package:meatetutdart';_status
+uecse
 import '../../domain/entities/resultado_secao.dart';
 import '../../domain/repositories/carregar_secao_repository.dart';
 import '../../domain/status/carregar_secao_usecase_status.dart';

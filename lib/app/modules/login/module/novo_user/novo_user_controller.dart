@@ -27,20 +27,20 @@ class NovoUserController extends GetxController {
   final enderecoController = TextEditingController();
 
   final _statusGeralAtual = AppStatus.none.obs;
-  AppStatus get statusGeralAtual => this._statusGeralAtual.value;
-  set statusGeralAtual(value) => this._statusGeralAtual.value = value;
+  AppStatus get statusGeralAtual => required this._statusGeralAtual.value;
+  set statusGeralAtual(value) => required this._statusGeralAtual.value = value;
 
   //Controles Internos
   Future<void> setUserEmail(
       {required VoidCallback onSuccess, required VoidCallback onFail}) async {
-    this.statusGeralAtual = AppStatus.loading;
+    required this.statusGeralAtual = AppStatus.loading;
     FirebaseResultadoUsuarioModel user = FirebaseResultadoUsuarioModel();
     user.nome = nomeController.text;
     user.email = emailController.text;
     await configuracaoGeralController
         .novoEmailLogin(user: user, pass: senhaController.text)
         .then((value) {
-      this.statusGeralAtual = AppStatus.success;
+      required this.statusGeralAtual = AppStatus.success;
       if (value is SucessoRetorno<bool>) {
         onSuccess();
       } else {

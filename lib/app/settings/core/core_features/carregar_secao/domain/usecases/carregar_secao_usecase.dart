@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../entities/resultado_secao.dart';
 import '../repositories/carregar_secao_repository.dart';
 import '../status/carregar_secao_usecase_status.dart';

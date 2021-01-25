@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:connectivity/connectivity.dart';
-import 'package:meta/meta.dart';
 
 import '../../infra/datasources/checar_coneccao_datasource.dart';
 

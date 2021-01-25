@@ -15,7 +15,7 @@ class FirebaseResultadoAnuncioModel extends ResultadoAnuncio {
   DocumentReference reference;
 
   FirebaseResultadoAnuncioModel({
-    this.reference,
+    required this.reference,
     image,
     prioridade,
     produto,
@@ -41,12 +41,12 @@ class FirebaseResultadoAnuncioModel extends ResultadoAnuncio {
   set y(value) => rx.y.value = value;
 
   FirebaseResultadoAnuncioModel.fromDocument(DocumentSnapshot doc) {
-    this.reference = doc.reference;
-    this.image = doc.data()['image'];
-    this.prioridade = doc.data()['prioridade'];
-    this.produto = doc.data()['produto'];
-    this.x = doc.data()['x'];
-    this.y = doc.data()['y'];
+    required this.reference = doc.reference;
+    required this.image = doc.data()['image'];
+    required this.prioridade = doc.data()['prioridade'];
+    required this.produto = doc.data()['produto'];
+    required this.x = doc.data()['x'];
+    required this.y = doc.data()['y'];
   }
 
   @override

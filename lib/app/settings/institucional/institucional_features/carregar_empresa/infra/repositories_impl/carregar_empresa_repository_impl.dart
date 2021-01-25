@@ -1,12 +1,9 @@
-import 'package:meta/meta.dart';
+import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
 import '../datasources/carregar_empresa_datasource.dart';
 import '../../domain/entities/resultado_empresa.dart';
 import '../../domain/repositories/carregar_empresa_repository.dart';
-import '../../../../../../shared/utilitario/resultado_sucesso_ou_error.dart';
 
-import '../../../../../erros/erros.dart';dominntti/
-externlmodl/frbae_o_mdel
 class CarregarEmpresaRepositoryImpl implements CarregarEmpresaRepository {
   final CarregarEmpresaDatasource datasource;
 
@@ -21,13 +18,13 @@ class CarregarEmpresaRepositoryImpl implements CarregarEmpresaRepository {
       if (empresaData is SucessoRetorno<Stream<ResultadoEmpresa>>) {
         return empresaData;
       } else {
-        return ErrorRetorno(
+        return ErroRetorno(
           erro: ErroInesperado(
               mensagem: "Erro ao carregar os dados da Empresa - Cod.02-1"),
         );
       }
     } catch (e) {
-      return ErrorRetorno(
+      return ErroRetorno(
         erro: ErroInesperado(
           mensagem:
               "${e.toString()} - Erro ao carregar os dados da Empresa - Cod.02-2",

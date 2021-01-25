@@ -1,10 +1,11 @@
 import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:meta/meta.dart';
-import '../../../../../auth/auth_features/carregar_usuario/external/model/firebase_resultado_usuario_model.dart';
+
 import '../../../../../auth/auth_features/carregar_usuario/domain/entities/resultado_usuario.dart';
+import '../../../../../auth/auth_features/carregar_usuario/external/model/firebase_resultado_usuario_model.dart';
 import '../../infra/datasources/signin_datasource.dart';
 
 class FarebaseSignInGoogleDatasource implements SignInDatasource {

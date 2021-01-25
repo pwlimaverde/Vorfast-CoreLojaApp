@@ -18,7 +18,7 @@ main() {
     final testeTheme = BehaviorSubject<ResultadoTheme>();
     testeTheme.add(ResultadoTheme(accent: {"r": 58}, user: "paulo"));
     RetornoSucessoOuErro<Stream<ResultadoTheme>> testeFire =
-        SucessoRetorno(result: testeTheme);
+        SucessoRetorno(resultado: testeTheme);
 
     when(datasource.getTheme()).thenAnswer((_) => Future(() => testeFire));
 
@@ -36,7 +36,7 @@ main() {
     final testeTheme = BehaviorSubject<ResultadoTheme>();
     testeTheme.add(ResultadoTheme(accent: {"r": 58}, user: "paulo"));
     RetornoSucessoOuErro<Stream<ResultadoTheme>> testeFire =
-        SucessoRetorno(result: testeTheme);
+        SucessoRetorno(resultado: testeTheme);
 
     when(datasource.getTheme()).thenAnswer((_) => Future(() => testeFire));
 
@@ -58,7 +58,7 @@ main() {
       () async {
     final testeTheme = BehaviorSubject<ResultadoTheme>();
     testeTheme.add(ResultadoTheme(accent: {"r": 58}, user: "paulo"));
-    RetornoSucessoOuErro<Stream<ResultadoTheme>> testeFire = ErrorRetorno(
+    RetornoSucessoOuErro<Stream<ResultadoTheme>> testeFire = ErroRetorno(
       erro: ErroInesperado(
         mensagem: " Erro ao carregar os dados Cod.02-2",
       ),

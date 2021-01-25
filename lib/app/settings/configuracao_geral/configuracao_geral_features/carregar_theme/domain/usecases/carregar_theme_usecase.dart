@@ -18,14 +18,14 @@ class CarregarThemeUsecase
       if (result is SucessoRetorno<Stream<ResultadoTheme>>) {
         return result;
       } else {
-        return ErrorRetorno(
+        return ErroRetorno(
           erro: ErroInesperado(
             mensagem: "Erro ao carregar os dados do thema Cod.01-1",
           ),
         );
       }
     } catch (e) {
-      return ErrorRetorno(
+      return ErroRetorno(
         erro: ErroInesperado(
           mensagem:
               "${e.toString()} - Erro ao carregar os dados do thema Cod.01-2",

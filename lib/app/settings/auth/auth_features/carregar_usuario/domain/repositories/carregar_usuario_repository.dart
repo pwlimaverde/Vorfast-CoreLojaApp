@@ -1,4 +1,5 @@
-import '../../../../../../shared/utilitario/resultado_sucesso_ou_error.dart';
+import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+
 import '../entities/resultado_usuario.dart';
 
 abstract class CarregarUsuarioRepository {

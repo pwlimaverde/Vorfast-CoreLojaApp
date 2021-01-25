@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:meta/meta.dart';
 
 import '../../../../settings/configuracao_geral/configuracao_geral_features/carregar_theme/external/model/firebase_resultado_theme_model.dart';
 import '../../../../settings/core/core_presenter/core_presenter.dart';

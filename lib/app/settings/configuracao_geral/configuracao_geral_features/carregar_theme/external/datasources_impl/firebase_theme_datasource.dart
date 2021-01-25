@@ -1,8 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:meta/meta.dart';
-
-import '../../../../../../shared/utilitario/resultado_sucesso_ou_error.dart';
-import '../../../../../erros/erros.dart';
+import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 import '../../infra/datasources/carregar_theme_datasource.dart';
 import '../model/firebase_resultado_theme_model.dart';
 
@@ -20,9 +17,9 @@ class FairebaseThemeDatasource implements CarregarThemeDatasource {
           .map((event) {
         return FirebaseResultadoThemeModel.fromDocument(event);
       });
-      return SucessoRetorno(result: themeData);
+      return SucessoRetorno(resultado: themeData);
     } catch (e) {
-      return ErrorRetorno(
+      return ErroRetorno(
         erro: ErroInesperado(
           mensagem: "${e.toString()} Erro ao carregar os dados Cod.03-1",
         ),

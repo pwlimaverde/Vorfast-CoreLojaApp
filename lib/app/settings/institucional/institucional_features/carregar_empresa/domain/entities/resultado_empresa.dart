@@ -4,9 +4,9 @@ class ResultadoEmpresa {
   final bool licenca;
 
   ResultadoEmpresa({
-    this.nome,
-    this.logo260x200,
-    this.licenca,
+    required this.nome,
+    required this.logo260x200,
+    required this.licenca,
   });
 
   @override

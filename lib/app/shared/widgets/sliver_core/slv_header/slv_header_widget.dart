@@ -10,7 +10,11 @@ class SlvHeaderWidget extends StatelessWidget {
   final Color color;
   final Function onTap;
 
-  const SlvHeaderWidget({Key key, this.secao, this.color, this.onTap})
+  const SlvHeaderWidget(
+      {required Key key,
+      required this.secao,
+      required this.color,
+      required this.onTap})
       : super(key: key);
 
   @override
@@ -18,7 +22,8 @@ class SlvHeaderWidget extends StatelessWidget {
     return makeHeader(title: secao.nome, color: color);
   }
 
-  SliverPersistentHeader makeHeader({String title, Color color}) {
+  SliverPersistentHeader makeHeader(
+      {required String title, required Color color}) {
     return SliverPersistentHeader(
       pinned: false,
       delegate: _SliverAppBarDelegate(
@@ -44,7 +49,7 @@ class SlvHeaderWidget extends StatelessWidget {
                         ),
                       ),
               )),
-          onTap: onTap ?? null,
+          onTap: onTap() ?? null,
         ),
       ),
     );

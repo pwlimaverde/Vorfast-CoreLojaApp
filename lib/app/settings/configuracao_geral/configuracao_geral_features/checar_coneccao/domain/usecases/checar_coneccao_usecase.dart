@@ -16,14 +16,14 @@ class ChecarConeccaoUsecase implements UseCase<bool, NoParams> {
         if (check.resultado) {
           return check;
         }
-        return ErrorRetorno(
+        return ErroRetorno(
             erro: ErrorConeccao(mensagem: "Você está offline Cod.01-1"));
       }
-      return ErrorRetorno(
+      return ErroRetorno(
           erro: ErrorConeccao(
               mensagem: "Erro ao recuperar informação de conexão Cod.01-2"));
     } catch (e) {
-      return ErrorRetorno(
+      return ErroRetorno(
           erro: ErrorConeccao(
               mensagem:
                   "${e.toString()} - Erro ao recuperar informação de conexão Cod.01-3"));

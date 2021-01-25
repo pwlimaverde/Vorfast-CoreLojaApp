@@ -1,6 +1,5 @@
-import 'package:meta/meta.dart';
+import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
-import '../../../../../../shared/utilitario/resultado_sucesso_ou_error.dart';
 import '../../../../../erros/erros.dart';
 import '../../domain/repositories/checar_coneccao_repository.dart';
 import '../datasources/checar_coneccao_datasource.dart';
@@ -15,11 +14,11 @@ class ChecarConeccaoRepositoryImpl implements ChecarConeccaoRepository {
     try {
       bool estaConectado = await datasource.isOnline;
       if (estaConectado) {
-        return SucessoRetorno(result: true);
+        return SucessoRetorno(resultado: true);
       }
-      return SucessoRetorno(result: false);
+      return SucessoRetorno(resultado: false);
     } catch (e) {
-      return ErrorRetorno(erro: ErrorConeccao(mensagem: e.toString()));
+      return ErroRetorno(erro: ErrorConeccao(mensagem: e.toString()));
     }
   }
 }

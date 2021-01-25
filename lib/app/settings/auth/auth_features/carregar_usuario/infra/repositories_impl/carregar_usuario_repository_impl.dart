@@ -21,14 +21,14 @@ class CarregarUsuarioRepositoryImpl implements CarregarUsuarioRepository {
       if (usuarioData is SucessoRetorno<Stream<ResultadoUsuario>>) {
         return usuarioData;
       } else {
-        return ErrorRetorno(
+        return ErroRetorno(
           erro: ErroInesperado(
             mensagem: "Erro ao carregar os dados do Usuario - Cod.02-1",
           ),
         );
       }
     } catch (e) {
-      return ErrorRetorno(
+      return ErroRetorno(
           erro: ErroInesperado(
         mensagem:
             "${e.toString()} - Erro ao carregar os dados do Usuario - Cod.02-2",

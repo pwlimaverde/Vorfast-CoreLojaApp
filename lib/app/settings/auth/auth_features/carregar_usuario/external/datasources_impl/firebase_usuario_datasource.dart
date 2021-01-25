@@ -32,23 +32,23 @@ class FirebaseUsuarioDatasourse implements CarregarUsuarioDatasource {
               user: _user,
             );
           });
-          return SucessoRetorno(result: usuarioData);
+          return SucessoRetorno(resultado: usuarioData);
         } else {
-          return ErrorRetorno(
+          return ErroRetorno(
             erro: ErroInesperado(
               mensagem: "Erro ao carregar os dados Cod.03-1",
             ),
           );
         }
       } else {
-        return ErrorRetorno(
+        return ErroRetorno(
           erro: ErroInesperado(
             mensagem: "Erro ao carregar os dados Cod.03-2",
           ),
         );
       }
     } catch (e) {
-      return ErrorRetorno(
+      return ErroRetorno(
         erro: ErroInesperado(
           mensagem: "${e.toString()} Erro ao carregar os dados Cod.03-3",
         ),

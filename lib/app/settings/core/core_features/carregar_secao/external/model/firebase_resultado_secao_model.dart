@@ -17,7 +17,7 @@ class FirebaseResultadoSecaoModel extends ResultadoSecao {
   DocumentReference reference;
 
   FirebaseResultadoSecaoModel({
-    this.reference,
+    required this.reference,
     nome,
     img,
     prioridade,
@@ -51,12 +51,12 @@ class FirebaseResultadoSecaoModel extends ResultadoSecao {
     DocumentSnapshot doc,
     Stream<List<FirebaseResultadoAnuncioModel>> anuncios,
   ) {
-    this.reference = doc.reference;
-    this.nome = doc.data()['nome'];
-    this.img = doc.data()['img'];
-    this.prioridade = doc.data()['prioridade'];
-    this.scrow = doc.data()['scrow'];
-    this.cor = doc.data()['cor'];
-    this.anuncios = anuncios;
+    required this.reference = doc.reference;
+    required this.nome = doc.data()['nome'];
+    required this.img = doc.data()['img'];
+    required this.prioridade = doc.data()['prioridade'];
+    required this.scrow = doc.data()['scrow'];
+    required this.cor = doc.data()['cor'];
+    required this.anuncios = anuncios;
   }
 }

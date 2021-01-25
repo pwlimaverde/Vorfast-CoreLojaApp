@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:meta/meta.dart';
 
 import '../../domain/entities/resultado_empresa.dart';
 
@@ -11,13 +10,13 @@ class RxFirebaseResultadoEmpresaModel {
 }
 
 class FirebaseResultadoEmpresaModel extends ResultadoEmpresa {
-  DocumentReference reference;
+  DocumentReference? reference;
   FirebaseResultadoEmpresaModel({
     this.reference,
     nome,
     logo260x200,
     licenca,
-  });
+  }) : super(licenca: licenca, logo260x200: logo260x200, nome: nome);
 
   final rx = RxFirebaseResultadoEmpresaModel();
 
@@ -30,7 +29,11 @@ class FirebaseResultadoEmpresaModel extends ResultadoEmpresa {
   get licenca => rx.licenca.value;
   set licenca(value) => rx.licenca.value = value;
 
-  FirebaseResultadoEmpresaModel.fromDocument({required DocumentSnapshot doc}) {
+  FirebaseResultadoEmpresaModel.fromDocument({required DocumentSnapshot doc})
+      : super(
+            licenca: doc.data()['licenca'],
+            logo260x200: doc.data()['logo260x200'],
+            nome: doc.data()['nome']) {
     this.reference = doc.reference;
     this.nome = doc.data()['nome'];
     this.logo260x200 = doc.data()['logo260x200'];

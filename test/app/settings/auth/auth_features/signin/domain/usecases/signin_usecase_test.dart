@@ -13,7 +13,7 @@ main() {
 
   test('Deve Retornar um RetornoSucessoOuErro', () async {
     when(repository.signIn())
-        .thenAnswer((_) => Future.value(SucessoRetorno<bool>(result: true)));
+        .thenAnswer((_) => Future.value(SucessoRetorno<bool>(resultado: true)));
 
     final result = await recuperarSenha();
     print(
@@ -27,7 +27,7 @@ main() {
   test('Deve Retornar um RetornoSucessoOuErro Sucesso com valor true',
       () async {
     when(repository.signIn())
-        .thenAnswer((_) => Future.value(SucessoRetorno<bool>(result: true)));
+        .thenAnswer((_) => Future.value(SucessoRetorno<bool>(resultado: true)));
 
     final result = await recuperarSenha();
     print(
@@ -43,8 +43,8 @@ main() {
 
   test('Deve Retornar um ErroInesperado Erro ao SignIn Cod.01-1 false',
       () async {
-    when(repository.signIn())
-        .thenAnswer((_) => Future.value(SucessoRetorno<bool>(result: false)));
+    when(repository.signIn()).thenAnswer(
+        (_) => Future.value(SucessoRetorno<bool>(resultado: false)));
 
     final result = await recuperarSenha();
     print(
@@ -60,7 +60,7 @@ main() {
 
   test('Deve Retornar um ErroInesperado Erro ao SignIn Cod.01-2', () async {
     when(repository.signIn()).thenAnswer((_) => Future.value(
-        ErrorRetorno(erro: ErrorConeccao(mensagem: "Erro ao SignIn"))));
+        ErroRetorno(erro: ErrorConeccao(mensagem: "Erro ao SignIn"))));
 
     final result = await recuperarSenha();
     print(

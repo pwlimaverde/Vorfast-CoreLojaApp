@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:meta/meta.dart';
 
 import '../../infra/datasources/carregar_secao_datasource.dart';
 import '../model/firebase_resultado_anuncio_model.dart';
