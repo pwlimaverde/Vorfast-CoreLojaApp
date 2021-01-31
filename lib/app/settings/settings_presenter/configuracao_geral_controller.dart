@@ -75,7 +75,7 @@ class ConfiguracaoGeralController extends GetxController {
 
   Future<RetornoSucessoOuErro> recuperarSenha({@required String email}) async {
     return await recuperarSenhaEmailLoginUsecase(
-        ParametrosRecuperarSenhaEmail(email: email));
+        parametros: ParametrosRecuperarSenhaEmail(email: email));
   }
 
   Future<RetornoSucessoOuErro> signInGoogleLogin() async {
@@ -118,7 +118,8 @@ class ConfiguracaoGeralController extends GetxController {
 
   //Auth Funções Internas
   _carregarUsuario() async {
-    RetornoSucessoOuErro usuarioLogado = await carregarUsuario(NoParams());
+    RetornoSucessoOuErro usuarioLogado =
+        await carregarUsuario(parametros: NoParams());
     if (usuarioLogado is SucessoRetorno) {
       this.usuarioFirebase = usuarioLogado.resultado;
     }
@@ -137,7 +138,7 @@ class ConfiguracaoGeralController extends GetxController {
 
   //Institucional Funções Internas
   void _carregarEmpresa() async {
-    RetornoSucessoOuErro result = await carregarEmpresa(NoParams());
+    RetornoSucessoOuErro result = await carregarEmpresa(parametros: NoParams());
     if (result is SucessoRetorno) {
       this.empresaFirebase = result.resultado;
     }
@@ -156,7 +157,8 @@ class ConfiguracaoGeralController extends GetxController {
   set estaConectado(value) => this._estaConectado.value = value;
 
   void _getCon() async {
-    RetornoSucessoOuErro<bool> testeConexao = await checarConeccao(NoParams());
+    RetornoSucessoOuErro<bool> testeConexao =
+        await checarConeccao(parametros: NoParams());
     if (testeConexao is SucessoRetorno<bool>) {
       this.estaConectado = testeConexao.resultado;
     } else {
@@ -206,7 +208,7 @@ class ConfiguracaoGeralController extends GetxController {
   //Theme Funções Internas
   //Carregar Theme
   void _carregarSettingsTheme() async {
-    RetornoSucessoOuErro result = await carregarTheme(NoParams());
+    RetornoSucessoOuErro result = await carregarTheme(parametros: NoParams());
     if (result is SucessoRetorno) {
       this.fireTheme = result.resultado;
     }

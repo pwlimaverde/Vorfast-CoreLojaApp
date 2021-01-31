@@ -4,15 +4,14 @@ import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.
 import '../../domain/entities/resultado_theme.dart';
 import '../../domain/repositories/carregar_theme_repository.dart';
 
-class CarregarThemeUsecase
-    implements UseCase<Stream<ResultadoTheme>, NoParams> {
+class CarregarThemeUsecase extends UseCase<Stream<ResultadoTheme>, NoParams> {
   final CarregarThemeRepository repository;
 
   CarregarThemeUsecase({@required this.repository});
 
   @override
   Future<RetornoSucessoOuErro<Stream<ResultadoTheme>>> call(
-      NoParams parametros) async {
+      {NoParams parametros}) async {
     try {
       RetornoSucessoOuErro<Stream<ResultadoTheme>> result =
           await repository.carregarTheme();

@@ -3,13 +3,13 @@ import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.
 import '../repositories/checar_coneccao_repository.dart';
 import '../../../../../../shared/utilitario/erros.dart';
 
-class ChecarConeccaoUsecase implements UseCase<bool, NoParams> {
+class ChecarConeccaoUsecase extends UseCase<bool, NoParams> {
   final ChecarConeccaoRepository repository;
 
   ChecarConeccaoUsecase({@required this.repository});
 
   @override
-  Future<RetornoSucessoOuErro<bool>> call(NoParams parametros) async {
+  Future<RetornoSucessoOuErro<bool>> call({NoParams parametros}) async {
     try {
       RetornoSucessoOuErro<bool> check = await repository.checarConeccao();
       if (check is SucessoRetorno<bool>) {

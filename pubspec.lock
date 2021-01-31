@@ -427,10 +427,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "93a51d05c8495abc5c415a8da0f28b90303dc4e3"
+      resolved-ref: "845f435efffb9d2a858995ac8963f105c98f15ee"
       url: "https://github.com/pwlimaverde/retorno_sucesso_ou_erro_package"
     source: git
-    version: "1.0.2"
+    version: "1.0.3"
   rxdart:
     dependency: "direct main"
     description:

@@ -4,14 +4,14 @@ import '../entities/resultado_usuario.dart';
 import '../repositories/carregar_usuario_repository.dart';
 
 class CarregarUsuarioUsecase
-    implements UseCase<Stream<ResultadoUsuario>, NoParams> {
+    extends UseCase<Stream<ResultadoUsuario>, NoParams> {
   final CarregarUsuarioRepository repository;
 
   CarregarUsuarioUsecase({@required this.repository});
 
   @override
   Future<RetornoSucessoOuErro<Stream<ResultadoUsuario>>> call(
-      NoParams parametros) async {
+      {NoParams parametros}) async {
     try {
       RetornoSucessoOuErro<Stream<ResultadoUsuario>> result =
           await repository.carregarUsuario();
