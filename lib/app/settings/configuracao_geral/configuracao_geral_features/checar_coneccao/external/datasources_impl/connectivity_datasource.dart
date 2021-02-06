@@ -14,8 +14,8 @@ class ConnectivityDatasource implements Datasource<bool, NoParams> {
   }
 
   @override
-  Future<bool> call({NoParams parametros}) async {
-    bool result = await isOnline;
+  Future<bool> call({@required NoParams parametros}) async {
+    final result = await isOnline;
     return result;
   }
 }
