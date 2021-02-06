@@ -51,7 +51,9 @@ class ConfiguracaoGeralBinding implements Bindings {
           ),
         ),
         //usecases
-        checarConeccao: ChecarConeccaoPresenter(),
+        checarConeccao: ChecarConeccaoPresenter(
+          mostrarTempoExecucao: true,
+        ),
         //package Connectivity
         onconnect: Connectivity(),
         //usecases

@@ -41,10 +41,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "4f0e565d4a3ec2175ba215b613b6b1cba499fcca"
+      resolved-ref: "179112fee661a4f16ba91cf46d4db18b6eb8b95c"
       url: "https://github.com/pwlimaverde/checar_coneccao_plugin.git"
     source: git
-    version: "1.0.1"
+    version: "1.0.2"
   clock:
     dependency: transitive
     description:
