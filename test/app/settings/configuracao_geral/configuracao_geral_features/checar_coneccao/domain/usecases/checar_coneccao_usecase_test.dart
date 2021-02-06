@@ -1,83 +1,45 @@
-import 'package:corelojaapp/app/settings/configuracao_geral/configuracao_geral_features/checar_coneccao/domain/repositories/checar_coneccao_repository.dart';
 import 'package:corelojaapp/app/settings/configuracao_geral/configuracao_geral_presenter/configuracao_geral_presenter.dart';
-import 'package:corelojaapp/app/shared/utilitario/erros.dart';
-import 'package:corelojaapp/app/shared/utilitario/resultado_sucesso_ou_error.dart';
-import 'package:corelojaapp/app/shared/utilitario/usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+import 'package:meta/meta.dart';
 
-class ChecarConeccaoRepositoryMock extends Mock
-    implements ChecarConeccaoRepository {}
+class RepoImpl extends Repositorio<bool, NoParams> {
+  final RetornoSucessoOuErro<bool> result;
+
+  RepoImpl(this.result);
+
+  @override
+  Future<RetornoSucessoOuErro<bool>> call(
+      {@required NoParams parametros}) async {
+    return result;
+  }
+}
 
 main() {
-  final repository = ChecarConeccaoRepositoryMock();
-  final checarConeccao = ChecarConeccaoUsecase(repository: repository);
-
-  test('Deve Retornar um RetornoSucessoOuErro', () async {
-    when(repository.checarConeccao())
-        .thenAnswer((_) => Future.value(SucessoRetorno<bool>(resultado: true)));
-
-    final result = await checarConeccao(NoParams());
+  test('Deve Retornar um SucessoRetorno true', () async {
+    final repositorio = RepoImpl(SucessoRetorno(resultado: true));
+    final checarConeccao = ChecarConeccaoUsecase(repository: repositorio);
+    final result = await checarConeccao(parametros: NoParams());
     print(
-        "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}");
+        "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.erro)}");
     expect(result, isA<RetornoSucessoOuErro>());
   });
 
-  test('Deve Retornar um RetornoSucessoOuErro Sucesso com valor true',
-      () async {
-    when(repository.checarConeccao())
-        .thenAnswer((_) => Future.value(SucessoRetorno<bool>(resultado: true)));
-
-    final result = await checarConeccao(NoParams());
+  test('Deve Retornar um ErroRetorno Cod.01-1', () async {
+    final repositorio = null;
+    final checarConeccao = ChecarConeccaoUsecase(repository: repositorio);
+    final result = await checarConeccao(parametros: NoParams());
     print(
-        "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}");
-    expect(
-        result.fold(
-            sucesso: (value) => value.resultado, erro: (value) => value.error),
-        isA<bool>());
+        "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.erro)}");
+    expect(result, isA<RetornoSucessoOuErro>());
   });
 
-  test('Deve Retornar um ErrorConeccao - Você está offline', () async {
-    when(repository.checarConeccao()).thenAnswer(
-        (_) => Future.value(SucessoRetorno<bool>(resultado: false)));
-
-    final result = await checarConeccao(NoParams());
+  test('Deve Retornar um ErroRetorno false Cod.01-2', () async {
+    final repositorio = RepoImpl(SucessoRetorno(resultado: false));
+    final checarConeccao = ChecarConeccaoUsecase(repository: repositorio);
+    final result = await checarConeccao(parametros: NoParams());
     print(
-        "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}");
-    expect(
-        result.fold(
-            sucesso: (value) => value.resultado, erro: (value) => value.error),
-        isA<ErrorConeccao>());
-  });
-
-  test(
-      'Deve Retornar um ErrorConeccao - Erro ao recuperar informação de conexão Cod.01-2',
-      () async {
-    when(repository.checarConeccao()).thenAnswer((_) => Future.value(
-        ErroRetorno(
-            erro: ErrorConeccao(
-                mensagem: "Erro ao recuperar informação de conexão"))));
-
-    final result = await checarConeccao(NoParams());
-    print(
-        "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}");
-    expect(
-        result.fold(
-            sucesso: (value) => value.resultado, erro: (value) => value.error),
-        isA<ErrorConeccao>());
-  });
-
-  test(
-      'Deve Retornar um ErrorConeccao - Erro ao recuperar informação de conexão Cod.01-3',
-      () async {
-    when(repository.checarConeccao()).thenThrow(Exception());
-
-    final result = await checarConeccao(NoParams());
-    print(
-        "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}");
-    expect(
-        result.fold(
-            sucesso: (value) => value.resultado, erro: (value) => value.error),
-        isA<ErrorConeccao>());
+        "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.erro)}");
+    expect(result, isA<RetornoSucessoOuErro>());
   });
 }

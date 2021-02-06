@@ -1,3 +1,4 @@
+import 'package:checar_coneccao_plugin/checar_coneccao_plugin.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ import 'drawer/ui/drawer_core_widget.dart';
 class ConfiguracaoGeralController extends GetxController {
   final Connectivity onconnect;
   final CarregarThemeUsecase carregarTheme;
-  final ChecarConeccaoUsecase checarConeccao;
+  final ChecarConeccaoPresenter checarConeccao;
   final CarregarSecaoUsecase carregarSecao;
   final CarregarEmpresaUsecase carregarEmpresa;
   final CarregarUsuarioUsecase carregarUsuario;
@@ -158,7 +159,7 @@ class ConfiguracaoGeralController extends GetxController {
 
   void _getCon() async {
     RetornoSucessoOuErro<bool> testeConexao =
-        await checarConeccao(parametros: NoParams());
+        await checarConeccao.consultaConectividade();
     if (testeConexao is SucessoRetorno<bool>) {
       this.estaConectado = testeConexao.resultado;
     } else {

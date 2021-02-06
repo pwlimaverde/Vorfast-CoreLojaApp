@@ -36,6 +36,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0-nullsafety.3"
+  checar_coneccao_plugin:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "394fbd3bca5c3932bbb4ba89c3b05a4af64a7404"
+      url: "https://github.com/pwlimaverde/checar_coneccao_plugin.git"
+    source: git
+    version: "1.0.0"
   clock:
     dependency: transitive
     description:
@@ -79,33 +88,26 @@ packages:
     source: hosted
     version: "1.15.0-nullsafety.5"
   connectivity:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: connectivity
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.9+3"
-  connectivity_for_web:
-    dependency: transitive
-    description:
-      name: connectivity_for_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.1"
+    version: "3.0.0-nullsafety.3"
   connectivity_macos:
     dependency: transitive
     description:
       name: connectivity_macos
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.0+3"
+    version: "0.2.0-nullsafety"
   connectivity_platform_interface:
     dependency: transitive
     description:
       name: connectivity_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.6"
+    version: "2.0.0-nullsafety.1"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -400,7 +402,7 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.1.0-nullsafety.1"
   process:
     dependency: transitive
     description:
@@ -427,10 +429,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "845f435efffb9d2a858995ac8963f105c98f15ee"
-      url: "https://github.com/pwlimaverde/retorno_sucesso_ou_erro_package"
+      resolved-ref: "333c15e3be31043c7b28038e78c06771d6e70af1"
+      url: "https://github.com/pwlimaverde/retorno_sucesso_ou_erro_package.git"
     source: git
-    version: "1.0.3"
+    version: "1.0.7"
   rxdart:
     dependency: "direct main"
     description:
@@ -550,4 +552,4 @@ packages:
     version: "0.1.0"
 sdks:
   dart: ">=2.12.0-0.0 <3.0.0"
-  flutter: ">=1.17.0 <2.0.0"
+  flutter: ">=1.20.0"
