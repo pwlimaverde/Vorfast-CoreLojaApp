@@ -1,11 +1,11 @@
+import 'package:carregar_temas_package/carregar_temas_package.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../domain/entities/resultado_theme.dart';
 
 class FirebaseResultadoThemeModel extends ResultadoTheme {
   final DocumentReference reference;
-  final String user;
-  final Map primary;
-  final Map accent;
+  String user;
+  Map primary;
+  Map accent;
 
   FirebaseResultadoThemeModel({
     this.reference,
@@ -22,6 +22,24 @@ class FirebaseResultadoThemeModel extends ResultadoTheme {
       user: doc.data()['user'],
       primary: doc.data()['primary'],
       accent: doc.data()['accent'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['user'] = this.user;
+    data['primary'] = this.primary;
+    data['accent'] = this.accent;
+    return data;
+  }
+
+  factory FirebaseResultadoThemeModel.fromJson(Map<String, dynamic> json) {
+    if (json == null) return null;
+
+    return FirebaseResultadoThemeModel(
+      user: json['user'],
+      primary: json['primary'],
+      accent: json['accent'],
     );
   }
 

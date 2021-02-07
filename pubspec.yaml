@@ -9,6 +9,7 @@ environment:
   sdk: ">=2.7.0 < 3.0.0"
 
 dependencies:
+  get_storage: ^1.4.0
   get: ^3.24.0
   get_test: ^3.13.3
   equatable: ^1.2.5
@@ -31,16 +32,17 @@ dependencies:
   cupertino_icons: ^0.1.3
   flutter:
     sdk: flutter
-  
+  #Packages
   retorno_sucesso_ou_erro_package:
     git:
       url: https://github.com/pwlimaverde/retorno_sucesso_ou_erro_package.git
-  
+  carregar_temas_package:
+    git:
+      url: https://github.com/pwlimaverde/carregar_temas_package.git
+  #Plugins
   checar_coneccao_plugin:
     git:
       url: https://github.com/pwlimaverde/checar_coneccao_plugin.git
-  
-
   
 
 dev_dependencies:

@@ -1,20 +1,22 @@
+import 'package:carregar_temas_package/carregar_temas_package.dart';
 import 'package:checar_coneccao_plugin/checar_coneccao_plugin.dart';
+import 'package:corelojaapp/app/settings/datasources/carregar_temas_package/datasource/model/firebase_resultado_theme_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:meta/meta.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 //Importes Internos
 import '../institucional/institucional_presenter/institucional_presenter.dart';
 import '../auth/auth_presenter/auth_presenter.dart';
-import '../configuracao_geral/configuracao_geral_presenter/configuracao_geral_presenter.dart';
 import '../core/core_presenter/core_presenter.dart';
 import 'drawer/ui/drawer_core_widget.dart';
 
 class ConfiguracaoGeralController extends GetxController {
   final Connectivity onconnect;
-  final CarregarThemeUsecase carregarTheme;
+  final CarregarTemasPresenter carregarTheme;
   final ChecarConeccaoPresenter checarConeccao;
   final CarregarSecaoUsecase carregarSecao;
   final CarregarEmpresaUsecase carregarEmpresa;
@@ -209,14 +211,18 @@ class ConfiguracaoGeralController extends GetxController {
   //Theme Funções Internas
   //Carregar Theme
   void _carregarSettingsTheme() async {
-    RetornoSucessoOuErro result = await carregarTheme(parametros: NoParams());
+    final result = await carregarTheme.carregarTemas();
     if (result is SucessoRetorno) {
-      this.fireTheme = result.resultado;
+      Stream<FirebaseResultadoThemeModel> tema = result.fold(
+          sucesso: (value) => value.resultado, erro: (erro) => erro.erro);
+      this.fireTheme = tema;
     }
   }
 
   //Aplicação do tema carregado
   void _apiThemeApp({FirebaseResultadoThemeModel model}) {
+    final box = GetStorage();
+    box.write("tema", model.toJson());
     Get.changeTheme(
       ThemeData(
         primaryColor: Color.fromRGBO(

@@ -1,6 +1,7 @@
 import 'package:checar_coneccao_plugin/checar_coneccao_plugin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:corelojaapp/app/settings/datasources/carregar_temas_package/datasource/firebase_theme_datasource.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -20,14 +21,12 @@ import '../auth/auth_features/signout/domain/usecases/signout_usecase.dart';
 import '../auth/auth_features/signout/external/datasources_impl/firebase_signout_datasource.dart';
 import '../auth/auth_features/signout/infra/repositories_impl/signout_repository_impl.dart';
 import '../auth/auth_presenter/auth_presenter.dart';
-import '../configuracao_geral/configuracao_geral_features/carregar_theme/domain/usecases/carregar_theme_usecase.dart';
-import '../configuracao_geral/configuracao_geral_features/carregar_theme/external/datasources_impl/firebase_theme_datasource.dart';
-import '../configuracao_geral/configuracao_geral_features/carregar_theme/infra/repositories_impl/carregar_theme_repository_impl.dart';
 import '../core/core_features/carregar_secao/domain/usecases/carregar_secao_usecase.dart';
 import '../core/core_features/carregar_secao/external/datasources_impl/firebase_secao_datasource.dart';
 import '../core/core_features/carregar_secao/infra/repositories_impl/carregar_secao_repository_impl.dart';
 import '../institucional/institucional_features/carregar_empresa/external/datasources_impl/firebase_empresa_datasource.dart';
 import '../institucional/institucional_features/carregar_empresa/infra/repositories_impl/carregar_empresa_repository_impl.dart';
+import 'package:carregar_temas_package/carregar_temas_package.dart';
 import '../institucional/institucional_presenter/institucional_presenter.dart';
 import 'configuracao_geral_controller.dart';
 
@@ -37,14 +36,20 @@ class ConfiguracaoGeralBinding implements Bindings {
     Get.put<ConfiguracaoGeralController>(
       ConfiguracaoGeralController(
         //usecases
-        carregarTheme: CarregarThemeUsecase(
-          //infra
-          repository: CarregarThemeRepositoryImpl(
-            //external
-            datasource: FairebaseThemeDatasource(
-              //package firebase
-              firestore: FirebaseFirestore.instance,
-            ),
+        // carregarTheme: CarregarThemeUsecase(
+        //   //infra
+        //   repository: CarregarThemeRepositoryImpl(
+        //     //external
+        //     datasource: FairebaseThemeDatasource(
+        //       //package firebase
+        //       firestore: FirebaseFirestore.instance,
+        //     ),
+        //   ),
+        // ),
+        carregarTheme: CarregarTemasPresenter(
+          mostrarTempoExecucao: true,
+          datasource: FairebaseThemeDatasource2(
+            firestore: FirebaseFirestore.instance,
           ),
         ),
         //usecases
