@@ -34,13 +34,13 @@ Future<void> main() async {
     final result = await datasourse.carregarUsuario();
 
     print(
-      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
+      "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.erro)}",
     );
 
     expect(
         result.fold(
           sucesso: (value) => value.resultado,
-          erro: (value) => value.error,
+          erro: (value) => value.erro,
         ),
         isA<Stream<FirebaseResultadoUsuarioModel>>());
   });

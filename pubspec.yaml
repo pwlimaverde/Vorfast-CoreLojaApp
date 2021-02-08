@@ -46,6 +46,7 @@ dependencies:
   
 
 dev_dependencies:
+  mocktail: ^0.0.1-dev.10
   mockito: ^4.1.1
   flutter_test:
     sdk: flutter

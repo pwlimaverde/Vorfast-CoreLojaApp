@@ -4,10 +4,10 @@ import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.
 
 import 'model/firebase_resultado_theme_model.dart';
 
-class FairebaseThemeDatasource2
+class FairebaseThemeDatasource
     implements Datasource<Stream<FirebaseResultadoThemeModel>, NoParams> {
   final FirebaseFirestore firestore;
-  FairebaseThemeDatasource2({@required this.firestore});
+  FairebaseThemeDatasource({@required this.firestore});
   @override
   Future<Stream<FirebaseResultadoThemeModel>> call(
       {NoParams parametros}) async {

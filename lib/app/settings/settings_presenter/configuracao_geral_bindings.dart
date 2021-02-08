@@ -36,19 +36,9 @@ class ConfiguracaoGeralBinding implements Bindings {
     Get.put<ConfiguracaoGeralController>(
       ConfiguracaoGeralController(
         //usecases
-        // carregarTheme: CarregarThemeUsecase(
-        //   //infra
-        //   repository: CarregarThemeRepositoryImpl(
-        //     //external
-        //     datasource: FairebaseThemeDatasource(
-        //       //package firebase
-        //       firestore: FirebaseFirestore.instance,
-        //     ),
-        //   ),
-        // ),
         carregarTheme: CarregarTemasPresenter(
           mostrarTempoExecucao: true,
-          datasource: FairebaseThemeDatasource2(
+          datasource: FairebaseThemeDatasource(
             firestore: FirebaseFirestore.instance,
           ),
         ),
