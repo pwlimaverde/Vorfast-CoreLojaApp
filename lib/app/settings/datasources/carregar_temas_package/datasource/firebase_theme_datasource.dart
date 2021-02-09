@@ -12,14 +12,20 @@ class FairebaseThemeDatasource
   Future<Stream<FirebaseResultadoThemeModel>> call(
       {NoParams parametros}) async {
     try {
-      Stream<FirebaseResultadoThemeModel> themeData = firestore
-          .collection("settingstheme")
-          .doc("theme")
-          .snapshots()
-          .map((event) {
-        return FirebaseResultadoThemeModel.fromDocument(event);
-      });
-      return themeData;
+      final DocumentReference doc =
+          firestore.collection("settingstheme").doc("theme");
+      DocumentSnapshot docReference = await doc.get();
+      FirebaseResultadoThemeModel tema =
+          FirebaseResultadoThemeModel.fromDocument(docReference);
+      if (tema.user.length > 0) {
+        Stream<FirebaseResultadoThemeModel> themeData =
+            doc.snapshots().map((event) {
+          return FirebaseResultadoThemeModel.fromDocument(event);
+        });
+        return themeData;
+      } else {
+        throw Exception("Falha ao carregar os dados: Usuario Inválido");
+      }
     } catch (e) {
       throw Exception(e);
     }

@@ -1,5 +1,4 @@
 import 'package:carregar_temas_package/carregar_temas_package.dart';
-import 'package:corelojaapp/app/shared/utilitario/tempo_execucao.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
@@ -10,10 +9,8 @@ class FairebaseThemeDatasourceMock extends Mock
 
 void main() {
   final datasource = FairebaseThemeDatasourceMock();
-  final tempo = TempoExecucao();
 
   test('Deve retornar um sucesso com true', () async {
-    tempo.iniciar();
     final testeFire = BehaviorSubject<ResultadoTheme>();
     testeFire.add(
       ResultadoTheme(
@@ -30,7 +27,6 @@ void main() {
           sucesso: (value) => value.resultado,
           erro: (value) => value.erro,
         ).first}");
-    tempo.terminar();
     expect(result, isA<SucessoRetorno<Stream<ResultadoTheme>>>());
     expect(
         result.fold(
@@ -43,7 +39,6 @@ void main() {
 
   test('Deve ErrorCarregarTemas com Erro ao carregar os dados tema Cod.02-1',
       () async {
-    tempo.iniciar();
     when(datasource).calls(#call).thenThrow(Exception());
     final result = await CarregarTemasPresenter(
             datasource: datasource, mostrarTempoExecucao: true)
@@ -52,7 +47,6 @@ void main() {
       sucesso: (value) => value.resultado,
       erro: (value) => value.erro,
     )}");
-    tempo.terminar();
     expect(result, isA<ErroRetorno<Stream<ResultadoTheme>>>());
   });
 }
