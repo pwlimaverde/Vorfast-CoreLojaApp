@@ -16,11 +16,11 @@ class FairebaseThemeDatasource
           firestore.collection("settingstheme").doc("theme");
       DocumentSnapshot docReference = await doc.get();
       FirebaseResultadoThemeModel tema =
-          FirebaseResultadoThemeModel.fromDocument(docReference);
+          FirebaseResultadoThemeModel.fromDocument(doc: docReference);
       if (tema.user.length > 0) {
         Stream<FirebaseResultadoThemeModel> themeData =
             doc.snapshots().map((event) {
-          return FirebaseResultadoThemeModel.fromDocument(event);
+          return FirebaseResultadoThemeModel.fromDocument(doc: event);
         });
         return themeData;
       } else {

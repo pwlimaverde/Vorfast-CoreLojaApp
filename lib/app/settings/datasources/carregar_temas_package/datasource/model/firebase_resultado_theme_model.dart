@@ -1,5 +1,6 @@
 import 'package:carregar_temas_package/carregar_temas_package.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:meta/meta.dart';
 
 class FirebaseResultadoThemeModel extends ResultadoTheme {
   final DocumentReference reference;
@@ -14,7 +15,8 @@ class FirebaseResultadoThemeModel extends ResultadoTheme {
     this.accent,
   });
 
-  factory FirebaseResultadoThemeModel.fromDocument(DocumentSnapshot doc) {
+  factory FirebaseResultadoThemeModel.fromDocument(
+      {@required DocumentSnapshot doc}) {
     if (doc == null) return null;
 
     return FirebaseResultadoThemeModel(

@@ -1,4 +1,4 @@
-import 'package:corelojaapp/app/settings/institucional/institucional_presenter/institucional_presenter.dart';
+import 'package:corelojaapp/app/settings/datasources/carregar_empresa_package/model/firebase_resultado_empresa_model.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';

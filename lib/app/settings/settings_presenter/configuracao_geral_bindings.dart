@@ -1,6 +1,8 @@
+import 'package:carregar_empresa_package/carregar_empresa_package.dart';
 import 'package:checar_coneccao_plugin/checar_coneccao_plugin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:corelojaapp/app/settings/datasources/carregar_empresa_package/firebase_empresa_datasource.dart';
 import 'package:corelojaapp/app/settings/datasources/carregar_temas_package/datasource/firebase_theme_datasource.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -24,10 +26,7 @@ import '../auth/auth_presenter/auth_presenter.dart';
 import '../core/core_features/carregar_secao/domain/usecases/carregar_secao_usecase.dart';
 import '../core/core_features/carregar_secao/external/datasources_impl/firebase_secao_datasource.dart';
 import '../core/core_features/carregar_secao/infra/repositories_impl/carregar_secao_repository_impl.dart';
-import '../institucional/institucional_features/carregar_empresa/external/datasources_impl/firebase_empresa_datasource.dart';
-import '../institucional/institucional_features/carregar_empresa/infra/repositories_impl/carregar_empresa_repository_impl.dart';
 import 'package:carregar_temas_package/carregar_temas_package.dart';
-import '../institucional/institucional_presenter/institucional_presenter.dart';
 import 'configuracao_geral_controller.dart';
 
 class ConfiguracaoGeralBinding implements Bindings {
@@ -130,16 +129,10 @@ class ConfiguracaoGeralBinding implements Bindings {
           ),
         ),
         //usecases
-        carregarEmpresa: CarregarEmpresaUsecase(
-          //infra
-          repository: CarregarEmpresaRepositoryImpl(
-            //external
+        carregarEmpresa: CarregarEmpresaPresenter(
             datasource: FirebaseEmpresaDatasourse(
-              //package firebase
-              firestore: FirebaseFirestore.instance,
-            ),
-          ),
-        ),
+          firestore: FirebaseFirestore.instance,
+        )),
       ),
     );
   }
