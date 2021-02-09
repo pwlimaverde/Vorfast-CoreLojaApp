@@ -6,11 +6,14 @@ import '../splash_controller.dart';
 class SplashPage extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      height: 400.0,
-      child: Center(
-        child: CircularProgressIndicator(),
+    return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
+      body: Center(
+        child: Text("Bem Vindo a Loja...",
+            style: TextStyle(
+              fontSize: 30.0,
+              color: Colors.white,
+            )),
       ),
     );
   }

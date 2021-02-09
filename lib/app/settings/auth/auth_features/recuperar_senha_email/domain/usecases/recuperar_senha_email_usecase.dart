@@ -3,14 +3,14 @@ import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.
 import '../repositories/recuperar_senha_email_repository.dart';
 
 class RecuperarSenhaEmailUsecase
-    implements UseCase<bool, ParametrosRecuperarSenhaEmail> {
+    extends UseCase<bool, ParametrosRecuperarSenhaEmail> {
   final RecuperarSenhaEmailRepository repository;
 
   RecuperarSenhaEmailUsecase({@required this.repository});
 
   @override
   Future<RetornoSucessoOuErro<bool>> call(
-      ParametrosRecuperarSenhaEmail parametros) async {
+      {ParametrosRecuperarSenhaEmail parametros}) async {
     try {
       RetornoSucessoOuErro<bool> check =
           await repository.recuperarSenhaEmail(email: parametros.email);
