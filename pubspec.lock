@@ -8,6 +8,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.5.0-nullsafety.3"
+  auth_google_package:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "3acc2f253f2a2603def85412c1698a18bf6f63ab"
+      url: "https://github.com/pwlimaverde/auth_google_package.git"
+    source: git
+    version: "1.0.0"
   boolean_selector:
     dependency: transitive
     description:

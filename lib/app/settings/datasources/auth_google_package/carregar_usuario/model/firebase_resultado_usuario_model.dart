@@ -1,8 +1,8 @@
+import 'package:auth_google_package/auth_google_package.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:meta/meta.dart';
 import 'package:get/get.dart';
-import '../../domain/entities/resultado_usuario.dart';
+import 'package:meta/meta.dart';
 
 class RxFirebaseResultadoUsuarioModel {
   final id = "".obs;

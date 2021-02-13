@@ -1,6 +1,8 @@
+import 'package:auth_google_package/auth_google_package.dart';
 import 'package:carregar_empresa_package/carregar_empresa_package.dart';
 import 'package:carregar_temas_package/carregar_temas_package.dart';
 import 'package:checar_coneccao_plugin/checar_coneccao_plugin.dart';
+import 'package:corelojaapp/app/settings/datasources/auth_google_package/carregar_usuario/model/firebase_resultado_usuario_model.dart';
 import 'package:corelojaapp/app/settings/datasources/carregar_empresa_package/model/firebase_resultado_empresa_model.dart';
 import 'package:corelojaapp/app/settings/datasources/carregar_temas_package/datasource/model/firebase_resultado_theme_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,7 +23,7 @@ class ConfiguracaoGeralController extends GetxController {
   final ChecarConeccaoPresenter checarConeccao;
   final CarregarSecaoUsecase carregarSecao;
   final CarregarEmpresaPresenter carregarEmpresa;
-  final CarregarUsuarioUsecase carregarUsuario;
+  final CarregarUsuarioPresenter carregarUsuario;
   final SignOutUsecase signOutUsecase;
   final SignInUsecase signInGoogleUsecase;
   final SignInUsecase signInEmailUsecase;
@@ -122,10 +124,12 @@ class ConfiguracaoGeralController extends GetxController {
 
   //Auth Funções Internas
   _carregarUsuario() async {
-    RetornoSucessoOuErro usuarioLogado =
-        await carregarUsuario(parametros: NoParams());
+    final usuarioLogado =
+        await carregarUsuario.carregarUsuario();
     if (usuarioLogado is SucessoRetorno) {
-      this.usuarioFirebase = usuarioLogado.resultado;
+      Stream<FirebaseResultadoUsuarioModel> usuario = usuarioLogado.fold(
+          sucesso: (value) => value.resultado, erro: (erro) => erro.erro);
+      this.usuarioFirebase = usuario;
     }
   }
 

@@ -9,9 +9,6 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 //Importes Internos
-import '../auth/auth_features/carregar_usuario/domain/usecases/carregar_usuario_usecase.dart';
-import '../auth/auth_features/carregar_usuario/external/datasources_impl/firebase_usuario_datasource.dart';
-import '../auth/auth_features/carregar_usuario/infra/repositories_impl/carregar_usuario_repository_impl.dart';
 import '../auth/auth_features/recuperar_senha_email/external/datasources_impl/firebase_recuperar_senha_email_datasource.dart';
 import '../auth/auth_features/recuperar_senha_email/infra/repositories_impl/recuperar_senha_email_repository_impl.dart';
 import '../auth/auth_features/signin/domain/usecases/signin_usecase.dart';
@@ -130,9 +127,10 @@ class ConfiguracaoGeralBinding implements Bindings {
         ),
         //usecases
         carregarEmpresa: CarregarEmpresaPresenter(
+            mostrarTempoExecucao: true,
             datasource: FirebaseEmpresaDatasourse(
-          firestore: FirebaseFirestore.instance,
-        )),
+              firestore: FirebaseFirestore.instance,
+            )),
       ),
     );
   }
