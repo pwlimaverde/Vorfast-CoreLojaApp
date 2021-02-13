@@ -6,7 +6,7 @@ import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.
 import 'model/firebase_resultado_usuario_model.dart';
 
 class FirebaseCarregarUsuarioDatasourse
-    extends Datasource<Stream<FirebaseResultadoUsuarioModel>, NoParams> {
+    implements Datasource<Stream<FirebaseResultadoUsuarioModel>, NoParams> {
   final FirebaseFirestore firestore;
   final auth.FirebaseAuth authInstance;
 
