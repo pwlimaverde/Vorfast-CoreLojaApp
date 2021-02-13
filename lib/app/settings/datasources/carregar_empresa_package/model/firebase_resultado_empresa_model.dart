@@ -1,7 +1,7 @@
+import 'package:carregar_empresa_package/carregar_empresa_package.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 import 'package:get/get.dart';
-import '../../domain/entities/resultado_empresa.dart';
 
 class RxFirebaseResultadoEmpresaModel {
   final nome = "".obs;

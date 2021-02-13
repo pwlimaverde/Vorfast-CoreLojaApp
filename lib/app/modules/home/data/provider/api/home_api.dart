@@ -75,7 +75,7 @@ class HomeApiClient {
         .doc("theme")
         .get()
         .then((event) {
-      return FirebaseResultadoThemeModel.fromDocument(event);
+      return FirebaseResultadoThemeModel.fromDocument(doc: event);
     });
   }
 

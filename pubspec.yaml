@@ -39,6 +39,12 @@ dependencies:
   carregar_temas_package:
     git:
       url: https://github.com/pwlimaverde/carregar_temas_package.git
+  carregar_empresa_package:
+    git:
+      url: https://github.com/pwlimaverde/carregar_empresa_package.git
+  auth_google_package:
+    git:
+      url: https://github.com/pwlimaverde/auth_google_package.git
   #Plugins
   checar_coneccao_plugin:
     git:

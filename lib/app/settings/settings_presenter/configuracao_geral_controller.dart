@@ -1,5 +1,9 @@
+import 'package:auth_google_package/auth_google_package.dart';
+import 'package:carregar_empresa_package/carregar_empresa_package.dart';
 import 'package:carregar_temas_package/carregar_temas_package.dart';
 import 'package:checar_coneccao_plugin/checar_coneccao_plugin.dart';
+import 'package:corelojaapp/app/settings/datasources/auth_google_package/carregar_usuario/model/firebase_resultado_usuario_model.dart';
+import 'package:corelojaapp/app/settings/datasources/carregar_empresa_package/model/firebase_resultado_empresa_model.dart';
 import 'package:corelojaapp/app/settings/datasources/carregar_temas_package/datasource/model/firebase_resultado_theme_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -9,7 +13,6 @@ import 'package:meta/meta.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 //Importes Internos
-import '../institucional/institucional_presenter/institucional_presenter.dart';
 import '../auth/auth_presenter/auth_presenter.dart';
 import '../core/core_presenter/core_presenter.dart';
 import 'drawer/ui/drawer_core_widget.dart';
@@ -19,8 +22,8 @@ class ConfiguracaoGeralController extends GetxController {
   final CarregarTemasPresenter carregarTheme;
   final ChecarConeccaoPresenter checarConeccao;
   final CarregarSecaoUsecase carregarSecao;
-  final CarregarEmpresaUsecase carregarEmpresa;
-  final CarregarUsuarioUsecase carregarUsuario;
+  final CarregarEmpresaPresenter carregarEmpresa;
+  final CarregarUsuarioPresenter carregarUsuario;
   final SignOutUsecase signOutUsecase;
   final SignInUsecase signInGoogleUsecase;
   final SignInUsecase signInEmailUsecase;
@@ -121,10 +124,12 @@ class ConfiguracaoGeralController extends GetxController {
 
   //Auth Funções Internas
   _carregarUsuario() async {
-    RetornoSucessoOuErro usuarioLogado =
-        await carregarUsuario(parametros: NoParams());
+    final usuarioLogado =
+        await carregarUsuario.carregarUsuario();
     if (usuarioLogado is SucessoRetorno) {
-      this.usuarioFirebase = usuarioLogado.resultado;
+      Stream<FirebaseResultadoUsuarioModel> usuario = usuarioLogado.fold(
+          sucesso: (value) => value.resultado, erro: (erro) => erro.erro);
+      this.usuarioFirebase = usuario;
     }
   }
 
@@ -141,9 +146,11 @@ class ConfiguracaoGeralController extends GetxController {
 
   //Institucional Funções Internas
   void _carregarEmpresa() async {
-    RetornoSucessoOuErro result = await carregarEmpresa(parametros: NoParams());
+    final result = await carregarEmpresa.carregarEmpresa();
     if (result is SucessoRetorno) {
-      this.empresaFirebase = result.resultado;
+      Stream<FirebaseResultadoEmpresaModel> empresa = result.fold(
+          sucesso: (value) => value.resultado, erro: (erro) => erro.erro);
+      this.empresaFirebase = empresa;
     }
   }
 

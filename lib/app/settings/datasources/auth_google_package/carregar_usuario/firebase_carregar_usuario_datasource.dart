@@ -2,21 +2,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:meta/meta.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
-import '../../infra/datasources/carregar_usuario_datasource.dart';
-import '../model/firebase_resultado_usuario_model.dart';
 
-class FirebaseUsuarioDatasourse implements CarregarUsuarioDatasource {
+import 'model/firebase_resultado_usuario_model.dart';
+
+class FirebaseCarregarUsuarioDatasourse
+    extends Datasource<Stream<FirebaseResultadoUsuarioModel>, NoParams> {
   final FirebaseFirestore firestore;
   final auth.FirebaseAuth authInstance;
 
-  FirebaseUsuarioDatasourse({
+  FirebaseCarregarUsuarioDatasourse({
     @required this.firestore,
     @required this.authInstance,
   });
 
   @override
-  Future<RetornoSucessoOuErro<Stream<FirebaseResultadoUsuarioModel>>>
-      carregarUsuario() async {
+  Future<Stream<FirebaseResultadoUsuarioModel>> call(
+      {NoParams parametros}) async {
     try {
       auth.User _user = await _usuarioLogado().then((value) => value);
       if (_user.uid.length > 0) {
@@ -30,27 +31,15 @@ class FirebaseUsuarioDatasourse implements CarregarUsuarioDatasource {
               user: _user,
             );
           });
-          return SucessoRetorno(resultado: usuarioData);
+          return usuarioData;
         } else {
-          return ErroRetorno(
-            erro: ErroInesperado(
-              mensagem: "Erro ao carregar os dados Cod.03-1",
-            ),
-          );
+          throw Exception("Falha ao carregar os dados: Usuario Inválido");
         }
       } else {
-        return ErroRetorno(
-          erro: ErroInesperado(
-            mensagem: "Erro ao carregar os dados Cod.03-2",
-          ),
-        );
+        throw Exception("Falha ao carregar os dados: Usuario Inválido");
       }
     } catch (e) {
-      return ErroRetorno(
-        erro: ErroInesperado(
-          mensagem: "${e.toString()} Erro ao carregar os dados Cod.03-3",
-        ),
-      );
+      throw Exception(e);
     }
   }
 
