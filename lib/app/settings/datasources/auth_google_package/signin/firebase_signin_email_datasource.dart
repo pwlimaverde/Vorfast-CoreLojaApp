@@ -1,10 +1,12 @@
 import 'dart:async';
+
+import 'package:auth_google_package/auth_google_package.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:meta/meta.dart';
-import '../../../../../auth/auth_features/carregar_usuario/domain/entities/resultado_usuario.dart';
-import '../../infra/datasources/signin_datasource.dart';
+import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
-class FarebaseSignInEmailDatasource implements SignInDatasource {
+class FarebaseSignInEmailDatasource
+    implements Datasource<bool, ParametrosSignIn> {
   final auth.FirebaseAuth authInstance;
 
   FarebaseSignInEmailDatasource({
@@ -12,19 +14,15 @@ class FarebaseSignInEmailDatasource implements SignInDatasource {
   });
 
   @override
-  Future<bool> call({
-    String email,
-    String pass,
-    ResultadoUsuario user,
-  }) async {
+  Future<bool> call({@required ParametrosSignIn parametros}) async {
     try {
-      if (email == null || pass == null) {
+      if (parametros.email == null || parametros.pass == null) {
         return false;
       }
       auth.UserCredential userLogado =
           await authInstance.signInWithEmailAndPassword(
-        email: email,
-        password: pass,
+        email: parametros.email,
+        password: parametros.pass,
       );
       if (userLogado != null && userLogado.user.uid.length > 0) {
         return true;
@@ -32,7 +30,7 @@ class FarebaseSignInEmailDatasource implements SignInDatasource {
         return false;
       }
     } catch (e) {
-      return false;
+      throw Exception(e);
     }
   }
 }

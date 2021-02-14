@@ -13,7 +13,6 @@ import 'package:meta/meta.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 //Importes Internos
-import '../auth/auth_presenter/auth_presenter.dart';
 import '../core/core_presenter/core_presenter.dart';
 import 'drawer/ui/drawer_core_widget.dart';
 
@@ -25,10 +24,10 @@ class ConfiguracaoGeralController extends GetxController {
   final CarregarUsuarioPresenter carregarUsuarioPresenter;
   final RecuperarSenhaEmailPresenter recuperarSenhaEmailPresenter;
   final SignOutPresenter signOutPresenter;
+  final SignInPresenter signInGooglePresenter;
+  final SignInPresenter signInEmailPresenter;
+  final SignInPresenter novoEmailPresenter;
   final CarregarSecaoUsecase carregarSecao;
-  final SignInUsecase signInGoogleUsecase;
-  final SignInUsecase signInEmailUsecase;
-  final SignInUsecase novoEmailUsecase;
   ConfiguracaoGeralController({
     @required this.carregarThemePresenter,
     @required this.checarConeccaoPresenter,
@@ -37,9 +36,9 @@ class ConfiguracaoGeralController extends GetxController {
     @required this.carregarEmpresaPresenter,
     @required this.carregarUsuarioPresenter,
     @required this.signOutPresenter,
-    @required this.signInGoogleUsecase,
-    @required this.signInEmailUsecase,
-    @required this.novoEmailUsecase,
+    @required this.signInGooglePresenter,
+    @required this.signInEmailPresenter,
+    @required this.novoEmailPresenter,
     @required this.recuperarSenhaEmailPresenter,
   }) : assert(carregarThemePresenter != null &&
             checarConeccaoPresenter != null &&
@@ -86,11 +85,10 @@ class ConfiguracaoGeralController extends GetxController {
 
   Future<RetornoSucessoOuErro> signInGoogleLogin() async {
     singOut();
-    RetornoSucessoOuErro result =
-        await signInGoogleUsecase().then((value) async {
+    final result = signInGooglePresenter.signIn(parametros: ParametrosSignIn());
+    if (result is SucessoRetorno<bool>) {
       await _carregarUsuario();
-      return value;
-    });
+    }
     return result;
   }
 
@@ -99,13 +97,16 @@ class ConfiguracaoGeralController extends GetxController {
     @required String pass,
   }) async {
     singOut();
-    return await signInEmailUsecase(
-      email: email,
-      pass: pass,
-    ).then((value) async {
+    final result = signInEmailPresenter.signIn(
+      parametros: ParametrosSignIn(
+        email: email,
+        pass: pass,
+      ),
+    );
+    if (result is SucessoRetorno<bool>) {
       await _carregarUsuario();
-      return value;
-    });
+    }
+    return result;
   }
 
   Future<RetornoSucessoOuErro> novoEmailLogin({
@@ -113,13 +114,16 @@ class ConfiguracaoGeralController extends GetxController {
     @required String pass,
   }) async {
     singOut();
-    return novoEmailUsecase(
-      user: user,
-      pass: pass,
-    ).then((value) async {
+    final result = novoEmailPresenter.signIn(
+      parametros: ParametrosSignIn(
+        user: user,
+        pass: pass,
+      ),
+    );
+    if (result is SucessoRetorno<bool>) {
       await _carregarUsuario();
-      return value;
-    });
+    }
+    return result;
   }
 
   //Auth Funções Internas

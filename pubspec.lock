@@ -13,10 +13,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: b6d87191bcea65932134806f2b06445d6c6fc3a4
+      resolved-ref: fb175e47abbb69b758ef47ab06bc3b810c9a89e9
       url: "https://github.com/pwlimaverde/auth_google_package.git"
     source: git
-    version: "1.1.1"
+    version: "1.1.2"
   boolean_selector:
     dependency: transitive
     description:

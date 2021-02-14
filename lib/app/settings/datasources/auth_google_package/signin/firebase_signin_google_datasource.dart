@@ -1,13 +1,14 @@
-import 'dart:async';
+import 'package:auth_google_package/auth_google_package.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
-import '../../../../../auth/auth_features/carregar_usuario/external/model/firebase_resultado_usuario_model.dart';
-import '../../../../../auth/auth_features/carregar_usuario/domain/entities/resultado_usuario.dart';
-import '../../infra/datasources/signin_datasource.dart';
+import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
-class FarebaseSignInGoogleDatasource implements SignInDatasource {
+import '../carregar_usuario/model/firebase_resultado_usuario_model.dart';
+
+class FarebaseSignInGoogleDatasource
+    implements Datasource<bool, ParametrosSignIn> {
   final GoogleSignIn googleSignIn;
   final auth.FirebaseAuth authInstance;
   final FirebaseFirestore firestore;
@@ -19,11 +20,7 @@ class FarebaseSignInGoogleDatasource implements SignInDatasource {
   });
 
   @override
-  Future<bool> call({
-    String email,
-    String pass,
-    ResultadoUsuario user,
-  }) async {
+  Future<bool> call({ParametrosSignIn parametros}) async {
     try {
       final GoogleSignInAccount googleUser = await googleSignIn.signIn();
       final GoogleSignInAuthentication googleAuth =
@@ -39,8 +36,7 @@ class FarebaseSignInGoogleDatasource implements SignInDatasource {
 
       DocumentReference docRef = firestore.collection("user").doc(user.uid);
       DocumentSnapshot doc = await docRef.get();
-      final exists = doc.exists;
-      if (!exists) {
+      if (!doc.exists) {
         FirebaseResultadoUsuarioModel userData =
             FirebaseResultadoUsuarioModel();
         userData.nome = user.displayName;
@@ -59,7 +55,7 @@ class FarebaseSignInGoogleDatasource implements SignInDatasource {
         return false;
       }
     } catch (e) {
-      return false;
+      throw Exception(e);
     }
   }
 
