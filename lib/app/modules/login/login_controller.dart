@@ -34,12 +34,9 @@ class LoginController extends GetxController {
     @required VoidCallback onSuccess,
     @required VoidCallback onFail,
   }) async {
-    print("teste login inicio");
     this.statusGeralAtual = AppStatus.loading..valorSet = "google";
     await configuracaoGeralController.signInGoogleLogin().then((value) {
-      print("teste login $value");
       if (value is SucessoRetorno<bool>) {
-        print("teste login ok $value");
         this.statusGeralAtual = AppStatus.success;
         onSuccess();
       } else {

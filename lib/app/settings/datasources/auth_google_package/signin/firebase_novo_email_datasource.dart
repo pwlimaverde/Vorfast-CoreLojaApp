@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:auth_google_package/auth_google_package.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:corelojaapp/app/settings/datasources/auth_google_package/carregar_usuario/model/firebase_resultado_usuario_model.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:meta/meta.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
@@ -19,7 +20,9 @@ class FarebaseNovoEmailDatasource
   @override
   Future<bool> call({ParametrosSignIn parametros}) async {
     try {
-      if (parametros.email == null) {
+      print(
+          "parametros: email ${parametros.user.email} - ${parametros.pass} - ${parametros.user}");
+      if (parametros.user.email == null) {
         return false;
       }
       final userCredencial = await authInstance.createUserWithEmailAndPassword(
@@ -46,7 +49,7 @@ class FarebaseNovoEmailDatasource
   }
 
   Future<bool> _saveUserData(
-      {auth.User userFire, ResultadoUsuario userData}) async {
+      {auth.User userFire, FirebaseResultadoUsuarioModel userData}) async {
     try {
       Future<bool> userSalvo = firestore
           .collection("user")

@@ -85,7 +85,8 @@ class ConfiguracaoGeralController extends GetxController {
 
   Future<RetornoSucessoOuErro> signInGoogleLogin() async {
     singOut();
-    final result = signInGooglePresenter.signIn(parametros: ParametrosSignIn());
+    final result =
+        await signInGooglePresenter.signIn(parametros: ParametrosSignIn());
     if (result is SucessoRetorno<bool>) {
       await _carregarUsuario();
     }
@@ -97,7 +98,7 @@ class ConfiguracaoGeralController extends GetxController {
     @required String pass,
   }) async {
     singOut();
-    final result = signInEmailPresenter.signIn(
+    final result = await signInEmailPresenter.signIn(
       parametros: ParametrosSignIn(
         email: email,
         pass: pass,
@@ -114,7 +115,7 @@ class ConfiguracaoGeralController extends GetxController {
     @required String pass,
   }) async {
     singOut();
-    final result = novoEmailPresenter.signIn(
+    final result = await novoEmailPresenter.signIn(
       parametros: ParametrosSignIn(
         user: user,
         pass: pass,
