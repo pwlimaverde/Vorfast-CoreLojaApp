@@ -2,12 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
+import '../../../../shared/utilitario/erros.dart';
 import 'model/firebase_resultado_theme_model.dart';
 
-class FairebaseThemeDatasource
+class FairebaseTemaDatasource
     implements Datasource<Stream<FirebaseResultadoThemeModel>, NoParams> {
   final FirebaseFirestore firestore;
-  FairebaseThemeDatasource({@required this.firestore});
+  FairebaseTemaDatasource({@required this.firestore});
   @override
   Future<Stream<FirebaseResultadoThemeModel>> call(
       {NoParams parametros}) async {
@@ -24,10 +25,13 @@ class FairebaseThemeDatasource
         });
         return themeData;
       } else {
-        throw Exception("Falha ao carregar os dados: Usuario Inválido");
+        throw ErrorCarregarTema(
+            mensagem:
+                "Falha ao carregar os dados: Tema não carregado - Cod.03-1");
       }
     } catch (e) {
-      throw Exception(e);
+      throw ErrorCarregarTema(
+          mensagem: "Falha ao carregar os dados: $e - Cod.03-2");
     }
   }
 }

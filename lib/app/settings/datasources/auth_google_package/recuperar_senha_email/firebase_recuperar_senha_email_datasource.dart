@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:meta/meta.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
+import '../../../../shared/utilitario/erros.dart';
+
 class FarebaseRecuperarSenhaEmailDatasource
     implements Datasource<bool, ParametrosRecuperarSenhaEmail> {
   final auth.FirebaseAuth authInstance;
@@ -12,7 +14,8 @@ class FarebaseRecuperarSenhaEmailDatasource
   });
 
   @override
-  Future<bool> call({ParametrosRecuperarSenhaEmail parametros}) async {
+  Future<bool> call(
+      {@required ParametrosRecuperarSenhaEmail parametros}) async {
     try {
       if (parametros.email == null) {
         return false;
@@ -23,7 +26,8 @@ class FarebaseRecuperarSenhaEmailDatasource
         return true;
       });
     } catch (e) {
-      throw Exception(e);
+      throw ErrorRecuperarSenhaEmail(
+          mensagem: "Falha ao recuperar a senha pelo email: Cod.03-1");
     }
   }
 }

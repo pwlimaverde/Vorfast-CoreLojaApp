@@ -30,3 +30,23 @@ class ErrorCarregarEmpresa implements AppErro {
     return "ErrorConeccao - $mensagem";
   }
 }
+
+class ErrorCarregarTema implements AppErro {
+  final String mensagem;
+  ErrorCarregarTema({@required this.mensagem});
+
+  @override
+  String toString() {
+    return "ErrorConeccao - $mensagem";
+  }
+}
+
+class ErrorRecuperarSenhaEmail implements AppErro {
+  final String mensagem;
+  ErrorRecuperarSenhaEmail({@required this.mensagem});
+
+  @override
+  String toString() {
+    return "ErrorConeccao - $mensagem";
+  }
+}

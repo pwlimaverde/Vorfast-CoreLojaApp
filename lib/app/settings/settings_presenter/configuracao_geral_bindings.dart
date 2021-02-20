@@ -19,7 +19,7 @@ import '../datasources/auth_google_package/signin/firebase_signin_email_datasour
 import '../datasources/auth_google_package/signin/firebase_signin_google_datasource.dart';
 import '../datasources/auth_google_package/signout/firebase_signout_datasource.dart';
 import '../datasources/carregar_empresa_package/firebase_empresa_datasource.dart';
-import '../datasources/carregar_temas_package/datasource/firebase_theme_datasource.dart';
+import '../datasources/carregar_temas_package/datasource/firebase_tema_datasource.dart';
 import 'configuracao_geral_controller.dart';
 
 class ConfiguracaoGeralBinding implements Bindings {
@@ -30,7 +30,7 @@ class ConfiguracaoGeralBinding implements Bindings {
         //usecases
         carregarThemePresenter: CarregarTemasPresenter(
           mostrarTempoExecucao: true,
-          datasource: FairebaseThemeDatasource(
+          datasource: FairebaseTemaDatasource(
             firestore: FirebaseFirestore.instance,
           ),
         ),

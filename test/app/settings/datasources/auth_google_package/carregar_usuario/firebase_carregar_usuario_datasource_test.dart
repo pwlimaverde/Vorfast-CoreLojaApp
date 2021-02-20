@@ -49,7 +49,8 @@ Future<void> main() async {
     );
   });
 
-  test("deve retornar um Exception por: Sem usuario Logado - Cod.03-2",
+  test(
+      "deve retornar um ErrorCarregarUsuario por: Sem usuario Logado - Cod.03-2",
       () async {
     when(_auth.currentUser).thenAnswer((_) => _user);
     when(_user.uid).thenAnswer((_) => "");
@@ -60,7 +61,7 @@ Future<void> main() async {
     );
   });
 
-  test("deve retornar um ErroInesperado Cod.03-3", () async {
+  test("deve retornar um ErrorCarregarUsuario Cod.03-3", () async {
     when(_auth.currentUser).thenAnswer((_) => _user);
     when(_user.uid).thenThrow(Exception());
 
