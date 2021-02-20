@@ -17,17 +17,9 @@ Future<void> main() async {
     authInstance: _auth,
   );
 
-  test("deve retornar um false", () async {
-    final result = await datasource(
-        parametros: ParametrosRecuperarSenhaEmail(email: null));
-
-    print("teste result - $result");
-    expect(result, equals(false));
-  });
-
   test("deve retornar um true", () async {
     when(_auth.sendPasswordResetEmail(email: "pwlimaverde@gmail.com"))
-        .thenAnswer((_) => Future<void>(() {}));
+        .thenAnswer((_) => Future.delayed(Duration(seconds: 1)));
 
     final result = await datasource(
         parametros:
@@ -35,6 +27,14 @@ Future<void> main() async {
 
     print("teste result - $result");
     expect(result, equals(true));
+  });
+
+  test("deve retornar um false", () async {
+    final result = await datasource(
+        parametros: ParametrosRecuperarSenhaEmail(email: null));
+
+    print("teste result - $result");
+    expect(result, equals(false));
   });
 
   test("deve retornar um ErrorRecuperarSenhaEmail Cod.03-1", () async {
