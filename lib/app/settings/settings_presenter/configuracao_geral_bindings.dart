@@ -53,7 +53,7 @@ class ConfiguracaoGeralBinding implements Bindings {
         ),
         //usecases
         carregarUsuarioPresenter: CarregarUsuarioPresenter(
-          datasource: FirebaseCarregarUsuarioDatasourse(
+          datasource: FirebaseCarregarUsuarioDatasource(
             authInstance: FirebaseAuth.instance,
             firestore: FirebaseFirestore.instance,
           ),
@@ -99,7 +99,7 @@ class ConfiguracaoGeralBinding implements Bindings {
         //usecases
         carregarEmpresaPresenter: CarregarEmpresaPresenter(
             mostrarTempoExecucao: true,
-            datasource: FirebaseEmpresaDatasourse(
+            datasource: FirebaseEmpresaDatasource(
               firestore: FirebaseFirestore.instance,
             )),
       ),

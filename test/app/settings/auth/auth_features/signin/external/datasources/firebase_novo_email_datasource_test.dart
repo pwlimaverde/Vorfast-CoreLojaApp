@@ -37,7 +37,7 @@ main() async {
   FirebaseAuthMock _auth = FirebaseAuthMock();
   FirebaseAuthResultMock _credential = FirebaseAuthResultMock();
 
-  FarebaseNovoEmailDatasource datasourse = FarebaseNovoEmailDatasource(
+  FarebaseNovoEmailDatasource datasource = FarebaseNovoEmailDatasource(
     authInstance: _auth,
     firestore: instance,
   );
@@ -49,7 +49,7 @@ main() async {
         return _credential;
       });
 
-      final result = await datasourse(pass: "pass", user: userMock);
+      final result = await datasource(pass: "pass", user: userMock);
       print(
         "teste result valor => $result",
       );
@@ -63,7 +63,7 @@ main() async {
         return _credential;
       });
 
-      final result = await datasourse(pass: "pass", user: ResultadoUsuario());
+      final result = await datasource(pass: "pass", user: ResultadoUsuario());
       print(
         "teste result valor => $result",
       );
@@ -75,7 +75,7 @@ main() async {
               email: "pwlimaverde@gmail.com", password: "pass"))
           .thenThrow(Exception());
 
-      final result = await datasourse(pass: "pass", user: ResultadoUsuario());
+      final result = await datasource(pass: "pass", user: ResultadoUsuario());
       print(
         "teste result valor => $result",
       );

@@ -22,7 +22,7 @@ Future<void> main() async {
   });
   FirebaseAuthMock _auth = FirebaseAuthMock();
   FirebaseUserMock _user = FirebaseUserMock();
-  final datasourse = FirebaseUsuarioDatasourse(
+  final datasource = FirebaseUsuarioDatasource(
     authInstance: _auth,
     firestore: instance,
   );
@@ -31,7 +31,7 @@ Future<void> main() async {
     when(_auth.currentUser).thenAnswer((_) => _user);
     when(_user.uid).thenAnswer((_) => "1y7DVXSyb2h3fdCNPDyhqfGAKFi1");
 
-    final result = await datasourse.carregarUsuario();
+    final result = await datasource.carregarUsuario();
 
     print(
       "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.erro)}",
@@ -49,7 +49,7 @@ Future<void> main() async {
     when(_auth.currentUser).thenAnswer((_) => _user);
     when(_user.uid).thenAnswer((_) => "1y7DVXSyb2h3fdCNPDyhqfGAKFi2");
 
-    final result = await datasourse.carregarUsuario();
+    final result = await datasource.carregarUsuario();
 
     print(
       "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
@@ -67,7 +67,7 @@ Future<void> main() async {
     when(_auth.currentUser).thenAnswer((_) => _user);
     when(_user.uid).thenAnswer((_) => "");
 
-    final result = await datasourse.carregarUsuario();
+    final result = await datasource.carregarUsuario();
 
     print(
       "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",
@@ -85,7 +85,7 @@ Future<void> main() async {
     when(_auth.currentUser).thenAnswer((_) => _user);
     when(_user.uid).thenThrow(Exception());
 
-    final result = await datasourse.carregarUsuario();
+    final result = await datasource.carregarUsuario();
 
     print(
       "teste result => ${result.fold(sucesso: (value) => value.resultado, erro: (value) => value.error)}",

@@ -20,3 +20,13 @@ class ErrorCarregarUsuario implements AppErro {
     return "ErrorConeccao - $mensagem";
   }
 }
+
+class ErrorCarregarEmpresa implements AppErro {
+  final String mensagem;
+  ErrorCarregarEmpresa({@required this.mensagem});
+
+  @override
+  String toString() {
+    return "ErrorConeccao - $mensagem";
+  }
+}

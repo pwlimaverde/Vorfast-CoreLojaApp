@@ -6,12 +6,12 @@ import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.
 import '../../../../shared/utilitario/erros.dart';
 import 'model/firebase_resultado_usuario_model.dart';
 
-class FirebaseCarregarUsuarioDatasourse
+class FirebaseCarregarUsuarioDatasource
     implements Datasource<Stream<FirebaseResultadoUsuarioModel>, NoParams> {
   final FirebaseFirestore firestore;
   final auth.FirebaseAuth authInstance;
 
-  FirebaseCarregarUsuarioDatasourse({
+  FirebaseCarregarUsuarioDatasource({
     @required this.firestore,
     @required this.authInstance,
   });

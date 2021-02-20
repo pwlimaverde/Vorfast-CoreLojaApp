@@ -9,12 +9,12 @@ class FirebaseUserMock extends Mock implements FirebaseAuth {}
 
 main() {
   FirebaseAuthMock _auth = FirebaseAuthMock();
-  final datasourse = FarebaseSignOutDatasource(auth: _auth);
+  final datasource = FarebaseSignOutDatasource(auth: _auth);
   group("Teste SignOut", () {
     test("deve retornar true", () async {
       when(_auth.signOut())
           .thenAnswer((realInvocation) => Future.delayed(Duration(seconds: 1)));
-      final result = await datasourse.signOutFirebase();
+      final result = await datasource.signOutFirebase();
       print(
         "teste result tipo => $result",
       );
@@ -23,7 +23,7 @@ main() {
 
     test("deve retornar false", () async {
       when(_auth.signOut()).thenThrow(Exception());
-      final result = await datasourse.signOutFirebase();
+      final result = await datasource.signOutFirebase();
       print(
         "teste result tipo => $result",
       );

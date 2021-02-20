@@ -13,13 +13,13 @@ class FirebaseAuthResultMock extends Mock implements auth.UserCredential {}
 main() {
   FirebaseAuthMock _auth = FirebaseAuthMock();
   BehaviorSubject<FirebaseUserMock> _user = BehaviorSubject<FirebaseUserMock>();
-  final datasourse = FarebaseRecuperarSenhaEmailDatasource(authInstance: _auth);
+  final datasource = FarebaseRecuperarSenhaEmailDatasource(authInstance: _auth);
   group("Teste recuperar senha", () {
     test("deve retornar true", () async {
       when(_auth.sendPasswordResetEmail(email: "emailteste"))
           .thenAnswer((_) => Future.delayed(Duration(seconds: 1)));
       final result =
-          await datasourse.recuperarSenhaEmailFirebase(email: "emailteste");
+          await datasource.recuperarSenhaEmailFirebase(email: "emailteste");
       print(
         "teste result tipo => $result",
       );
@@ -29,7 +29,7 @@ main() {
     test("deve retornar false", () async {
       when(_auth.sendPasswordResetEmail(email: null))
           .thenAnswer((realInvocation) => Future.delayed(Duration(seconds: 1)));
-      final result = await datasourse.recuperarSenhaEmailFirebase(email: null);
+      final result = await datasource.recuperarSenhaEmailFirebase(email: null);
       print(
         "teste result tipo => $result",
       );
@@ -40,7 +40,7 @@ main() {
       when(_auth.sendPasswordResetEmail(email: "emailteste"))
           .thenThrow(Exception());
       final result =
-          await datasourse.recuperarSenhaEmailFirebase(email: "emailteste");
+          await datasource.recuperarSenhaEmailFirebase(email: "emailteste");
       print(
         "teste result tipo => $result",
       );

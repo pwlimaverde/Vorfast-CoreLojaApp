@@ -36,7 +36,7 @@ main() async {
   FirebaseAuthMock _auth = FirebaseAuthMock();
   FirebaseAuthResultMock _credential = FirebaseAuthResultMock();
 
-  FarebaseSignInEmailDatasource datasourse = FarebaseSignInEmailDatasource(
+  FarebaseSignInEmailDatasource datasource = FarebaseSignInEmailDatasource(
     authInstance: _auth,
   );
   group("Teste SignIn", () {
@@ -47,7 +47,7 @@ main() async {
         return _credential;
       });
 
-      final result = await datasourse(
+      final result = await datasource(
           email: "pwlimaverde@gmail.com", pass: "pass", user: userMock);
       print(
         "teste result valor => $result",
@@ -60,7 +60,7 @@ main() async {
               email: "pwlimaverde@gmail.com", password: "pass"))
           .thenThrow(Exception());
 
-      final result = await datasourse(
+      final result = await datasource(
           email: "pwlimaverde@gmail.com", pass: "pass", user: userMock);
       print(
         "teste result valor => $result",

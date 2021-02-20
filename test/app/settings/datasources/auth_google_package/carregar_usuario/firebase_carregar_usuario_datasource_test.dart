@@ -22,7 +22,7 @@ Future<void> main() async {
   });
   FirebaseAuthMock _auth = FirebaseAuthMock();
   FirebaseUserMock _user = FirebaseUserMock();
-  final datasourse = FirebaseCarregarUsuarioDatasourse(
+  final datasource = FirebaseCarregarUsuarioDatasource(
     authInstance: _auth,
     firestore: instance,
   );
@@ -31,7 +31,7 @@ Future<void> main() async {
     when(_auth.currentUser).thenAnswer((_) => _user);
     when(_user.uid).thenAnswer((_) => "1y7DVXSyb2h3fdCNPDyhqfGAKFi1");
 
-    final result = await datasourse();
+    final result = await datasource();
 
     print("teste result - ${await result.first}");
     expect(result, isA<Stream<FirebaseResultadoUsuarioModel>>());
@@ -44,7 +44,7 @@ Future<void> main() async {
     when(_user.uid).thenAnswer((_) => "1y7DVXSyb2h3fdCNPDyhqfGAKFi2");
 
     expect(
-      () async => await datasourse(),
+      () async => await datasource(),
       throwsA(isA<ErrorCarregarUsuario>()),
     );
   });
@@ -55,7 +55,7 @@ Future<void> main() async {
     when(_user.uid).thenAnswer((_) => "");
 
     expect(
-      () async => await datasourse(),
+      () async => await datasource(),
       throwsA(isA<ErrorCarregarUsuario>()),
     );
   });
@@ -65,7 +65,7 @@ Future<void> main() async {
     when(_user.uid).thenThrow(Exception());
 
     expect(
-      () async => await datasourse(),
+      () async => await datasource(),
       throwsA(isA<ErrorCarregarUsuario>()),
     );
   });
