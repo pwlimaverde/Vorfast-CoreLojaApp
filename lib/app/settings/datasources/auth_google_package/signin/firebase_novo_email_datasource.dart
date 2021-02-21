@@ -20,9 +20,7 @@ class FarebaseNovoEmailDatasource
   @override
   Future<bool> call({ParametrosSignIn parametros}) async {
     try {
-      print(
-          "parametros: email ${parametros.user.email} - ${parametros.pass} - ${parametros.user}");
-      if (parametros.user.email == null) {
+      if (parametros.user.email == null || parametros.pass == null) {
         return false;
       }
       final userCredencial = await authInstance.createUserWithEmailAndPassword(
@@ -30,7 +28,7 @@ class FarebaseNovoEmailDatasource
         password: parametros.pass,
       );
       if (userCredencial.user != null && userCredencial.user.uid.length > 0) {
-        bool usuarioSalvo = await _saveUserData(
+        final usuarioSalvo = await _saveUserData(
           userFire: userCredencial.user,
           userData: parametros.user,
         );
@@ -49,7 +47,7 @@ class FarebaseNovoEmailDatasource
   }
 
   Future<bool> _saveUserData(
-      {auth.User userFire, FirebaseResultadoUsuarioModel userData}) async {
+      {auth.User userFire, ResultadoUsuario userData}) async {
     try {
       Future<bool> userSalvo = firestore
           .collection("user")
