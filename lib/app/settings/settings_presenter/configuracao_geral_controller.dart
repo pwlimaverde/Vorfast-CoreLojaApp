@@ -13,36 +13,35 @@ import 'package:meta/meta.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 //Importes Internos
-import '../auth/auth_presenter/auth_presenter.dart';
 import '../core/core_presenter/core_presenter.dart';
 import 'drawer/ui/drawer_core_widget.dart';
 
 class ConfiguracaoGeralController extends GetxController {
   final Connectivity onconnect;
-  final CarregarTemasPresenter carregarTheme;
-  final ChecarConeccaoPresenter checarConeccao;
+  final CarregarTemasPresenter carregarThemePresenter;
+  final ChecarConeccaoPresenter checarConeccaoPresenter;
+  final CarregarEmpresaPresenter carregarEmpresaPresenter;
+  final CarregarUsuarioPresenter carregarUsuarioPresenter;
+  final RecuperarSenhaEmailPresenter recuperarSenhaEmailPresenter;
+  final SignOutPresenter signOutPresenter;
+  final SignInPresenter signInGooglePresenter;
+  final SignInPresenter signInEmailPresenter;
+  final SignInPresenter novoEmailPresenter;
   final CarregarSecaoUsecase carregarSecao;
-  final CarregarEmpresaPresenter carregarEmpresa;
-  final CarregarUsuarioPresenter carregarUsuario;
-  final SignOutUsecase signOutUsecase;
-  final SignInUsecase signInGoogleUsecase;
-  final SignInUsecase signInEmailUsecase;
-  final SignInUsecase novoEmailUsecase;
-  final RecuperarSenhaEmailUsecase recuperarSenhaEmailLoginUsecase;
   ConfiguracaoGeralController({
-    @required this.carregarTheme,
-    @required this.checarConeccao,
+    @required this.carregarThemePresenter,
+    @required this.checarConeccaoPresenter,
     @required this.onconnect,
     @required this.carregarSecao,
-    @required this.carregarEmpresa,
-    @required this.carregarUsuario,
-    @required this.signOutUsecase,
-    @required this.signInGoogleUsecase,
-    @required this.signInEmailUsecase,
-    @required this.novoEmailUsecase,
-    @required this.recuperarSenhaEmailLoginUsecase,
-  }) : assert(carregarTheme != null &&
-            checarConeccao != null &&
+    @required this.carregarEmpresaPresenter,
+    @required this.carregarUsuarioPresenter,
+    @required this.signOutPresenter,
+    @required this.signInGooglePresenter,
+    @required this.signInEmailPresenter,
+    @required this.novoEmailPresenter,
+    @required this.recuperarSenhaEmailPresenter,
+  }) : assert(carregarThemePresenter != null &&
+            checarConeccaoPresenter != null &&
             onconnect != null &&
             carregarSecao != null);
 
@@ -71,26 +70,26 @@ class ConfiguracaoGeralController extends GetxController {
   set usuarioFirebase(value) => this._usuarioFirebase.bindStream(value);
 
   Future<RetornoSucessoOuErro> singOut() async {
-    return await signOutUsecase().then((value) {
-      if (value is SucessoRetorno<bool>) {
-        this.usuarioFirebaseValue.cleanUser();
-      }
-      return value;
-    });
+    final result = await signOutPresenter.signOut();
+    if (result is SucessoRetorno<bool>) {
+      this.usuarioFirebaseValue.cleanUser();
+    }
+    return result;
   }
 
   Future<RetornoSucessoOuErro> recuperarSenha({@required String email}) async {
-    return await recuperarSenhaEmailLoginUsecase(
+    final result = await recuperarSenhaEmailPresenter.recuperarSenhaEmail(
         parametros: ParametrosRecuperarSenhaEmail(email: email));
+    return result;
   }
 
   Future<RetornoSucessoOuErro> signInGoogleLogin() async {
     singOut();
-    RetornoSucessoOuErro result =
-        await signInGoogleUsecase().then((value) async {
+    final result =
+        await signInGooglePresenter.signIn(parametros: ParametrosSignIn());
+    if (result is SucessoRetorno<bool>) {
       await _carregarUsuario();
-      return value;
-    });
+    }
     return result;
   }
 
@@ -99,13 +98,16 @@ class ConfiguracaoGeralController extends GetxController {
     @required String pass,
   }) async {
     singOut();
-    return await signInEmailUsecase(
-      email: email,
-      pass: pass,
-    ).then((value) async {
+    final result = await signInEmailPresenter.signIn(
+      parametros: ParametrosSignIn(
+        email: email,
+        pass: pass,
+      ),
+    );
+    if (result is SucessoRetorno<bool>) {
       await _carregarUsuario();
-      return value;
-    });
+    }
+    return result;
   }
 
   Future<RetornoSucessoOuErro> novoEmailLogin({
@@ -113,19 +115,21 @@ class ConfiguracaoGeralController extends GetxController {
     @required String pass,
   }) async {
     singOut();
-    return novoEmailUsecase(
-      user: user,
-      pass: pass,
-    ).then((value) async {
+    final result = await novoEmailPresenter.signIn(
+      parametros: ParametrosSignIn(
+        user: user,
+        pass: pass,
+      ),
+    );
+    if (result is SucessoRetorno<bool>) {
       await _carregarUsuario();
-      return value;
-    });
+    }
+    return result;
   }
 
   //Auth Funções Internas
   _carregarUsuario() async {
-    final usuarioLogado =
-        await carregarUsuario.carregarUsuario();
+    final usuarioLogado = await carregarUsuarioPresenter.carregarUsuario();
     if (usuarioLogado is SucessoRetorno) {
       Stream<FirebaseResultadoUsuarioModel> usuario = usuarioLogado.fold(
           sucesso: (value) => value.resultado, erro: (erro) => erro.erro);
@@ -146,7 +150,7 @@ class ConfiguracaoGeralController extends GetxController {
 
   //Institucional Funções Internas
   void _carregarEmpresa() async {
-    final result = await carregarEmpresa.carregarEmpresa();
+    final result = await carregarEmpresaPresenter.carregarEmpresa();
     if (result is SucessoRetorno) {
       Stream<FirebaseResultadoEmpresaModel> empresa = result.fold(
           sucesso: (value) => value.resultado, erro: (erro) => erro.erro);
@@ -168,7 +172,7 @@ class ConfiguracaoGeralController extends GetxController {
 
   void _getCon() async {
     RetornoSucessoOuErro<bool> testeConexao =
-        await checarConeccao.consultaConectividade();
+        await checarConeccaoPresenter.consultaConectividade();
     if (testeConexao is SucessoRetorno<bool>) {
       this.estaConectado = testeConexao.resultado;
     } else {
@@ -218,7 +222,7 @@ class ConfiguracaoGeralController extends GetxController {
   //Theme Funções Internas
   //Carregar Theme
   void _carregarSettingsTheme() async {
-    final result = await carregarTheme.carregarTemas();
+    final result = await carregarThemePresenter.carregarTemas();
     if (result is SucessoRetorno) {
       Stream<FirebaseResultadoThemeModel> tema = result.fold(
           sucesso: (value) => value.resultado, erro: (erro) => erro.erro);

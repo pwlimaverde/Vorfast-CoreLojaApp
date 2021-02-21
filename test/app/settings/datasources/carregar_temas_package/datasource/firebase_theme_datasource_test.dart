@@ -1,6 +1,6 @@
 import 'package:carregar_temas_package/carregar_temas_package.dart';
 import 'package:cloud_firestore_mocks/cloud_firestore_mocks.dart';
-import 'package:corelojaapp/app/settings/datasources/carregar_temas_package/datasource/firebase_theme_datasource.dart';
+import 'package:corelojaapp/app/settings/datasources/carregar_temas_package/datasource/firebase_tema_datasource.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
@@ -21,7 +21,7 @@ void main() async {
   });
   final carregarTemasPresenter = CarregarTemasPresenter(
     mostrarTempoExecucao: true,
-    datasource: FairebaseThemeDatasource(firestore: instance),
+    datasource: FairebaseTemaDatasource(firestore: instance),
   );
 
   test('Deve retornar um sucesso com Stream<FirebaseResultadoThemeModel>',
@@ -47,7 +47,7 @@ void main() async {
         isA<Stream<ResultadoTheme>>());
   });
 
-  test('Deve ErrorCarregarTemas com Erro ao carregar os dados tema Cod.02-1',
+  test('Deve ErroCarregarTemas com Erro ao carregar os dados tema Cod.02-1',
       () async {
     await instance.collection('settingstheme').doc("theme").update({
       'user': "",

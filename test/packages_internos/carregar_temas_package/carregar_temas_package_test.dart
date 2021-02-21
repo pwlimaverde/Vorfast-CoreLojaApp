@@ -4,11 +4,11 @@ import 'package:mocktail/mocktail.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 import 'package:rxdart/rxdart.dart';
 
-class FairebaseThemeDatasourceMock extends Mock
+class FairebaseTemaDatasourceMock extends Mock
     implements Datasource<Stream<ResultadoTheme>, NoParams> {}
 
 void main() {
-  final datasource = FairebaseThemeDatasourceMock();
+  final datasource = FairebaseTemaDatasourceMock();
 
   test('Deve retornar um sucesso com true', () async {
     final testeFire = BehaviorSubject<ResultadoTheme>();
@@ -37,7 +37,7 @@ void main() {
     testeFire.close();
   });
 
-  test('Deve ErrorCarregarTemas com Erro ao carregar os dados tema Cod.02-1',
+  test('Deve ErroCarregarTemas com Erro ao carregar os dados tema Cod.02-1',
       () async {
     when(datasource).calls(#call).thenThrow(Exception());
     final result = await CarregarTemasPresenter(

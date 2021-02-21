@@ -1,4 +1,4 @@
-import 'package:corelojaapp/app/settings/auth/auth_presenter/auth_presenter.dart';
+import 'package:corelojaapp/app/settings/datasources/auth_google_package/carregar_usuario/model/firebase_resultado_usuario_model.dart';
 import 'package:corelojaapp/app/settings/settings_presenter/configuracao_geral_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,12 +34,9 @@ class LoginController extends GetxController {
     @required VoidCallback onSuccess,
     @required VoidCallback onFail,
   }) async {
-    print("teste login inicio");
     this.statusGeralAtual = AppStatus.loading..valorSet = "google";
     await configuracaoGeralController.signInGoogleLogin().then((value) {
-      print("teste login $value");
       if (value is SucessoRetorno<bool>) {
-        print("teste login ok $value");
         this.statusGeralAtual = AppStatus.success;
         onSuccess();
       } else {

@@ -3,14 +3,15 @@ import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:meta/meta.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
+import '../../../../shared/utilitario/erros.dart';
 import 'model/firebase_resultado_usuario_model.dart';
 
-class FirebaseCarregarUsuarioDatasourse
-    extends Datasource<Stream<FirebaseResultadoUsuarioModel>, NoParams> {
+class FirebaseCarregarUsuarioDatasource
+    implements Datasource<Stream<FirebaseResultadoUsuarioModel>, NoParams> {
   final FirebaseFirestore firestore;
   final auth.FirebaseAuth authInstance;
 
-  FirebaseCarregarUsuarioDatasourse({
+  FirebaseCarregarUsuarioDatasource({
     @required this.firestore,
     @required this.authInstance,
   });
@@ -33,13 +34,18 @@ class FirebaseCarregarUsuarioDatasourse
           });
           return usuarioData;
         } else {
-          throw Exception("Falha ao carregar os dados: Usuario Inválido");
+          throw ErroCarregarUsuario(
+              mensagem:
+                  "Falha ao carregar os dados: Cadastro do usuario não localizado - Cod.03-1");
         }
       } else {
-        throw Exception("Falha ao carregar os dados: Usuario Inválido");
+        throw ErroCarregarUsuario(
+            mensagem:
+                "Falha ao carregar os dados: Sem usuario Logado - Cod.03-2");
       }
     } catch (e) {
-      throw Exception(e);
+      throw throw ErroCarregarUsuario(
+          mensagem: "Falha ao carregar os dados: $e - Cod.03-3");
     }
   }
 

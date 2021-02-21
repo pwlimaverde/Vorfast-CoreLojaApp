@@ -4,11 +4,11 @@ import 'package:mocktail/mocktail.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 import 'package:rxdart/rxdart.dart';
 
-class FirebaseEmpresaDatasourseMock extends Mock
+class FirebaseEmpresaDatasourceMock extends Mock
     implements Datasource<Stream<ResultadoEmpresa>, NoParams> {}
 
 void main() {
-  final datasource = FirebaseEmpresaDatasourseMock();
+  final datasource = FirebaseEmpresaDatasourceMock();
 
   test('Deve retornar um sucesso com true', () async {
     final testeFire = BehaviorSubject<ResultadoEmpresa>();
@@ -37,7 +37,7 @@ void main() {
     testeFire.close();
   });
 
-  test('Deve ErrorCarregarTemas com Erro ao carregar os dados tema Cod.02-1',
+  test('Deve ErroCarregarTemas com Erro ao carregar os dados tema Cod.02-1',
       () async {
     when(datasource).calls(#call).thenThrow(Exception());
     final result = await CarregarEmpresaPresenter(
