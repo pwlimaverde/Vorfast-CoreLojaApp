@@ -21,3 +21,5 @@ v: 0.4.2
 Reinicio versionamento git
 v: 0.4.3
 inicio versionamento gitflow
+v: 0.5.0
+Settings usecases por packages
