@@ -60,7 +60,7 @@ main() {
 
   test('Deve Retornar um ErroInesperado Erro ao SignIn Cod.01-2', () async {
     when(repository.signIn()).thenAnswer((_) => Future.value(
-        ErroRetorno(erro: ErrorConeccao(mensagem: "Erro ao SignIn"))));
+        ErroRetorno(erro: ErroConeccao(mensagem: "Erro ao SignIn"))));
 
     final result = await recuperarSenha();
     print(

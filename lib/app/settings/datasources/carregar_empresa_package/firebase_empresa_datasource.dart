@@ -25,12 +25,12 @@ class FirebaseEmpresaDatasource
         });
         return empresaData;
       } else {
-        throw ErrorCarregarEmpresa(
+        throw ErroCarregarEmpresa(
             mensagem:
                 "Falha ao carregar os dados: Empresa Inválida - Cod.03-1");
       }
     } catch (e) {
-      throw ErrorCarregarEmpresa(
+      throw ErroCarregarEmpresa(
           mensagem: "Falha ao carregar os dados: $e - Cod.03-2");
     }
   }

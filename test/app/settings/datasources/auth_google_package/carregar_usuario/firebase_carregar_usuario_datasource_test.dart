@@ -45,29 +45,29 @@ Future<void> main() async {
 
     expect(
       () async => await datasource(),
-      throwsA(isA<ErrorCarregarUsuario>()),
+      throwsA(isA<ErroCarregarUsuario>()),
     );
   });
 
   test(
-      "deve retornar um ErrorCarregarUsuario por: Sem usuario Logado - Cod.03-2",
+      "deve retornar um ErroCarregarUsuario por: Sem usuario Logado - Cod.03-2",
       () async {
     when(_auth.currentUser).thenAnswer((_) => _user);
     when(_user.uid).thenAnswer((_) => "");
 
     expect(
       () async => await datasource(),
-      throwsA(isA<ErrorCarregarUsuario>()),
+      throwsA(isA<ErroCarregarUsuario>()),
     );
   });
 
-  test("deve retornar um ErrorCarregarUsuario Cod.03-3", () async {
+  test("deve retornar um ErroCarregarUsuario Cod.03-3", () async {
     when(_auth.currentUser).thenAnswer((_) => _user);
     when(_user.uid).thenThrow(Exception());
 
     expect(
       () async => await datasource(),
-      throwsA(isA<ErrorCarregarUsuario>()),
+      throwsA(isA<ErroCarregarUsuario>()),
     );
   });
 }

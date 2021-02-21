@@ -34,17 +34,17 @@ class FirebaseCarregarUsuarioDatasource
           });
           return usuarioData;
         } else {
-          throw ErrorCarregarUsuario(
+          throw ErroCarregarUsuario(
               mensagem:
                   "Falha ao carregar os dados: Cadastro do usuario não localizado - Cod.03-1");
         }
       } else {
-        throw ErrorCarregarUsuario(
+        throw ErroCarregarUsuario(
             mensagem:
                 "Falha ao carregar os dados: Sem usuario Logado - Cod.03-2");
       }
     } catch (e) {
-      throw throw ErrorCarregarUsuario(
+      throw throw ErroCarregarUsuario(
           mensagem: "Falha ao carregar os dados: $e - Cod.03-3");
     }
   }

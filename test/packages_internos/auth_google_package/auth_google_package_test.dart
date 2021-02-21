@@ -106,7 +106,7 @@ void main() {
     });
 
     test(
-        'Deve retornar um ErrorCarregarEmpresa com Erro ao carregar os dados da empresa Cod.01-1',
+        'Deve retornar um ErroCarregarEmpresa com Erro ao carregar os dados da empresa Cod.01-1',
         () async {
       when(fairebaseRecuperarSenhaEmailDatasource)
           .calls(#call)
@@ -165,7 +165,7 @@ void main() {
     });
 
     test(
-        'Deve retornar um ErrorCarregarEmpresa com Erro ao fazer o signout Cod.01-1',
+        'Deve retornar um ErroCarregarEmpresa com Erro ao fazer o signout Cod.01-1',
         () async {
       when(fairebaseSignOutDatasource)
           .calls(#call)
@@ -182,7 +182,7 @@ void main() {
     });
 
     test(
-        'Deve retornar ErrorCarregarEmpresa com Erro ao fazer o signout Cod.02-1',
+        'Deve retornar ErroCarregarEmpresa com Erro ao fazer o signout Cod.02-1',
         () async {
       when(fairebaseSignOutDatasource).calls(#call).thenThrow(Exception());
       final result = await SignOutPresenter(

@@ -60,7 +60,7 @@ main() {
 
   test('Deve Retornar um ErroInesperado Erro ao SignOut Cod.01-2', () async {
     when(repository.signOut()).thenAnswer((_) => Future.value(
-        ErroRetorno(erro: ErrorConeccao(mensagem: "Erro ao SignOut"))));
+        ErroRetorno(erro: ErroConeccao(mensagem: "Erro ao SignOut"))));
 
     final result = await recuperarSenha();
     print(

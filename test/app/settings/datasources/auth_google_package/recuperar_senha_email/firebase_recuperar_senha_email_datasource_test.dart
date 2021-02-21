@@ -37,7 +37,7 @@ Future<void> main() async {
     expect(result, equals(false));
   });
 
-  test("deve retornar um ErrorRecuperarSenhaEmail Cod.03-1", () async {
+  test("deve retornar um ErroRecuperarSenhaEmail Cod.03-1", () async {
     when(_auth.sendPasswordResetEmail(email: "pwlimaverde@gmail.com"))
         .thenThrow(Exception());
 
@@ -45,7 +45,7 @@ Future<void> main() async {
       () async => await datasource(
           parametros:
               ParametrosRecuperarSenhaEmail(email: "pwlimaverde@gmail.com")),
-      throwsA(isA<ErrorRecuperarSenhaEmail>()),
+      throwsA(isA<ErroRecuperarSenhaEmail>()),
     );
   });
 }

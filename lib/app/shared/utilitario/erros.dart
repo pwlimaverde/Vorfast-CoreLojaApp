@@ -1,52 +1,52 @@
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 import 'package:meta/meta.dart';
 
-class ErrorConeccao implements AppErro {
+class ErroConeccao implements AppErro {
   final String mensagem;
-  ErrorConeccao({@required this.mensagem});
+  ErroConeccao({@required this.mensagem});
 
   @override
   String toString() {
-    return "ErrorConeccao - $mensagem";
+    return "ErroConeccao - $mensagem";
   }
 }
 
-class ErrorCarregarUsuario implements AppErro {
+class ErroCarregarUsuario implements AppErro {
   final String mensagem;
-  ErrorCarregarUsuario({@required this.mensagem});
+  ErroCarregarUsuario({@required this.mensagem});
 
   @override
   String toString() {
-    return "ErrorConeccao - $mensagem";
+    return "ErroCarregarUsuario - $mensagem";
   }
 }
 
-class ErrorCarregarEmpresa implements AppErro {
+class ErroCarregarEmpresa implements AppErro {
   final String mensagem;
-  ErrorCarregarEmpresa({@required this.mensagem});
+  ErroCarregarEmpresa({@required this.mensagem});
 
   @override
   String toString() {
-    return "ErrorConeccao - $mensagem";
+    return "ErroCarregarEmpresa - $mensagem";
   }
 }
 
-class ErrorCarregarTema implements AppErro {
+class ErroCarregarTema implements AppErro {
   final String mensagem;
-  ErrorCarregarTema({@required this.mensagem});
+  ErroCarregarTema({@required this.mensagem});
 
   @override
   String toString() {
-    return "ErrorConeccao - $mensagem";
+    return "ErroCarregarTema - $mensagem";
   }
 }
 
-class ErrorRecuperarSenhaEmail implements AppErro {
+class ErroRecuperarSenhaEmail implements AppErro {
   final String mensagem;
-  ErrorRecuperarSenhaEmail({@required this.mensagem});
+  ErroRecuperarSenhaEmail({@required this.mensagem});
 
   @override
   String toString() {
-    return "ErrorConeccao - $mensagem";
+    return "ErroRecuperarSenhaEmail - $mensagem";
   }
 }

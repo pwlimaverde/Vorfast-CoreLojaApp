@@ -25,12 +25,12 @@ class FairebaseTemaDatasource
         });
         return themeData;
       } else {
-        throw ErrorCarregarTema(
+        throw ErroCarregarTema(
             mensagem:
                 "Falha ao carregar os dados: Tema não carregado - Cod.03-1");
       }
     } catch (e) {
-      throw ErrorCarregarTema(
+      throw ErroCarregarTema(
           mensagem: "Falha ao carregar os dados: $e - Cod.03-2");
     }
   }

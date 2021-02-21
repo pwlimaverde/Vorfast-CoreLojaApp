@@ -30,7 +30,7 @@ class FarebaseSignInEmailDatasource
         return false;
       }
     } catch (e) {
-      throw Exception(e);
+      return false;
     }
   }
 }

@@ -47,7 +47,7 @@ void main() async {
         isA<Stream<ResultadoTheme>>());
   });
 
-  test('Deve ErrorCarregarTemas com Erro ao carregar os dados tema Cod.02-1',
+  test('Deve ErroCarregarTemas com Erro ao carregar os dados tema Cod.02-1',
       () async {
     await instance.collection('settingstheme').doc("theme").update({
       'user': "",

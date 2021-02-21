@@ -53,7 +53,7 @@ main() {
       () async {
     when(repository.recuperarSenhaEmail(email: "any")).thenAnswer((_) =>
         Future.value(ErroRetorno(
-            erro: ErrorConeccao(mensagem: "Erro ao RecuperarSenhaEmail"))));
+            erro: ErroConeccao(mensagem: "Erro ao RecuperarSenhaEmail"))));
 
     final result =
         await recuperarSenha(ParametrosRecuperarSenhaEmail(email: "any"));

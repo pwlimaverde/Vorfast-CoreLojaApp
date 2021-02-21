@@ -26,7 +26,7 @@ class FarebaseRecuperarSenhaEmailDatasource
         return true;
       });
     } catch (e) {
-      throw ErrorRecuperarSenhaEmail(
+      throw ErroRecuperarSenhaEmail(
           mensagem: "Falha ao recuperar a senha pelo email: Cod.03-1");
     }
   }
