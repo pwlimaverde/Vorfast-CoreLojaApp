@@ -50,3 +50,13 @@ class ErroRecuperarSenhaEmail implements AppErro {
     return "ErroRecuperarSenhaEmail - $mensagem";
   }
 }
+
+class ErroCarregarSecoes implements AppErro {
+  final String mensagem;
+  ErroCarregarSecoes({@required this.mensagem});
+
+  @override
+  String toString() {
+    return "ErroCarregarSecoes - $mensagem";
+  }
+}

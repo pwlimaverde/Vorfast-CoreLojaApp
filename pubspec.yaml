@@ -45,6 +45,9 @@ dependencies:
   auth_google_package:
     git:
       url: https://github.com/pwlimaverde/auth_google_package.git
+  carregar_secoes_package:
+    git:
+      url: https://github.com/pwlimaverde/carregar_secoes_package.git
   #Plugins
   checar_coneccao_plugin:
     git:

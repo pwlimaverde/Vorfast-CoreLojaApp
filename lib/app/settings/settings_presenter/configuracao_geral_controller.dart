@@ -1,19 +1,21 @@
 import 'package:auth_google_package/auth_google_package.dart';
 import 'package:carregar_empresa_package/carregar_empresa_package.dart';
+import 'package:carregar_secoes_package/carregar_secoes_package.dart';
 import 'package:carregar_temas_package/carregar_temas_package.dart';
 import 'package:checar_coneccao_plugin/checar_coneccao_plugin.dart';
-import 'package:corelojaapp/app/settings/datasources/auth_google_package/carregar_usuario/model/firebase_resultado_usuario_model.dart';
-import 'package:corelojaapp/app/settings/datasources/carregar_empresa_package/model/firebase_resultado_empresa_model.dart';
-import 'package:corelojaapp/app/settings/datasources/carregar_temas_package/datasource/model/firebase_resultado_theme_model.dart';
+import 'package:connectivity/connectivity.dart';
+import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:meta/meta.dart';
-import 'package:connectivity/connectivity.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+
+import '../datasources/auth_google_package/carregar_usuario/model/firebase_resultado_usuario_model.dart';
+import '../datasources/carregar_empresa_package/model/firebase_resultado_empresa_model.dart';
+import '../datasources/carregar_secoes_package/model/firebase_resultado_secao_model.dart';
+import '../datasources/carregar_temas_package/datasource/model/firebase_resultado_theme_model.dart';
 //Importes Internos
-import '../core/core_presenter/core_presenter.dart';
 import 'drawer/ui/drawer_core_widget.dart';
 
 class ConfiguracaoGeralController extends GetxController {
@@ -27,7 +29,7 @@ class ConfiguracaoGeralController extends GetxController {
   final SignInPresenter signInGooglePresenter;
   final SignInPresenter signInEmailPresenter;
   final SignInPresenter novoEmailPresenter;
-  final CarregarSecaoUsecase carregarSecao;
+  final CarregarSecoesPresenter carregarSecao;
   ConfiguracaoGeralController({
     @required this.carregarThemePresenter,
     @required this.checarConeccaoPresenter,
@@ -196,16 +198,18 @@ class ConfiguracaoGeralController extends GetxController {
   }
 
   //Controller das Seções
-  final _todasSecoes = List<FirebaseResultadoSecaoModel>().obs;
+  final _todasSecoes = <FirebaseResultadoSecaoModel>[].obs;
   List<FirebaseResultadoSecaoModel> get todasSecoes => this._todasSecoes;
   set todasSecoes(value) => this._todasSecoes.bindStream(value);
 
   //Seção Funções Internas
   //Carregamento de Seção
   Future<void> _getAllSecao() async {
-    CarregarSecaoStatus result = await carregarSecao();
-    if (result == CarregarSecaoStatus.success) {
-      this.todasSecoes = result.successGet;
+    final result = await carregarSecao.carregarSecoes();
+    if (result is SucessoRetorno) {
+      Stream<List<FirebaseResultadoSecaoModel>> secoes = result.fold(
+          sucesso: (value) => value.resultado, erro: (erro) => erro.erro);
+      this.todasSecoes = secoes;
     }
   }
 

@@ -1,8 +1,8 @@
+import 'package:carregar_secoes_package/carregar_secoes_package.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import 'firebase_resultado_anuncio_model.dart';
-import '../../domain/entities/resultado_secao.dart';
 
 class RxFirebaseResultadoSecaoModel {
   final nome = "".obs;
@@ -10,7 +10,7 @@ class RxFirebaseResultadoSecaoModel {
   final prioridade = 0.obs;
   final scrow = false.obs;
   final cor = {}.obs;
-  final anuncios = List<FirebaseResultadoAnuncioModel>().obs;
+  final anuncios = <FirebaseResultadoAnuncioModel>[].obs;
 }
 
 class FirebaseResultadoSecaoModel extends ResultadoSecao {
@@ -41,10 +41,9 @@ class FirebaseResultadoSecaoModel extends ResultadoSecao {
   set scrow(value) => rx.scrow.value = value;
 
   get cor => rx.cor;
-  set cor(value) => rx.cor.value = value;
+  set cor(value) => rx.cor.assignAll(value);
 
-  get anuncios => rx.anuncios;
-  List<FirebaseResultadoAnuncioModel> get anunciosValue => rx.anuncios;
+  List<FirebaseResultadoAnuncioModel> get anuncios => rx.anuncios;
   set anuncios(value) => rx.anuncios.bindStream(value);
 
   FirebaseResultadoSecaoModel.fromDocument(

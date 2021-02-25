@@ -1,13 +1,14 @@
-import 'package:corelojaapp/app/settings/core/core_presenter/core_presenter.dart';
-import 'package:corelojaapp/app/settings/datasources/auth_google_package/carregar_usuario/model/firebase_resultado_usuario_model.dart';
-import 'package:corelojaapp/app/settings/settings_presenter/configuracao_geral_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
-//Importes Internos
-import 'data/repository/home_repository.dart';
+
+import '../../settings/datasources/auth_google_package/carregar_usuario/model/firebase_resultado_usuario_model.dart';
+import '../../settings/datasources/carregar_secoes_package/model/firebase_resultado_secao_model.dart';
+import '../../settings/settings_presenter/configuracao_geral_controller.dart';
 import '../../shared/utilitario/app_status.dart';
 import '../../shared/widgets/widgets_core.dart' as widgetCore;
+//Importes Internos
+import 'data/repository/home_repository.dart';
 import 'ui/componentes/anuncios_build/anuncios_build_widget.dart';
 import 'ui/componentes/card_edit_cor/card_edit_cor_widget.dart';
 import 'ui/componentes/container_edit_cor/container_edit_cor_widget.dart';
@@ -170,7 +171,7 @@ class HomeController extends GetxController {
   set isEditeMode(value) => this._isEditeMode.value = value;
 
   List<Widget> get listSlv {
-    List<Widget> slv = List<Widget>();
+    List<Widget> slv = <Widget>[];
     slv.insert(
         0,
         widgetCore.SlvAppbarWidget(
@@ -220,7 +221,7 @@ class HomeController extends GetxController {
   }
 
   List<Widget> get listSlvEdit {
-    List<Widget> slv = List<Widget>();
+    List<Widget> slv = <Widget>[];
     slv.insert(
         0,
         widgetCore.SlvAppbarWidget(

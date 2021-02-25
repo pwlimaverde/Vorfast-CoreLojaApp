@@ -1,6 +1,6 @@
+import 'package:carregar_secoes_package/carregar_secoes_package.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import '../../domain/entities/resultado_anuncio.dart';
 
 class RxFirebaseResultadoAnuncioModel {
   final image = "".obs;
