@@ -1,4 +1,4 @@
-import 'package:corelojaapp/app/settings/core/core_presenter/core_presenter.dart';
+import 'package:corelojaapp/app/settings/datasources/carregar_secoes_package/model/firebase_resultado_secao_model.dart';
 import 'package:corelojaapp/app/settings/datasources/carregar_temas_package/datasource/model/firebase_resultado_theme_model.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:meta/meta.dart';

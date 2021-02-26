@@ -1,5 +1,6 @@
 import 'package:auth_google_package/auth_google_package.dart';
 import 'package:carregar_empresa_package/carregar_empresa_package.dart';
+import 'package:carregar_secoes_package/carregar_secoes_package.dart';
 import 'package:carregar_temas_package/carregar_temas_package.dart';
 import 'package:checar_coneccao_plugin/checar_coneccao_plugin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,9 +10,6 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 //Importes Internos
-import '../core/core_features/carregar_secao/domain/usecases/carregar_secao_usecase.dart';
-import '../core/core_features/carregar_secao/external/datasources_impl/firebase_secao_datasource.dart';
-import '../core/core_features/carregar_secao/infra/repositories_impl/carregar_secao_repository_impl.dart';
 import '../datasources/auth_google_package/carregar_usuario/firebase_carregar_usuario_datasource.dart';
 import '../datasources/auth_google_package/recuperar_senha_email/firebase_recuperar_senha_email_datasource.dart';
 import '../datasources/auth_google_package/signin/firebase_novo_email_datasource.dart';
@@ -19,6 +17,7 @@ import '../datasources/auth_google_package/signin/firebase_signin_email_datasour
 import '../datasources/auth_google_package/signin/firebase_signin_google_datasource.dart';
 import '../datasources/auth_google_package/signout/firebase_signout_datasource.dart';
 import '../datasources/carregar_empresa_package/firebase_empresa_datasource.dart';
+import '../datasources/carregar_secoes_package/firebase_secao_datasource.dart';
 import '../datasources/carregar_temas_package/datasource/firebase_tema_datasource.dart';
 import 'configuracao_geral_controller.dart';
 
@@ -41,14 +40,10 @@ class ConfiguracaoGeralBinding implements Bindings {
         //package Connectivity
         onconnect: Connectivity(),
         //usecases
-        carregarSecao: CarregarSecaoUsecaseImpl(
-          //infra
-          repository: CarregarSecaoRepositoryImpl(
-            //external
-            datasource: FirebaseSecaoDatasourse(
-              //package firebase
-              firestore: FirebaseFirestore.instance,
-            ),
+        carregarSecao: CarregarSecoesPresenter(
+          mostrarTempoExecucao: true,
+          datasource: FirebaseSecaoDatasourse(
+            firestore: FirebaseFirestore.instance,
           ),
         ),
         //usecases

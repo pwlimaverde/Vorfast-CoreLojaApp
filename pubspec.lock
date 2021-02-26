@@ -36,19 +36,28 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: c78533cccd82009e2e5feb5f5d865da1dbbab33b
+      resolved-ref: "72fca0c3e0101a6493f4c33cd3a3a7a5b1a34853"
       url: "https://github.com/pwlimaverde/carregar_empresa_package.git"
     source: git
-    version: "1.0.0"
+    version: "1.0.1"
+  carregar_secoes_package:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "421a1aba09efbc5c4350645d6a9856802c232ad2"
+      url: "https://github.com/pwlimaverde/carregar_secoes_package.git"
+    source: git
+    version: "1.0.1"
   carregar_temas_package:
     dependency: "direct main"
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "326330c66f5e8f311777ad2cbf9d5fdfc12dcd7d"
+      resolved-ref: c10909118e218697ffea9d07f2f7d5c5bcf089d6
       url: "https://github.com/pwlimaverde/carregar_temas_package.git"
     source: git
-    version: "1.0.1"
+    version: "1.0.2"
   characters:
     dependency: transitive
     description:
@@ -68,10 +77,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "7122b82cb7fd9131f52e9ab6861fcf6d6e54ef95"
+      resolved-ref: b178ea3777cad8f2cd382ace4578049e526f5717
       url: "https://github.com/pwlimaverde/checar_coneccao_plugin.git"
     source: git
-    version: "1.0.5"
+    version: "1.0.6"
   clock:
     dependency: transitive
     description:

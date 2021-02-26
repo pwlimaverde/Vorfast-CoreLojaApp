@@ -1,8 +1,9 @@
-import 'package:corelojaapp/app/settings/core/core_presenter/core_presenter.dart';
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
+
+import '../../../../settings/datasources/carregar_secoes_package/model/firebase_resultado_secao_model.dart';
 
 class SlvHeaderWidget extends StatelessWidget {
   final FirebaseResultadoSecaoModel secao;

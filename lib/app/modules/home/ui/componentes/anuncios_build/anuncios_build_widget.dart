@@ -1,4 +1,4 @@
-import 'package:corelojaapp/app/settings/core/core_presenter/core_presenter.dart';
+import 'package:corelojaapp/app/settings/datasources/carregar_secoes_package/model/firebase_resultado_secao_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../shared/widgets/widgets_core.dart' as widgetCore;
@@ -10,9 +10,9 @@ class AnunciosBuildWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (secao.anunciosValue.length > 0) {
+      if (secao.anuncios.length > 0) {
         return widgetCore.SlvGridPromoModelWidget(
-          listModel: secao.anunciosValue,
+          listModel: secao.anuncios,
         );
       } else {
         return widgetCore.SlvProgressWidget();
