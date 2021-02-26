@@ -18,23 +18,7 @@ void main() async {
 
   test('Deve retornar um sucesso com Stream<FirebaseResultadoThemeModel>',
       () async {
-    print("test inicio");
     final result = await carregarSecoesPresenter.carregarSecoes();
-    Stream<List<ResultadoSecao>> resultFold = result.fold(
-        sucesso: (value) => value.resultado, erro: (value) => value.erro);
-    final resultLista = await resultFold.first;
-    print("test meio $resultLista");
-    // if (result is SucessoRetorno<Stream<List<ResultadoSecao>>>) {
-    //   print("teste result - ${await result.fold(
-    //         sucesso: (value) => value.resultado,
-    //         erro: (value) => value.erro,
-    //       ).first}");
-    // } else {
-    //   print("teste result - ${await result.fold(
-    //     sucesso: (value) => value.resultado,
-    //     erro: (value) => value.erro,
-    //   )}");
-    // }
     expect(result, isA<SucessoRetorno<Stream<List<ResultadoSecao>>>>());
     expect(
         result.fold(
@@ -46,7 +30,6 @@ void main() async {
 }
 
 Future<void> _setSecoes({int numero, MockFirestoreInstance instance}) async {
-  print("set secao $numero inicio");
   await instance.collection('secao').doc("$numero").update({
     'nome': "promoção $numero",
     'img': "teste imagem $numero",
@@ -97,6 +80,4 @@ Future<void> _setSecoes({int numero, MockFirestoreInstance instance}) async {
     'x': numero + 2,
     'y': numero + 2,
   });
-
-  print("set secao $numero fim");
 }
